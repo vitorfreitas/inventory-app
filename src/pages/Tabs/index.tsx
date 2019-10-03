@@ -1,29 +1,41 @@
 import React from 'react'
-import { AntDesign } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 
-import Home from '../Home'
+import PointOfSale from '../PointOfSale'
+import TabBar from './TabBar'
+import Stock from '../Stock'
+import Metrics from '../Metrics'
+import More from '../More'
+import * as V from '../../styles/variables'
 
 const tabBarIcons = {
-  Home: 'home'
+  PointOfSale: 'shopping-cart',
+  Stock: 'shopping-bag',
+  Metrics: 'bar-chart',
+  More: 'more-horizontal'
 }
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Home
+    PointOfSale,
+    Stock,
+    Metrics,
+    More
   },
   {
+    tabBarComponent: TabBar,
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ tintColor }) => (
-        <AntDesign
+        <Feather
           name={tabBarIcons[navigation.state.routeName]}
-          size={32}
+          size={28}
           color={tintColor}
         />
       ),
       tabBarOptions: {
-        activeTintColor: '#05c46b',
+        activeTintColor: V.Color.primary,
         style: { height: 60, paddingTop: 5 },
         keyboardHidesTabBar: true,
         labelStyle: { fontWeight: 'bold', fontSize: 14 }
