@@ -1,5 +1,4 @@
 import React from 'react'
-import { Feather } from '@expo/vector-icons'
 import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 
@@ -9,6 +8,7 @@ import Stock from '../Stock'
 import Metrics from '../Metrics'
 import More from '../More'
 import * as V from '../../styles/variables'
+import TabIcon from './TabIcon'
 
 const tabBarIcons = {
   PointOfSale: 'shopping-cart',
@@ -27,10 +27,10 @@ const TabNavigator = createBottomTabNavigator(
   {
     tabBarComponent: TabBar,
     defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ tintColor }) => (
-        <Feather
+      tabBarIcon: ({ tintColor, focused }) => (
+        <TabIcon
           name={tabBarIcons[navigation.state.routeName]}
-          size={28}
+          focused={focused}
           color={tintColor}
         />
       ),

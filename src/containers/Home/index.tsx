@@ -1,13 +1,18 @@
 import React from 'react'
 
-import { Title } from '../../components/Typography'
+import Navbar from '../../components/Navbar'
+import { Content } from './styled'
 
 interface Props {
   data?: object
 }
 
 const HomeContainer: React.SFC<Props> = ({ data }) => (
-  <Title>Home Container</Title>
+  <>
+    <Navbar />
+
+    <Content />
+  </>
 )
 
 export default HomeContainer
