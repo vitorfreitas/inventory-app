@@ -2,6 +2,7 @@ import styled from 'styled-components/native'
 import Ripple from 'react-native-material-ripple'
 
 export const TabBarContainer = styled.View`
+  height: 55px;
   border-top-width: 1px;
   border-top-color: #eee;
 
