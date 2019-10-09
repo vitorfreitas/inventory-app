@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Feather } from '@expo/vector-icons'
 
 import Navbar from '../../components/Navbar'
-import { Content, Toolbar, SearchInput, Row, Heading } from './styled'
 import GridContainer from './GridContainer'
-import * as V from '../../styles/variables'
+import ListContainer from './ListContainer'
+import { Content, Toolbar, SearchInput } from './styled'
 
 interface Props {
   data?: object
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const HomeContainer: React.SFC<Props> = ({ t, data }) => {
-  const [visualizationMode, setVisualizationMode] = useState('grid')
+  const [visualizationMode, setVisualizationMode] = useState('list')
 
   return (
     <>
@@ -24,25 +24,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
           <SearchInput placeholder={t('pos.placeholder')} />
         </Toolbar>
 
-        <Row>
-          <Heading>{t('pos.products')}</Heading>
-
-          <Feather
-            name="grid"
-            color={visualizationMode === 'grid' ? V.Color.primary : '#757575'}
-            size={20}
-            onPress={() => setVisualizationMode('grid')}
-          />
-          <Feather
-            name="list"
-            color={visualizationMode === 'list' ? V.Color.primary : '#757575'}
-            size={25}
-            style={{ marginLeft: 10 }}
-            onPress={() => setVisualizationMode('list')}
-          />
-        </Row>
-
-        <GridContainer />
+        {visualizationMode === 'grid' ? <GridContainer /> : <ListContainer />}
       </Content>
     </>
   )

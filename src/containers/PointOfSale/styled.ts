@@ -9,7 +9,7 @@ export const Content = styled.View`
 export const ItemContainer = styled(Ripple).attrs({
   rippleOpacity: 0.1
 })`
-  flex: 1;
+  width: 31%;
   margin: 4px;
   elevation: 3;
   background: #fff;
@@ -18,13 +18,14 @@ export const ItemContainer = styled(Ripple).attrs({
 
 export const Row = styled.View`
   width: 100%;
-  padding: 15px 25px;
+  padding: 15px 0;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `
 
 export const Toolbar = styled(Row)`
+  padding: 15px;
   background: #fff;
   border-color: #eee;
   border-bottom-width: 1px;
@@ -34,10 +35,4 @@ export const SearchInput = styled.TextInput`
   flex: 1;
   font-size: 16px;
   text-align: right;
-`
-
-export const Heading = styled.Text`
-  flex: 1;
-  font-size: 18px;
-  font-family: Poppins;
 `
