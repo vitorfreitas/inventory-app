@@ -2,7 +2,8 @@ import React from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
 
-import HomeContainer from '../../containers/Home'
+import PointOfSaleContainer from '../../containers/PointOfSale'
+import { t } from '../../locations'
 
 const FETCH_USERS = gql`
   {
@@ -18,8 +19,8 @@ const FETCH_USERS = gql`
   }
 `
 
-export default function Home() {
+export default function PointOfSale() {
   const { data } = useQuery(FETCH_USERS)
 
-  return <HomeContainer data={data} />
+  return <PointOfSaleContainer t={t} data={data} />
 }
