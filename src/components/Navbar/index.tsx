@@ -29,10 +29,14 @@ const Avatar = styled.Image`
   border-color: ${V.Color.primary};
 `
 
-export default function Navbar() {
+interface Props {
+  title: string
+}
+
+const Navbar: React.SFC<Props> = ({ title }) => {
   return (
     <Container>
-      <Title>Vender</Title>
+      <Title>{title}</Title>
 
       <Avatar
         source={{ uri: 'https://randomuser.me/api/portraits/men/22.jpg' }}
@@ -40,3 +44,5 @@ export default function Navbar() {
     </Container>
   )
 }
+
+export default Navbar

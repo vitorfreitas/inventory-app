@@ -8,23 +8,24 @@ import * as V from '../../styles/variables'
 
 interface Props {
   data?: object
+  t: (key: string) => string
 }
 
-const HomeContainer: React.SFC<Props> = ({ data }) => {
+const HomeContainer: React.SFC<Props> = ({ t, data }) => {
   const [visualizationMode, setVisualizationMode] = useState('grid')
 
   return (
     <>
-      <Navbar />
+      <Navbar title={t('navbar.sell')} />
 
       <Content>
         <Toolbar>
           <Feather name="search" size={25} />
-          <SearchInput placeholder="Procurando o que hoje?" />
+          <SearchInput placeholder={t('pos.placeholder')} />
         </Toolbar>
 
         <Row>
-          <Heading>Produtos</Heading>
+          <Heading>{t('pos.products')}</Heading>
 
           <Feather
             name="grid"

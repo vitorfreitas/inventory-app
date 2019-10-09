@@ -1,0 +1,9 @@
+{
+  "navbar": {
+    "sell": "Sell"
+  },
+  "pos": {
+    "placeholder": "What are you looking for?",
+    "products": "Products"
+  }
+}
