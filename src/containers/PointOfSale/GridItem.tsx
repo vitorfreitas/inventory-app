@@ -1,16 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import Ripple from 'react-native-material-ripple'
-
-const Container = styled(Ripple).attrs({
-  rippleOpacity: 0.1
-})`
-  margin: 4px;
-  height: 115px;
-  elevation: 2;
-  background: #fff;
-  border-radius: 4px;
-`
+import { ItemContainer as Container } from './styled'
 
 const Image = styled.Image`
   width: 100%;

@@ -6,11 +6,12 @@ const Container = styled.View`
   width: 95%;
   margin: 0 auto;
   padding: 15px;
+  elevation: 2;
   background: #fff;
   border-radius: 4px;
 
   flex-direction: row;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 `
 
 const Picture = styled.Image`
