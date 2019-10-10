@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components/native'
 
 const Container = styled.View`
   height: 100px;
+  width: 95%;
+  margin: 0 auto;
   padding: 15px;
+  background: #fff;
   border-radius: 4px;
-  border: 1px solid #eee;
 
   flex-direction: row;
   margin-bottom: 5px;

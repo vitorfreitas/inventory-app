@@ -1,10 +1,20 @@
 import React, { useState } from 'react'
 import { Feather } from '@expo/vector-icons'
+import styled from 'styled-components/native'
 
 import Navbar from '../../components/Navbar'
 import GridContainer from './GridContainer'
 import ListContainer from './ListContainer'
-import { Content, Toolbar, SearchInput } from './styled'
+import { Content, Row, SearchInput } from './styled'
+import Heading from './Heading'
+
+const Toolbar = styled(Row)`
+  padding: 15px;
+  background: #fff;
+  border-color: #eee;
+  margin-bottom: 10px;
+  border-bottom-width: 1px;
+`
 
 interface Props {
   data?: object
@@ -12,7 +22,7 @@ interface Props {
 }
 
 const HomeContainer: React.SFC<Props> = ({ t, data }) => {
-  const [visualizationMode, setVisualizationMode] = useState('list')
+  const [visualizationMode, setVisualizationMode] = useState('grid')
 
   return (
     <>
@@ -24,7 +34,11 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
           <SearchInput placeholder={t('pos.placeholder')} />
         </Toolbar>
 
-        {visualizationMode === 'grid' ? <GridContainer /> : <ListContainer />}
+        {visualizationMode === 'grid' ? (
+          <GridContainer onChangeVisualizationMode={setVisualizationMode} />
+        ) : (
+          <ListContainer onChangeVisualizationMode={setVisualizationMode} />
+        )}
       </Content>
     </>
   )

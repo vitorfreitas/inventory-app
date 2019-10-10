@@ -1,8 +1,16 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import { View } from 'react-native'
+import Ripple from 'react-native-material-ripple'
 
-import { ItemContainer as Container } from './styled'
+const Container = styled(Ripple).attrs({
+  rippleOpacity: 0.1
+})`
+  margin: 4px;
+  height: 115px;
+  elevation: 2;
+  background: #fff;
+  border-radius: 4px;
+`
 
 const Image = styled.Image`
   width: 100%;
@@ -32,18 +40,12 @@ const Price = styled.Text`
 `
 
 interface Props {
-  item?: {
-    isEmpty: boolean
-  }
+  item?: object
 }
 
 const GridItem: React.SFC<Props> = ({ item }) => {
-  if (item.isEmpty) {
-    return <View style={{ flex: 1, margin: 4 }} />
-  }
-
   return (
-    <Container empty={item.isEmpty}>
+    <Container>
       <Image
         source={{
           uri:

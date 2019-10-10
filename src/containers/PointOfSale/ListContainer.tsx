@@ -1,20 +1,29 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import { ScrollView, View } from 'react-native'
 
 import ListItem from './ListItem'
+import Heading from './Heading'
 
-const ListContainer: React.SFC = () => {
+interface Props {
+  onChangeVisualizationMode: (vMode: 'grid' | 'list') => any
+}
+
+const ListContainer: React.SFC<Props> = ({ onChangeVisualizationMode }) => {
   const data = [1, 2, 3, 4, 5, 6]
-  const _renderItem = ({ item, index }) => <ListItem />
+  const _renderItem = () => <ListItem />
 
   return (
-    <FlatList
-      data={data}
-      contentContainerStyle={{ paddingHorizontal: 7, paddingTop: 10 }}
-      nestedScrollEnabled
-      renderItem={_renderItem}
-      keyExtractor={item => item}
-    />
+    <ScrollView>
+      <View style={{ marginBottom: 10 }}>
+        <Heading
+          title="Products"
+          visualizationMode="list"
+          onChangeVisualizationMode={onChangeVisualizationMode}
+        />
+      </View>
+
+      {data.map(_renderItem)}
+    </ScrollView>
   )
 }
 
