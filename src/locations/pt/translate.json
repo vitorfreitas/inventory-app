@@ -4,6 +4,7 @@
   },
   "pos": {
     "placeholder": "Procurando o que hoje?",
-    "products": "Products"
+    "products": "Products",
+    "hold-tip": "Segure para ver mais"
   }
 }

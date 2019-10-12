@@ -6,7 +6,6 @@ import Navbar from '../../components/Navbar'
 import GridContainer from './GridContainer'
 import ListContainer from './ListContainer'
 import { Content, Row, SearchInput } from './styled'
-import Heading from './Heading'
 
 const Toolbar = styled(Row)`
   padding: 15px;
@@ -22,7 +21,7 @@ interface Props {
 }
 
 const HomeContainer: React.SFC<Props> = ({ t, data }) => {
-  const [visualizationMode, setVisualizationMode] = useState('grid')
+  const [visualizationMode, setVisualizationMode] = useState('list')
 
   return (
     <>
@@ -37,7 +36,10 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
         {visualizationMode === 'grid' ? (
           <GridContainer onChangeVisualizationMode={setVisualizationMode} />
         ) : (
-          <ListContainer onChangeVisualizationMode={setVisualizationMode} />
+          <ListContainer
+            t={t}
+            onChangeVisualizationMode={setVisualizationMode}
+          />
         )}
       </Content>
     </>

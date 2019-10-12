@@ -4,6 +4,7 @@
   },
   "pos": {
     "placeholder": "What are you looking for?",
-    "products": "Products"
+    "products": "Products",
+    "hold-tip": "Hold to more"
   }
 }
