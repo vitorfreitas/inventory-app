@@ -6,6 +6,7 @@ import Navbar from '../../components/Navbar'
 import GridContainer from './GridContainer'
 import ListContainer from './ListContainer'
 import { Content, Row, SearchInput } from './styled'
+import DescriptionModal from './Description'
 
 const Toolbar = styled(Row)`
   padding: 15px;
@@ -41,6 +42,8 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
             onChangeVisualizationMode={setVisualizationMode}
           />
         )}
+
+        <DescriptionModal open onClose={() => {}} />
       </Content>
     </>
   )
