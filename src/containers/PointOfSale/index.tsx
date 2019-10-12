@@ -23,7 +23,7 @@ interface Props {
 }
 
 const HomeContainer: React.SFC<Props> = ({ t, data }) => {
-  const [visualizationMode, setVisualizationMode] = useState('list')
+  const [visualizationMode, setVisualizationMode] = useState('grid')
   const [selectedProduct, setSelectedProduct] = useState(false)
 
   const openDescriptionModalOnLongPress = product => setSelectedProduct(product)
@@ -41,7 +41,11 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
         </Toolbar>
 
         {visualizationMode === 'grid' ? (
-          <GridContainer onChangeVisualizationMode={setVisualizationMode} />
+          <GridContainer
+            products={products}
+            onProductLongPress={openDescriptionModalOnLongPress}
+            onChangeVisualizationMode={setVisualizationMode}
+          />
         ) : (
           <ListContainer
             t={t}

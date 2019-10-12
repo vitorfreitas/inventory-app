@@ -6,6 +6,7 @@ import { SectionGrid } from 'react-native-super-grid'
 import { ItemContainer } from './styled'
 import GridItem from './GridItem'
 import Heading from './Heading'
+import { Product } from '../../interfaces/product'
 
 const AddProductItem = styled(ItemContainer)`
   background: #f1f2fa;
@@ -14,10 +15,16 @@ const AddProductItem = styled(ItemContainer)`
 `
 
 interface Props {
+  products: Product[]
+  onProductLongPress: (product: Product) => void
   onChangeVisualizationMode: (vMode: 'grid' | 'list') => void
 }
 
-const GridContainer: React.SFC<Props> = ({ onChangeVisualizationMode }) => {
+const GridContainer: React.SFC<Props> = ({
+  products,
+  onProductLongPress,
+  onChangeVisualizationMode
+}) => {
   const addProductItem = () => (
     <AddProductItem>
       <Feather name="plus" size={40} color="#d8d9e1" />
@@ -27,16 +34,14 @@ const GridContainer: React.SFC<Props> = ({ onChangeVisualizationMode }) => {
   const _renderItem = ({ item, index }) => {
     if (index === 0) return addProductItem()
 
-    return <GridItem item={item} />
+    return <GridItem data={item} onLongPress={onProductLongPress} />
   }
 
   return (
     <SectionGrid
       itemDimension={90}
       spacing={5}
-      sections={[
-        { title: 'Products', data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] }
-      ]}
+      sections={[{ title: 'Products', data: products }]}
       renderItem={_renderItem}
       renderSectionHeader={() => (
         <Heading

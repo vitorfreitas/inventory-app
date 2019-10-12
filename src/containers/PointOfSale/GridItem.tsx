@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import { ItemContainer as Container } from './styled'
+import { Product } from '../../interfaces/product'
 
 const Image = styled.Image`
   width: 100%;
@@ -30,22 +31,20 @@ const Price = styled.Text`
 `
 
 interface Props {
-  item?: object
+  data: Product
+  onLongPress: (product: Product) => void
 }
 
-const GridItem: React.SFC<Props> = ({ item }) => {
+const GridItem: React.SFC<Props> = ({ data, onLongPress }) => {
+  const handleLongPress = () => onLongPress(data)
+
   return (
-    <Container>
-      <Image
-        source={{
-          uri:
-            'https://panelinha-sitenovo.s3-sa-east-1.amazonaws.com/receita/1562096945621-receita.jpg'
-        }}
-      />
+    <Container onLongPress={handleLongPress}>
+      <Image source={{ uri: data.picture }} />
 
       <DataContainer>
-        <Title>Hamburguer</Title>
-        <Price>R$ 24,00</Price>
+        <Title>{data.name}</Title>
+        <Price>R$ {data.price}</Price>
       </DataContainer>
     </Container>
   )
