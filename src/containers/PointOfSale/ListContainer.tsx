@@ -3,15 +3,29 @@ import { ScrollView, View } from 'react-native'
 
 import ListItem from './ListItem'
 import Heading from './Heading'
+import { Product } from '../../interfaces/product'
 
 interface Props {
   t: (path) => string
+  products: Product[]
+  onProductLongPress: (product) => void
   onChangeVisualizationMode: (vMode: 'grid' | 'list') => any
 }
 
-const ListContainer: React.SFC<Props> = ({ t, onChangeVisualizationMode }) => {
-  const data = [1, 2, 3, 4, 5, 6]
-  const _renderItem = (_, index) => <ListItem t={t} key={index} />
+const ListContainer: React.SFC<Props> = ({
+  t,
+  products,
+  onChangeVisualizationMode,
+  onProductLongPress
+}) => {
+  const _renderItem = (product, index) => (
+    <ListItem
+      t={t}
+      data={product}
+      onLongPress={onProductLongPress}
+      key={index}
+    />
+  )
 
   return (
     <ScrollView>
@@ -23,7 +37,7 @@ const ListContainer: React.SFC<Props> = ({ t, onChangeVisualizationMode }) => {
         />
       </View>
 
-      {data.map(_renderItem)}
+      {products.map(_renderItem)}
     </ScrollView>
   )
 }

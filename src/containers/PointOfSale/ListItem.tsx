@@ -4,6 +4,7 @@ import Ripple from 'react-native-material-ripple'
 import { Feather } from '@expo/vector-icons'
 
 import * as V from '../../styles/variables'
+import { Product } from '../../interfaces/product'
 
 const Container = styled(Ripple).attrs({
   rippleOpacity: 0.1
@@ -51,22 +52,23 @@ const Tip = styled.Text`
 `
 
 interface Props {
+  data: Product
   t: (term) => string
+  onLongPress: (product) => void
 }
 
-const ListItem: React.SFC<Props> = ({ t }) => {
+const ListItem: React.SFC<Props> = ({ t, data, onLongPress }) => {
+  const handleLongPress = () => {
+    onLongPress(data)
+  }
+
   return (
-    <Container>
-      <Picture
-        source={{
-          uri:
-            'https://panelinha-sitenovo.s3-sa-east-1.amazonaws.com/receita/1562096945621-receita.jpg'
-        }}
-      />
+    <Container onLongPress={handleLongPress}>
+      <Picture source={{ uri: data.picture }} />
 
       <DataContainer>
-        <Price>R$ 25,00</Price>
-        <Title>Hamburguer</Title>
+        <Price>R$ {data.price}</Price>
+        <Title>{data.name}</Title>
 
         <Tip>
           {t('pos.hold-tip')}

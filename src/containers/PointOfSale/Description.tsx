@@ -170,7 +170,7 @@ const DescriptionModal: React.SFC<Props> = ({ open, onClose }) => {
           </Footer>
         </Container>
 
-        <CloseModalButton>
+        <CloseModalButton onPress={onClose}>
           <Feather name="x" size={25} color="#757575" />
         </CloseModalButton>
       </Background>

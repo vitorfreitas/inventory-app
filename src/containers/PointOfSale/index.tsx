@@ -7,6 +7,7 @@ import GridContainer from './GridContainer'
 import ListContainer from './ListContainer'
 import { Content, Row, SearchInput } from './styled'
 import DescriptionModal from './Description'
+import { products } from './products.json'
 
 const Toolbar = styled(Row)`
   padding: 15px;
@@ -23,6 +24,11 @@ interface Props {
 
 const HomeContainer: React.SFC<Props> = ({ t, data }) => {
   const [visualizationMode, setVisualizationMode] = useState('list')
+  const [selectedProduct, setSelectedProduct] = useState(false)
+
+  const openDescriptionModalOnLongPress = product => setSelectedProduct(product)
+
+  const closeDescriptionModal = () => setSelectedProduct(false)
 
   return (
     <>
@@ -39,11 +45,16 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
         ) : (
           <ListContainer
             t={t}
+            products={products}
+            onProductLongPress={openDescriptionModalOnLongPress}
             onChangeVisualizationMode={setVisualizationMode}
           />
         )}
 
-        <DescriptionModal open onClose={() => {}} />
+        <DescriptionModal
+          open={!!selectedProduct}
+          onClose={closeDescriptionModal}
+        />
       </Content>
     </>
   )
