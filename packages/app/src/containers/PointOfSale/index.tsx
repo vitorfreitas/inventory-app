@@ -24,7 +24,7 @@ interface Props {
 
 const HomeContainer: React.SFC<Props> = ({ t, data }) => {
   const [visualizationMode, setVisualizationMode] = useState('grid')
-  const [selectedProduct, setSelectedProduct] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState(true)
 
   const openDescriptionModalOnLongPress = product => setSelectedProduct(product)
 
@@ -56,6 +56,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
         )}
 
         <DescriptionModal
+          t={t}
           open={!!selectedProduct}
           onClose={closeDescriptionModal}
         />

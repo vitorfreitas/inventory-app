@@ -72,6 +72,10 @@ const CompositionContainer = styled.View`
   padding: 0 25px;
 `
 
+const CompositionRow = styled(Row)`
+  margin-bottom: 5px;
+`
+
 const CompositionName = styled.Text`
   font-family: 'Poppins Medium';
 `
@@ -111,10 +115,11 @@ const CloseModalButton = styled.TouchableOpacity`
 
 interface Props {
   open: boolean
+  t: (path: string) => string
   onClose: () => void
 }
 
-const DescriptionModal: React.SFC<Props> = ({ open, onClose }) => {
+const DescriptionModal: React.SFC<Props> = ({ t, open, onClose }) => {
   return (
     <Modal
       visible={open}
@@ -141,24 +146,24 @@ const DescriptionModal: React.SFC<Props> = ({ open, onClose }) => {
           </Heading>
 
           <CompositionContainer>
-            <Row>
+            <CompositionRow>
               <CompositionName>Pão de Hamburguer</CompositionName>
               <CompositionValue>1 un</CompositionValue>
-            </Row>
+            </CompositionRow>
 
-            <Row>
+            <CompositionRow>
               <CompositionName>Pão de Hamburguer</CompositionName>
               <CompositionValue>1 un</CompositionValue>
-            </Row>
+            </CompositionRow>
 
-            <Row>
+            <CompositionRow>
               <CompositionName>Pão de Hamburguer</CompositionName>
               <CompositionValue>1 un</CompositionValue>
-            </Row>
+            </CompositionRow>
 
             <Row>
               <SeeMore>
-                Ver mais
+                {t('pos.description.see-more')}
                 <Feather name="chevron-right" />
               </SeeMore>
             </Row>
@@ -166,7 +171,7 @@ const DescriptionModal: React.SFC<Props> = ({ open, onClose }) => {
 
           <Footer>
             <NumberPicker />
-            <Button text="Adicionar"></Button>
+            <Button text={t('pos.description.add')}></Button>
           </Footer>
         </Container>
 

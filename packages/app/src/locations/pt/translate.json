@@ -5,6 +5,10 @@
   "pos": {
     "placeholder": "Procurando o que hoje?",
     "products": "Products",
-    "hold-tip": "Segure para ver mais"
+    "hold-tip": "Segure para ver mais",
+    "description": {
+      "see-more": "Veja mais",
+      "add": "Adicionar"
+    }
   }
 }
