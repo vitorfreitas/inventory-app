@@ -1,33 +1,13 @@
 import React from 'react'
-import { Modal } from 'react-native'
 import styled from 'styled-components/native'
 import { Feather } from '@expo/vector-icons'
 import Ripple from 'react-native-material-ripple'
 
 import { Row } from './styled'
-import Button from '../../components/Button'
-import NumberPicker from '../../components/NumberPicker'
 import * as V from '@styles/variables'
-
-export const Background = styled.View`
-  width: 100%;
-  height: 100%;
-  background: rgba(25, 81, 137, 0.79);
-
-  top: 0;
-  left: 0;
-  position: absolute;
-`
-
-const Container = styled.View`
-  width: 90%;
-  elevation: 2;
-  height: 460px;
-  margin-top: 20%;
-  background: #fff;
-  align-self: center;
-  border-radius: 6px;
-`
+import Button from 'components/Button'
+import NumberPicker from 'components/NumberPicker'
+import DefaultModal from 'components/DefaultModal'
 
 const Picture = styled.Image`
   width: 100%;
@@ -99,20 +79,6 @@ const SeeMore = styled.Text`
   font-family: 'Poppins Medium';
 `
 
-const CloseModalButton = styled.TouchableOpacity`
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  border-radius: 25px;
-  align-items: center;
-  border: 1px solid #eee;
-  justify-content: center;
-
-  bottom: 15px;
-  align-self: center;
-  position: absolute;
-`
-
 interface Props {
   open: boolean
   t: (path: string) => string
@@ -121,65 +87,52 @@ interface Props {
 
 const DescriptionModal: React.SFC<Props> = ({ t, open, onClose }) => {
   return (
-    <Modal
-      visible={open}
-      onRequestClose={onClose}
-      animationType="fade"
-      transparent
-    >
-      <Background>
-        <Container>
-          <Picture
-            source={{
-              uri:
-                'https://foodrevolution.org/wp-content/uploads/blog-featured_healthy_foods-20180306.jpg'
-            }}
-          />
+    <DefaultModal open={open} onClose={onClose}>
+      <Picture
+        source={{
+          uri:
+            'https://foodrevolution.org/wp-content/uploads/blog-featured_healthy_foods-20180306.jpg'
+        }}
+      />
 
-          <EditButton>
-            <Feather name="edit-3" color="#fff" size={20} />
-          </EditButton>
+      <EditButton>
+        <Feather name="edit-3" color="#fff" size={20} />
+      </EditButton>
 
-          <Heading>
-            <Title>Hamburguer</Title>
-            <Price>R$ 25.00</Price>
-          </Heading>
+      <Heading>
+        <Title>Hamburguer</Title>
+        <Price>R$ 25.00</Price>
+      </Heading>
 
-          <CompositionContainer>
-            <CompositionRow>
-              <CompositionName>Pão de Hamburguer</CompositionName>
-              <CompositionValue>1 un</CompositionValue>
-            </CompositionRow>
+      <CompositionContainer>
+        <CompositionRow>
+          <CompositionName>Pão de Hamburguer</CompositionName>
+          <CompositionValue>1 un</CompositionValue>
+        </CompositionRow>
 
-            <CompositionRow>
-              <CompositionName>Pão de Hamburguer</CompositionName>
-              <CompositionValue>1 un</CompositionValue>
-            </CompositionRow>
+        <CompositionRow>
+          <CompositionName>Pão de Hamburguer</CompositionName>
+          <CompositionValue>1 un</CompositionValue>
+        </CompositionRow>
 
-            <CompositionRow>
-              <CompositionName>Pão de Hamburguer</CompositionName>
-              <CompositionValue>1 un</CompositionValue>
-            </CompositionRow>
+        <CompositionRow>
+          <CompositionName>Pão de Hamburguer</CompositionName>
+          <CompositionValue>1 un</CompositionValue>
+        </CompositionRow>
 
-            <Row>
-              <SeeMore>
-                {t('pos.description.see-more')}
-                <Feather name="chevron-right" />
-              </SeeMore>
-            </Row>
-          </CompositionContainer>
+        <Row>
+          <SeeMore>
+            {t('pos.description.see-more')}
+            <Feather name="chevron-right" />
+          </SeeMore>
+        </Row>
+      </CompositionContainer>
 
-          <Footer>
-            <NumberPicker />
-            <Button text={t('pos.description.add')}></Button>
-          </Footer>
-        </Container>
-
-        <CloseModalButton onPress={onClose}>
-          <Feather name="x" size={25} color="#757575" />
-        </CloseModalButton>
-      </Background>
-    </Modal>
+      <Footer>
+        <NumberPicker />
+        <Button text={t('pos.description.add')}></Button>
+      </Footer>
+    </DefaultModal>
   )
 }
 
