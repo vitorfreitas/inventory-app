@@ -26,7 +26,7 @@ const TabIcon: React.SFC<Props> = ({ name, color, focused }) => {
       name={name}
       color={color}
       size={20}
-      style={{ transform: [{ scale: size }] }}
+      style={{ transform: [{ scale: size }], padding: 3 }}
     />
   )
 }
