@@ -7,7 +7,7 @@ import Ripple from 'react-native-material-ripple'
 import { Row } from './styled'
 import Button from '../../components/Button'
 import NumberPicker from '../../components/NumberPicker'
-import * as V from '../../styles/variables'
+import * as V from '@styles/variables'
 
 export const Background = styled.View`
   width: 100%;

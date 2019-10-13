@@ -45,7 +45,7 @@ const ListContainer: React.SFC<Props> = ({
   const _renderItem = (product, index) => {
     if (index === 0) {
       return (
-        <AddProductItem>
+        <AddProductItem key={index}>
           <Feather name="plus" size={40} color="#d8d9e1" />
           <AddProductText>{t('pos.add')}</AddProductText>
         </AddProductItem>

@@ -7,7 +7,7 @@ import TabBar from './TabBar'
 import Stock from '../Stock'
 import Metrics from '../Metrics'
 import More from '../More'
-import * as V from '../../styles/variables'
+import * as V from '@styles/variables'
 import TabIcon from './TabIcon'
 
 const tabBarIcons = {

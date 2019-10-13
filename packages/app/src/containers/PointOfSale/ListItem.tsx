@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 import Ripple from 'react-native-material-ripple'
 import { Feather } from '@expo/vector-icons'
 
-import * as V from '../../styles/variables'
+import * as V from '@styles/variables'
 import { Product } from '../../interfaces/product'
 
 const Container = styled(Ripple).attrs({

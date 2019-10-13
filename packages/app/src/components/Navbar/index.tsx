@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-import * as V from '../../styles/variables'
+import * as V from '@styles/variables'
 
 const Container = styled.View`
   width: 100%;

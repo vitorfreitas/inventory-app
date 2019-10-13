@@ -3,7 +3,7 @@ import { Feather } from '@expo/vector-icons'
 import styled from 'styled-components/native'
 
 import { Row } from './styled'
-import * as V from '../../styles/variables'
+import * as V from '@styles/variables'
 
 const Container = styled(Row)`
   padding: 10px 20px;
