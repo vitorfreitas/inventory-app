@@ -4,7 +4,7 @@ import Ripple from 'react-native-material-ripple'
 import { Feather } from '@expo/vector-icons'
 
 import * as V from '@styles/variables'
-import { Product } from '../../interfaces/product'
+import Product from 'shared/interfaces/product'
 
 const Container = styled(Ripple).attrs({
   rippleOpacity: 0.1

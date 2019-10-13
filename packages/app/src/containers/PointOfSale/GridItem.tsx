@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import { ItemContainer as Container } from './styled'
-import { Product } from '../../interfaces/product'
+import Product from 'shared/interfaces/product'
 
 const Image = styled.Image`
   width: 100%;

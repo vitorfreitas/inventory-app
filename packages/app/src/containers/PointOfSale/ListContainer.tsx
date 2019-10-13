@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons'
 
 import ListItem from './ListItem'
 import Heading from './Heading'
-import { Product } from '../../interfaces/product'
+import Product from 'shared/interfaces/product'
 
 const AddProductItem = styled(Ripple)`
   width: 90%;

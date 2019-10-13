@@ -6,7 +6,7 @@ import { SectionGrid } from 'react-native-super-grid'
 import { ItemContainer } from './styled'
 import GridItem from './GridItem'
 import Heading from './Heading'
-import { Product } from '../../interfaces/product'
+import Product from 'shared/interfaces/product'
 
 const AddProductItem = styled(ItemContainer)`
   background: #f1f2fa;
