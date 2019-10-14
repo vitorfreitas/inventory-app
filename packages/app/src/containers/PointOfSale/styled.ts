@@ -20,11 +20,11 @@ export const Row = styled.View`
   width: 100%;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 `
 
 export const SearchInput = styled.TextInput`
   flex: 1;
   font-size: 16px;
-  text-align: right;
+  margin-left: 16px;
 `
