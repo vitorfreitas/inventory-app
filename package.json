@@ -3,6 +3,8 @@
    "name": "stock",
    "workspaces": ["packages/*"],
    "scripts": {
-     "app": "yarn workspace app start"
+     "app": "yarn workspace app start",
+     "server": "yarn workspace server start",
+     "server:dev": "yarn workspace server start:dev"
    }
 }

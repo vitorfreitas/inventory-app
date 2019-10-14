@@ -1,0 +1,9 @@
+type Mutation {
+  login(email: String!, password: String!): LoginPayload!
+}
+
+type LoginPayload {
+  token: String
+  customer: Customer
+  error: String
+}
