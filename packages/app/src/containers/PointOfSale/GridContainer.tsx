@@ -45,7 +45,7 @@ const GridContainer: React.SFC<Props> = ({
       renderItem={_renderItem}
       renderSectionHeader={() => (
         <Heading
-          title="Products"
+          title={t('pos.products')}
           onChangeVisualizationMode={onChangeVisualizationMode}
           visualizationMode="grid"
         />

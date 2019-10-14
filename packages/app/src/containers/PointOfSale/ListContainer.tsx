@@ -66,7 +66,7 @@ const ListContainer: React.SFC<Props> = ({
     <ScrollView>
       <View style={{ marginBottom: 10 }}>
         <Heading
-          title="Products"
+          title={t('pos.products')}
           visualizationMode="list"
           onChangeVisualizationMode={onChangeVisualizationMode}
         />
