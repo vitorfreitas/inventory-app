@@ -18,16 +18,19 @@ const Toolbar = styled(Row)`
 
 interface Props {
   data?: object
+  navigate: (page: string) => void
   t: (key: string) => string
 }
 
-const HomeContainer: React.SFC<Props> = ({ t, data }) => {
+const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
   const [visualizationMode, setVisualizationMode] = useState('list')
   const [selectedProduct, setSelectedProduct] = useState(false)
 
   const openDescriptionModalOnLongPress = product => setSelectedProduct(product)
 
   const closeDescriptionModal = () => setSelectedProduct(false)
+
+  const navigateToCreateProductPage = () => navigate('CreateProduct')
 
   return (
     <>
@@ -42,6 +45,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
         {visualizationMode === 'grid' ? (
           <GridContainer
             t={t}
+            onCreateProduct={navigateToCreateProductPage}
             products={products}
             onProductLongPress={openDescriptionModalOnLongPress}
             onChangeVisualizationMode={setVisualizationMode}
@@ -49,6 +53,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
         ) : (
           <ListContainer
             t={t}
+            onCreateProduct={navigateToCreateProductPage}
             products={products}
             onProductLongPress={openDescriptionModalOnLongPress}
             onChangeVisualizationMode={setVisualizationMode}

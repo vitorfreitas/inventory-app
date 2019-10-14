@@ -3,9 +3,9 @@ import styled from 'styled-components/native'
 import { Feather } from '@expo/vector-icons'
 import { SectionGrid } from 'react-native-super-grid'
 
-import { ItemContainer } from './styled'
-import GridItem from './GridItem'
 import Heading from './Heading'
+import GridItem from './GridItem'
+import { ItemContainer } from './styled'
 import Product from 'shared/interfaces/product'
 
 const AddProductItem = styled(ItemContainer)`
@@ -17,6 +17,7 @@ const AddProductItem = styled(ItemContainer)`
 interface Props {
   t: (path: string) => string
   products: Product[]
+  onCreateProduct: () => void
   onProductLongPress: (product: Product) => void
   onChangeVisualizationMode: (vMode: 'grid' | 'list') => void
 }
@@ -24,11 +25,12 @@ interface Props {
 const GridContainer: React.SFC<Props> = ({
   t,
   products,
+  onCreateProduct,
   onProductLongPress,
   onChangeVisualizationMode
 }) => {
   const addProductItem = () => (
-    <AddProductItem>
+    <AddProductItem onPress={onCreateProduct}>
       <Feather name="plus" size={40} color="#d6d6d6" />
     </AddProductItem>
   )

@@ -8,8 +8,10 @@ import ListItem from './ListItem'
 import Heading from './Heading'
 import Product from 'shared/interfaces/product'
 
-const AddProductItem = styled(Ripple)`
-  width: 90%;
+const AddProductItem = styled(Ripple).attrs({
+  rippleOpacity: 0.1
+})`
+  width: 100%;
   height: 70px;
   padding: 0 12px;
   border-radius: 4px;
@@ -41,6 +43,7 @@ const AddProductText = styled.Text`
 interface Props {
   t: (path) => string
   products: Product[]
+  onCreateProduct: () => void
   onProductLongPress: (product) => void
   onChangeVisualizationMode: (vMode: 'grid' | 'list') => any
 }
@@ -48,13 +51,14 @@ interface Props {
 const ListContainer: React.SFC<Props> = ({
   t,
   products,
+  onCreateProduct,
   onChangeVisualizationMode,
   onProductLongPress
 }) => {
   const _renderItem = (product, index) => {
     if (index === 0) {
       return (
-        <AddProductItem key={index}>
+        <AddProductItem key={index} onPress={onCreateProduct}>
           <AddProductIcon>
             <Feather name="plus" size={25} color="#d6d6d6" />
           </AddProductIcon>

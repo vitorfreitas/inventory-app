@@ -19,8 +19,18 @@ const FETCH_USERS = gql`
   }
 `
 
-export default function PointOfSale() {
+interface Props {
+  navigation: {
+    navigate: () => void
+  }
+}
+
+const PointOfSale: React.SFC<Props> = ({ navigation }) => {
   const { data } = useQuery(FETCH_USERS)
 
-  return <PointOfSaleContainer t={t} data={data} />
+  return (
+    <PointOfSaleContainer t={t} data={data} navigate={navigation.navigate} />
+  )
 }
+
+export default PointOfSale
