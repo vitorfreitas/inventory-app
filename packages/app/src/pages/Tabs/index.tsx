@@ -1,14 +1,16 @@
 import React from 'react'
 import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
+import { createStackNavigator } from 'react-navigation-stack'
 
 import PointOfSale from '../PointOfSale'
 import TabBar from './TabBar'
 import Inventory from '../Inventory'
 import Metrics from '../Metrics'
 import More from '../More'
-import * as V from '@styles/variables'
 import TabIcon from './TabIcon'
+import CreateProduct from 'pages/PointOfSale/CreateProduct'
+import * as V from '@styles/variables'
 
 const tabBarIcons = {
   PointOfSale: 'shopping-cart',
@@ -17,9 +19,19 @@ const tabBarIcons = {
   More: 'more-horizontal'
 }
 
-const TabNavigator = createBottomTabNavigator(
+const PointOfSaleStackNavigation = createStackNavigator(
   {
     PointOfSale,
+    CreateProduct
+  },
+  {
+    headerMode: 'none'
+  }
+)
+
+const TabNavigator = createBottomTabNavigator(
+  {
+    PointOfSale: PointOfSaleStackNavigation,
     Inventory,
     Metrics,
     More
