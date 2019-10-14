@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { TextInputMask } from 'react-native-masked-text'
 
 import styled from 'styled-components/native'
 import { MediumText } from 'components/Typography/Text'
@@ -14,6 +15,14 @@ const Label = styled(MediumText)`
   font-size: 12px;
 `
 
+const MaskedInput = styled(TextInputMask)<{ isFocused: boolean }>`
+  color: #333;
+  font-size: 16px;
+  font-family: 'Poppins Medium';
+  border-bottom-width: ${({ isFocused }) => (isFocused ? '2px' : '1px')};
+  border-color: ${({ isFocused }) => (isFocused ? V.Color.primary : '#bdbdbd')};
+`
+
 const Input = styled.TextInput<{ isFocused: boolean }>`
   color: #333;
   font-size: 16px;
@@ -24,18 +33,36 @@ const Input = styled.TextInput<{ isFocused: boolean }>`
 
 interface Props {
   label: string
+  type?:
+    | 'default'
+    | 'number-pad'
+    | 'decimal-pad'
+    | 'numeric'
+    | 'email-address'
+    | 'phone-pad'
+  mask?:
+    | 'cel-phone'
+    | 'cnpj'
+    | 'cpf'
+    | 'credit-card'
+    | 'datetime'
+    | 'money'
+    | 'only-numbers'
+    | 'zip-code'
   value?: string
-  onChange?: (value) => void
   width?: string
   placeholder?: string
+  onChange?: (value) => void
 }
 
 const TextInput: React.FC<Props> = ({
   label,
   value,
+  type,
   onChange,
   placeholder,
-  width
+  width,
+  mask
 }) => {
   const [isFocused, setIsFocused] = useState(false)
 
@@ -44,14 +71,29 @@ const TextInput: React.FC<Props> = ({
   return (
     <Container width={width}>
       <Label>{label}</Label>
-      <Input
-        value={value}
-        onChangeText={onChange}
-        placeholder={placeholder}
-        onFocus={toggleIsFocused}
-        onBlur={toggleIsFocused}
-        isFocused={isFocused}
-      />
+
+      {mask ? (
+        <MaskedInput
+          type={mask}
+          value={value}
+          keyboardType={type}
+          onChangeText={onChange}
+          placeholder={placeholder}
+          onFocus={toggleIsFocused}
+          onBlur={toggleIsFocused}
+          isFocused={isFocused}
+        />
+      ) : (
+        <Input
+          value={value}
+          keyboardType={type}
+          onChangeText={onChange}
+          placeholder={placeholder}
+          onFocus={toggleIsFocused}
+          onBlur={toggleIsFocused}
+          isFocused={isFocused}
+        />
+      )}
     </Container>
   )
 }
