@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import { Keyboard, View } from 'react-native'
 
 import { TabBarContainer, TabBarIconContainer } from './styled'
+import useKeyboard from 'hooks/keyboard'
 
 interface Props {
   navigation: {
@@ -24,24 +25,14 @@ const TabBar: React.FC<Props> = ({
   inactiveTintColor,
   onTabPress
 }) => {
-  const [visible, setVisible] = useState(true)
+  const keyboardVisible = useKeyboard()
   const { routes, index } = navigation.state
 
   const tabIsFocused = tabIndex => tabIndex === index
   const currentTintColor = tabIndex =>
     tabIsFocused(tabIndex) ? activeTintColor : inactiveTintColor
 
-  useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', () => setVisible(false))
-    Keyboard.addListener('keyboardDidHide', () => setVisible(true))
-
-    return () => {
-      Keyboard.removeListener('keyboardDidShow', () => {})
-      Keyboard.removeListener('keyboardDidHide', () => {})
-    }
-  })
-
-  if (!visible) {
+  if (keyboardVisible) {
     return <View />
   }
 
