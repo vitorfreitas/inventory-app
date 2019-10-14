@@ -3,7 +3,7 @@ import Ripple from 'react-native-material-ripple'
 
 export const Content = styled.View`
   flex: 1;
-  background: #fafafe;
+  background: #fff;
 `
 
 export const ItemContainer = styled(Ripple).attrs({
@@ -11,9 +11,8 @@ export const ItemContainer = styled(Ripple).attrs({
 })`
   margin: 4px;
   height: 115px;
-  elevation: 2;
-  background: #fff;
   border-radius: 4px;
+  background: #f1f2f9;
 `
 
 export const Row = styled.View`

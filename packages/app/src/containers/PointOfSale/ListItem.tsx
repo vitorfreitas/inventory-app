@@ -5,31 +5,34 @@ import { Feather } from '@expo/vector-icons'
 
 import * as V from '@styles/variables'
 import Product from 'shared/interfaces/product'
+import { View } from 'react-native'
 
 const Container = styled(Ripple).attrs({
   rippleOpacity: 0.1
 })`
-  width: 90%;
-  height: 80px;
-  elevation: 2;
+  width: 100%;
+  height: 70px;
   padding: 12px;
   margin: 0 auto;
-  background: #fff;
-  border-radius: 4px;
-
   flex-direction: row;
-  margin-bottom: 12px;
+  padding-bottom: 10px;
 `
 
 const Picture = styled.Image`
-  width: 30%;
-  height: 100%;
+  width: 80px;
+  height: 55px;
+  align-self: center;
   border-radius: 4px;
 `
 
 const DataContainer = styled.View`
   flex: 1;
-  margin-left: 15px;
+  padding-top: 2px;
+  margin-left: 12px;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const Title = styled.Text`
@@ -39,14 +42,14 @@ const Title = styled.Text`
 `
 
 const Price = styled.Text`
-  margin-bottom: -5px;
   color: #888;
   font-size: 14px;
   font-family: 'Poppins';
 `
 
 const Tip = styled.Text`
-  font-size: 14px;
+  font-size: 12px;
+  margin-top: -5px;
   font-family: 'Poppins';
   color: ${V.Color.primary};
 `
@@ -67,13 +70,16 @@ const ListItem: React.SFC<Props> = ({ t, data, onLongPress }) => {
       <Picture source={{ uri: data.picture }} />
 
       <DataContainer>
-        <Price>R$ {data.price}</Price>
-        <Title>{data.name}</Title>
+        <View>
+          <Title>{data.name}</Title>
 
-        <Tip>
-          {t('pos.hold-tip')}
-          <Feather name="chevron-right" />
-        </Tip>
+          <Tip>
+            {t('pos.hold-tip')}
+            <Feather name="chevron-right" />
+          </Tip>
+        </View>
+
+        <Price>R$ {data.price}</Price>
       </DataContainer>
     </Container>
   )

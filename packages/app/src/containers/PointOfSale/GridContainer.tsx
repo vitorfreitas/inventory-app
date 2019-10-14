@@ -9,25 +9,27 @@ import Heading from './Heading'
 import Product from 'shared/interfaces/product'
 
 const AddProductItem = styled(ItemContainer)`
-  background: #f1f2fa;
   align-items: center;
+  background: #f4f4f4;
   justify-content: center;
 `
 
 interface Props {
+  t: (path: string) => string
   products: Product[]
   onProductLongPress: (product: Product) => void
   onChangeVisualizationMode: (vMode: 'grid' | 'list') => void
 }
 
 const GridContainer: React.SFC<Props> = ({
+  t,
   products,
   onProductLongPress,
   onChangeVisualizationMode
 }) => {
   const addProductItem = () => (
     <AddProductItem>
-      <Feather name="plus" size={40} color="#d8d9e1" />
+      <Feather name="plus" size={40} color="#d6d6d6" />
     </AddProductItem>
   )
 
@@ -39,7 +41,7 @@ const GridContainer: React.SFC<Props> = ({
 
   return (
     <SectionGrid
-      itemDimension={90}
+      itemDimension={100}
       spacing={5}
       sections={[{ title: 'Products', data: products }]}
       renderItem={_renderItem}

@@ -10,22 +10,31 @@ import Product from 'shared/interfaces/product'
 
 const AddProductItem = styled(Ripple)`
   width: 90%;
-  height: 80px;
-  margin: 0 auto;
-  background: #f1f2fa;
+  height: 70px;
+  padding: 0 12px;
   border-radius: 4px;
-  margin-bottom: 12px;
-  elevation: 2;
 
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
+`
+
+const AddProductIcon = styled.View`
+  width: 80px;
+  height: 55px;
+  align-self: center;
+  border-radius: 4px;
+  background: #f4f4f4;
+
+  align-items: center;
+  justify-content: center;
 `
 
 const AddProductText = styled.Text`
   color: #d8d9e1;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 4px;
+  margin-left: 17px;
   font-family: Poppins;
 `
 
@@ -46,7 +55,9 @@ const ListContainer: React.SFC<Props> = ({
     if (index === 0) {
       return (
         <AddProductItem key={index}>
-          <Feather name="plus" size={40} color="#d8d9e1" />
+          <AddProductIcon>
+            <Feather name="plus" size={25} color="#d6d6d6" />
+          </AddProductIcon>
           <AddProductText>{t('pos.add')}</AddProductText>
         </AddProductItem>
       )

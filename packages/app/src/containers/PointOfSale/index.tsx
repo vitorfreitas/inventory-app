@@ -11,7 +11,6 @@ import { products } from './products.json'
 
 const Toolbar = styled(Row)`
   padding: 15px;
-  background: #fff;
   border-color: #eee;
   margin-bottom: 10px;
   border-bottom-width: 1px;
@@ -42,6 +41,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data }) => {
 
         {visualizationMode === 'grid' ? (
           <GridContainer
+            t={t}
             products={products}
             onProductLongPress={openDescriptionModalOnLongPress}
             onChangeVisualizationMode={setVisualizationMode}
