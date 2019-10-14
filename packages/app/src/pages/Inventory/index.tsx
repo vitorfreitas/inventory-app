@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Text, View, Button } from 'react-native'
 
-export default class Stock extends Component {
+export default class Inventory extends Component {
   render() {
     return (
       <View>
-        <Button title="Add to Stock" onPress={() => {}}></Button>
+        <Button title="Add to Inventory" onPress={() => {}}></Button>
       </View>
     )
   }

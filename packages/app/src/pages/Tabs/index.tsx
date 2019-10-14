@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs'
 
 import PointOfSale from '../PointOfSale'
 import TabBar from './TabBar'
-import Stock from '../Stock'
+import Inventory from '../Inventory'
 import Metrics from '../Metrics'
 import More from '../More'
 import * as V from '@styles/variables'
@@ -12,7 +12,7 @@ import TabIcon from './TabIcon'
 
 const tabBarIcons = {
   PointOfSale: 'shopping-cart',
-  Stock: 'shopping-bag',
+  Inventory: 'shopping-bag',
   Metrics: 'bar-chart',
   More: 'more-horizontal'
 }
@@ -20,7 +20,7 @@ const tabBarIcons = {
 const TabNavigator = createBottomTabNavigator(
   {
     PointOfSale,
-    Stock,
+    Inventory,
     Metrics,
     More
   },
