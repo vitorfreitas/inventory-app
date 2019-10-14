@@ -37,7 +37,6 @@ const TabNavigator = createBottomTabNavigator(
       tabBarOptions: {
         activeTintColor: V.Color.primary,
         style: { height: 60, paddingTop: 5 },
-        keyboardHidesTabBar: true,
         labelStyle: { fontWeight: 'bold', fontSize: 14 }
       }
     })
