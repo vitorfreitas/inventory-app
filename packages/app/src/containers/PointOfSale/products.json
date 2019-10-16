@@ -8,55 +8,55 @@
     },
     {
       "id": 2,
-      "name": "Hamburguer",
+      "name": "Salada",
       "price": 25,
       "picture": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
     },
     {
       "id": 3,
-      "name": "Hamburguer",
+      "name": "Brusqueta",
       "price": 25,
       "picture": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
     },
     {
       "id": 4,
-      "name": "Hamburguer",
+      "name": "Churrasco",
       "price": 25,
       "picture": "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=774&q=80"
     },
     {
       "id": 1,
-      "name": "Hamburguer",
+      "name": "Macarronada a provolone",
       "price": 25,
       "picture": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
     },
     {
       "id": 2,
-      "name": "Hamburguer",
+      "name": "Vinagrete",
       "price": 25,
       "picture": "https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
     },
     {
       "id": 3,
-      "name": "Hamburguer",
+      "name": "Pizza",
       "price": 25,
       "picture": "https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
     },
     {
       "id": 4,
-      "name": "Hamburguer",
+      "name": "Costela Barbecue",
       "price": 25,
       "picture": "https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1510&q=80"
     },
     {
       "id": 1,
-      "name": "Hamburguer",
+      "name": "Lombo Canadense",
       "price": 25,
       "picture": "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
     },
     {
       "id": 2,
-      "name": "Hamburguer",
+      "name": "Pão Pita",
       "price": 25,
       "picture": "https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
     },
