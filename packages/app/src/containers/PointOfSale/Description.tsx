@@ -34,6 +34,7 @@ const EditButton = styled(Ripple).attrs({
 
 const Heading = styled(Row)`
   padding: 30px 25px 25px;
+  justify-content: space-between;
 `;
 
 const Title = styled.Text`
@@ -48,12 +49,14 @@ const Price = styled.Text`
   font-family: "Poppins";
 `;
 
-const CompositionContainer = styled.View`
+const CompositionContainer = styled.ScrollView`
   padding: 0 25px;
+  min-height: 200px;
 `;
 
 const CompositionRow = styled(Row)`
   margin-bottom: 5px;
+  justify-content: space-between;
 `;
 
 const CompositionName = styled.Text`
@@ -67,9 +70,9 @@ const CompositionValue = styled.Text`
 
 const Footer = styled(Row)`
   padding: 0 25px;
-
   bottom: 20px;
   position: absolute;
+  justify-content: space-between;
 `;
 
 const SeeMore = styled.Text`
