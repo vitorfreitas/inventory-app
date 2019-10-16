@@ -3,6 +3,7 @@ import { model, Schema, Document, Model } from 'mongoose'
 interface IProduct extends Document {
   name: string
   price: number
+  composition: [IProduct]
 }
 
 const schema = new Schema(
@@ -14,18 +15,18 @@ const schema = new Schema(
     price: {
       type: String,
       required: true
+    },
+    composition: {
+      type: [this],
+      default: []
     }
   },
   {
     timestamps: {
       createdAt: 'createdAt',
       updatedAt: 'updatedAt'
-    },
-    collection: 'product'
+    }
   }
 )
 
-const ProductModel: Model<IProduct> = model('Product', schema)
-
-export { IProduct }
-export default ProductModel
+export { IProduct, schema as ProductSchema }
