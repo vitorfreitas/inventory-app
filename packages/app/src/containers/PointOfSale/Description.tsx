@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { Feather } from "@expo/vector-icons";
 import Ripple from "react-native-material-ripple";
 
-import { Row } from "../../styled";
+import { Row } from "@styles/styled";
 import * as V from "@styles/variables";
 import Button from "components/Button";
 import NumberPicker from "components/NumberPicker";

@@ -7,9 +7,9 @@ import ListContainer from "./ListContainer";
 import Heading from "./Heading";
 import { Content } from "./styled";
 import DescriptionModal from "./Description";
-import { products } from "./products.json";
+import { products } from "../../mocks/products.json";
 
-import { Toolbar } from "../../styled";
+import { Toolbar } from "@styles/styled";
 
 interface Props {
   data?: object;
