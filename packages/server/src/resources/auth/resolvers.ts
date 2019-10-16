@@ -1,29 +1,32 @@
-import Customer, { ICustomer } from '../customers/model'
 import { generateToken } from '../auth/'
+import { IAuthPayload } from './model'
+
+import User, { IUser } from '../users/model'
+
 import { INVALID_CREDENTIALS } from '../../lib/errors'
 
 const resolvers = {
   Mutation: {
-    login: async (_, { email, password }) => {
-      const customer = await Customer.findOne({ email: email.toLowerCase() })
+    login: async (_, { email, password }): Promise<IAuthPayload> => {
+      const user = await User.findOne({ email: email.toLowerCase() })
 
-      if (!customer) {
+      if (!user) {
         return {
-          error: INVALID_CREDENTIALS
+          errors: [INVALID_CREDENTIALS]
         }
       }
 
-      const passwordIsCorrect = customer.authenticate(password)
+      const passwordIsCorrect = user.authenticate(password)
 
       if (!passwordIsCorrect) {
         return {
-          error: INVALID_CREDENTIALS
+          errors: [INVALID_CREDENTIALS]
         }
       }
 
       return {
-        token: generateToken(customer.id),
-        customer
+        token: generateToken(user.id),
+        user
       }
     }
   }

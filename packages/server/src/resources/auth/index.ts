@@ -2,11 +2,9 @@ import * as jwt from 'jsonwebtoken'
 
 import config from '../../config'
 import logger from '../../lib/logger'
-import Customer, { ICustomer } from '../customers/model'
+import User, { IUser } from '../users/model'
 
-async function getUser(req) {
-  const authorization = req.request.headers.authorization
-
+async function getUser(authorization: string) {
   if (!authorization) {
     return null
   }
@@ -18,8 +16,10 @@ async function getUser(req) {
   }
 
   try {
-    const decodedToken = jwt.verify(token, config.JWT_SECRET)
-    const user = await Customer.findById((decodedToken as { id: string }).id)
+    const { id: userId } = jwt.verify(token, config.JWT_SECRET) as {
+      id: string
+    }
+    const user = await User.findById(userId)
 
     return user
   } catch (err) {

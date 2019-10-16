@@ -1,9 +1,9 @@
 type Mutation {
-  login(email: String!, password: String!): LoginPayload!
+  login(email: String!, password: String!): AuthPayload!
 }
 
-type LoginPayload {
+type AuthPayload {
   token: String
-  customer: Customer
-  error: String
+  user: User
+  errors: [String]
 }

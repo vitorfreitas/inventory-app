@@ -1,5 +1,5 @@
 import config from '../../config'
-import Customer, { ICustomer } from '../customers/model'
+import User, { IUser } from '../users/model'
 
 export default async function authMiddleware(
   resolve,
