@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components/native";
 import Ripple from "react-native-material-ripple";
 import { Feather } from "@expo/vector-icons";
-
-import * as V from "@styles/variables";
 import Product from "shared/interfaces/product";
 import { View } from "react-native";
 
