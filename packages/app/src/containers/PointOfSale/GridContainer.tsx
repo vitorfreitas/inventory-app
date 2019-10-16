@@ -43,7 +43,7 @@ const GridContainer: React.SFC<Props> = ({
     <SectionGrid
       itemDimension={100}
       spacing={5}
-      sections={[{ title: "Products", data: products }]}
+      sections={[{ title: "Products", data: [{}, ...products] }]}
       renderItem={_renderItem}
     />
   );
