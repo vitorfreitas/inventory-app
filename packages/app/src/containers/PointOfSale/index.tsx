@@ -1,63 +1,58 @@
-import React, { useState } from 'react'
-import { Feather } from '@expo/vector-icons'
-import styled from 'styled-components/native'
+import React, { useState } from "react";
 
-import Navbar from '../../components/Navbar'
-import GridContainer from './GridContainer'
-import ListContainer from './ListContainer'
-import { Content, Row, SearchInput } from './styled'
-import DescriptionModal from './Description'
-import { products } from './products.json'
+import Navbar from "../../components/Navbar";
+import SearchInput from "../../components/SearchInput";
+import GridContainer from "./GridContainer";
+import ListContainer from "./ListContainer";
+import Heading from "./Heading";
+import { Content } from "./styled";
+import DescriptionModal from "./Description";
+import { products } from "./products.json";
 
-const Toolbar = styled(Row)`
-  padding: 15px;
-  border-color: #eee;
-  margin-bottom: 10px;
-  border-bottom-width: 1px;
-`
+import { Toolbar } from "../../styled";
 
 interface Props {
-  data?: object
-  navigate: (page: string) => void
-  t: (key: string) => string
+  data?: object;
+  navigate: (page: string) => void;
+  t: (key: string) => string;
 }
 
 const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
-  const [visualizationMode, setVisualizationMode] = useState('list')
-  const [selectedProduct, setSelectedProduct] = useState(false)
+  const [visualizationMode, setVisualizationMode] = useState("list");
+  const [selectedProduct, setSelectedProduct] = useState(false);
 
-  const openDescriptionModalOnLongPress = product => setSelectedProduct(product)
+  const openDescriptionModalOnLongPress = product =>
+    setSelectedProduct(product);
 
-  const closeDescriptionModal = () => setSelectedProduct(false)
+  const closeDescriptionModal = () => setSelectedProduct(false);
 
-  const navigateToCreateProductPage = () => navigate('CreateProduct')
+  const navigateToCreateProductPage = () => navigate("CreateProduct");
+
+  const productListProps = {
+    t,
+    onCreateProduct: navigateToCreateProductPage,
+    products,
+    onProductLongPress: openDescriptionModalOnLongPress,
+    onChangeVisualizationMode: setVisualizationMode
+  };
 
   return (
     <>
-      <Navbar title={t('navbar.sell')} />
-
+      <Navbar title={t("navbar.sell")} />
+      <Toolbar>
+        <SearchInput placeholder={t("pos.placeholder")}></SearchInput>
+      </Toolbar>
       <Content>
-        <Toolbar>
-          <Feather name="search" size={25} />
-          <SearchInput placeholder={t('pos.placeholder')} />
-        </Toolbar>
+        <Heading
+          title={t("pos.products")}
+          onChangeVisualizationMode={setVisualizationMode}
+          visualizationMode={visualizationMode}
+        />
 
-        {visualizationMode === 'grid' ? (
-          <GridContainer
-            t={t}
-            onCreateProduct={navigateToCreateProductPage}
-            products={products}
-            onProductLongPress={openDescriptionModalOnLongPress}
-            onChangeVisualizationMode={setVisualizationMode}
-          />
+        {visualizationMode === "grid" ? (
+          <GridContainer {...productListProps} />
         ) : (
-          <ListContainer
-            t={t}
-            onCreateProduct={navigateToCreateProductPage}
-            products={products}
-            onProductLongPress={openDescriptionModalOnLongPress}
-            onChangeVisualizationMode={setVisualizationMode}
-          />
+          <ListContainer {...productListProps} />
         )}
 
         <DescriptionModal
@@ -67,7 +62,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
         />
       </Content>
     </>
-  )
-}
+  );
+};
 
-export default HomeContainer
+export default HomeContainer;
