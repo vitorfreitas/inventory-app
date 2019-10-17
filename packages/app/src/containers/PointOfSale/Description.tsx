@@ -1,13 +1,13 @@
-import React from 'react'
-import styled from 'styled-components/native'
-import { Feather } from '@expo/vector-icons'
-import Ripple from 'react-native-material-ripple'
+import React from 'react';
+import styled from 'styled-components/native';
+import { Feather } from '@expo/vector-icons';
+import Ripple from 'react-native-material-ripple';
 
-import { Row } from 'styles/styled'
-import * as V from 'styles/variables'
-import Button from 'components/Button'
-import NumberPicker from 'components/NumberPicker'
-import DefaultModal from 'components/DefaultModal'
+import { Row } from 'styles/styled';
+import * as V from 'styles/variables';
+import Button from 'components/Button';
+import NumberPicker from 'components/NumberPicker';
+import DefaultModal from 'components/DefaultModal';
 
 const Picture = styled.Image`
   width: 100%;
@@ -15,10 +15,10 @@ const Picture = styled.Image`
 
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-`
+`;
 
 const EditButton = styled(Ripple).attrs({
-  rippleOpacity: 0.1
+  rippleOpacity: 0.1,
 })`
   width: 50px;
   height: 50px;
@@ -30,57 +30,57 @@ const EditButton = styled(Ripple).attrs({
   top: 120px;
   right: 20px;
   position: absolute;
-`
+`;
 
 const Heading = styled(Row)`
   padding: 30px 25px 25px;
   justify-content: space-between;
-`
+`;
 
 const Title = styled.Text`
   color: #333;
   font-size: 18px;
   font-family: 'Poppins Bold';
-`
+`;
 
 const Price = styled.Text`
   color: #888;
   font-size: 16px;
   font-family: 'Poppins';
-`
+`;
 
 const CompositionContainer = styled.ScrollView`
   padding: 0 25px;
   min-height: 200px;
-`
+`;
 
 const CompositionRow = styled(Row)`
   margin-bottom: 5px;
   justify-content: space-between;
-`
+`;
 
 const CompositionName = styled.Text`
   font-family: 'Poppins Medium';
-`
+`;
 
 const CompositionValue = styled.Text`
   font-family: Poppins;
   color: #757575;
-`
+`;
 
 const Footer = styled(Row)`
   padding: 0 25px;
   bottom: 20px;
   position: absolute;
   justify-content: space-between;
-`
+`;
 
 const SeeMore = styled.Text`
   font-size: 14px;
   margin-top: 8px;
   color: ${V.Color.primary};
   font-family: 'Poppins Medium';
-`
+`;
 
 interface Props {
   open: boolean
@@ -88,55 +88,53 @@ interface Props {
   onClose: () => void
 }
 
-const DescriptionModal: React.SFC<Props> = ({ t, open, onClose }) => {
-  return (
-    <DefaultModal open={open} onClose={onClose}>
-      <Picture
-        source={{
-          uri:
-            'https://foodrevolution.org/wp-content/uploads/blog-featured_healthy_foods-20180306.jpg'
-        }}
-      />
+const DescriptionModal: React.SFC<Props> = ({ t, open, onClose }) => (
+  <DefaultModal open={open} onClose={onClose}>
+    <Picture
+      source={{
+        uri:
+            'https://foodrevolution.org/wp-content/uploads/blog-featured_healthy_foods-20180306.jpg',
+      }}
+    />
 
-      <EditButton>
-        <Feather name="edit-3" color="#fff" size={20} />
-      </EditButton>
+    <EditButton>
+      <Feather name="edit-3" color="#fff" size={20} />
+    </EditButton>
 
-      <Heading>
-        <Title>Hamburguer</Title>
-        <Price>R$ 25.00</Price>
-      </Heading>
+    <Heading>
+      <Title>Hamburguer</Title>
+      <Price>R$ 25.00</Price>
+    </Heading>
 
-      <CompositionContainer>
-        <CompositionRow>
-          <CompositionName>Pão de Hamburguer</CompositionName>
-          <CompositionValue>1 un</CompositionValue>
-        </CompositionRow>
+    <CompositionContainer>
+      <CompositionRow>
+        <CompositionName>Pão de Hamburguer</CompositionName>
+        <CompositionValue>1 un</CompositionValue>
+      </CompositionRow>
 
-        <CompositionRow>
-          <CompositionName>Pão de Hamburguer</CompositionName>
-          <CompositionValue>1 un</CompositionValue>
-        </CompositionRow>
+      <CompositionRow>
+        <CompositionName>Pão de Hamburguer</CompositionName>
+        <CompositionValue>1 un</CompositionValue>
+      </CompositionRow>
 
-        <CompositionRow>
-          <CompositionName>Pão de Hamburguer</CompositionName>
-          <CompositionValue>1 un</CompositionValue>
-        </CompositionRow>
+      <CompositionRow>
+        <CompositionName>Pão de Hamburguer</CompositionName>
+        <CompositionValue>1 un</CompositionValue>
+      </CompositionRow>
 
-        <Row>
-          <SeeMore>
-            {t('pos.description.see-more')}
-            <Feather name="chevron-right" />
-          </SeeMore>
-        </Row>
-      </CompositionContainer>
+      <Row>
+        <SeeMore>
+          {t('pos.description.see-more')}
+          <Feather name="chevron-right" />
+        </SeeMore>
+      </Row>
+    </CompositionContainer>
 
-      <Footer>
-        <NumberPicker />
-        <Button text={t('pos.description.add')}></Button>
-      </Footer>
-    </DefaultModal>
-  )
-}
+    <Footer>
+      <NumberPicker />
+      <Button text={t('pos.description.add')} />
+    </Footer>
+  </DefaultModal>
+);
 
-export default DescriptionModal
+export default DescriptionModal;

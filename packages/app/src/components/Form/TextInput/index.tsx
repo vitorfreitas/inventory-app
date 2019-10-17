@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import { TextInputMask } from 'react-native-masked-text'
+import React, { useState } from 'react';
+import { TextInputMask } from 'react-native-masked-text';
 
-import styled from 'styled-components/native'
-import { MediumText } from 'components/Typography/Text'
-import * as V from 'styles/variables'
+import styled from 'styled-components/native';
+import { MediumText } from 'components/Typography/Text';
+import * as V from 'styles/variables';
 
 const Container = styled.View<{ width?: string }>`
   width: ${({ width }) => width || '100%'};
   margin-bottom: 12px;
-`
+`;
 
 const Label = styled(MediumText)`
   color: #757575;
   font-size: 12px;
-`
+`;
 
 const MaskedInput = styled(TextInputMask)<{ isFocused: boolean }>`
   color: #333;
@@ -21,7 +21,7 @@ const MaskedInput = styled(TextInputMask)<{ isFocused: boolean }>`
   font-family: 'Poppins Medium';
   border-bottom-width: ${({ isFocused }) => (isFocused ? '2px' : '1px')};
   border-color: ${({ isFocused }) => (isFocused ? V.Color.primary : '#bdbdbd')};
-`
+`;
 
 const Input = styled.TextInput<{ isFocused: boolean }>`
   color: #333;
@@ -29,7 +29,7 @@ const Input = styled.TextInput<{ isFocused: boolean }>`
   font-family: 'Poppins Medium';
   border-bottom-width: ${({ isFocused }) => (isFocused ? '2px' : '1px')};
   border-color: ${({ isFocused }) => (isFocused ? V.Color.primary : '#bdbdbd')};
-`
+`;
 
 interface Props {
   label: string
@@ -62,11 +62,11 @@ const TextInput: React.FC<Props> = ({
   onChange,
   placeholder,
   width,
-  mask
+  mask,
 }) => {
-  const [isFocused, setIsFocused] = useState(false)
+  const [isFocused, setIsFocused] = useState(false);
 
-  const toggleIsFocused = () => setIsFocused(!isFocused)
+  const toggleIsFocused = () => setIsFocused(!isFocused);
 
   return (
     <Container width={width}>
@@ -95,7 +95,7 @@ const TextInput: React.FC<Props> = ({
         />
       )}
     </Container>
-  )
-}
+  );
+};
 
-export default TextInput
+export default TextInput;

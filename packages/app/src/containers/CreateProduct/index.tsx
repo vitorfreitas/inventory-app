@@ -1,39 +1,39 @@
-import React, { useState } from 'react'
-import styled from 'styled-components/native'
+import React, { useState } from 'react';
+import styled from 'styled-components/native';
 
-import Navbar from 'components/Navbar'
-import ProductPicture from './ProductPicture'
-import { MediumText, NormalText } from 'components/Typography/Text'
-import TextInput from 'components/Form/TextInput'
-import Button from 'components/Button'
-import Link from 'components/Link'
-import Container from 'components/Layout/Container'
+import Navbar from 'components/Navbar';
+import { MediumText, NormalText } from 'components/Typography/Text';
+import TextInput from 'components/Form/TextInput';
+import Button from 'components/Button';
+import Link from 'components/Link';
+import Container from 'components/Layout/Container';
+import ProductPicture from './ProductPicture';
 
 const Content = styled.View`
   padding: 20px;
   background: #fafafa;
-`
+`;
 
 const ProductOverview = styled.View`
   align-items: center;
   flex-direction: row;
-`
+`;
 
 const Name = styled(MediumText)`
   font-size: 16px;
-`
+`;
 
 const Price = styled(NormalText)`
   color: #757575;
-`
+`;
 
 const NameAndPriceContainer = styled.View`
   margin-left: 12px;
-`
+`;
 
 const Form = styled.View`
   padding: 20px;
-`
+`;
 
 const Footer = styled.View`
   margin-top: auto;
@@ -44,18 +44,18 @@ const Footer = styled.View`
   margin-bottom: 10px;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 interface Props {
   t: (path: string) => string
 }
 
 const CreateProductContainer: React.SFC<Props> = ({ t }) => {
-  const [product, setProduct] = useState({ name: '', price: '' })
+  const [product, setProduct] = useState({ name: '', price: '' });
 
-  const handleInputChange = field => value => {
-    setProduct({ ...product, [field]: value })
-  }
+  const handleInputChange = (field) => (value) => {
+    setProduct({ ...product, [field]: value });
+  };
 
   return (
     <Container>
@@ -94,7 +94,7 @@ const CreateProductContainer: React.SFC<Props> = ({ t }) => {
         <Button text="Composição" />
       </Footer>
     </Container>
-  )
-}
+  );
+};
 
-export default CreateProductContainer
+export default CreateProductContainer;

@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components/native";
-import { ItemContainer as Container } from "./styled";
-import Product from "shared/interfaces/product";
+import React from 'react';
+import styled from 'styled-components/native';
+import Product from 'shared/interfaces/product';
+import { ItemContainer as Container } from './styled';
 
 const Image = styled.Image`
   height: 70px;
@@ -43,7 +43,10 @@ const GridItem: React.SFC<Props> = ({ data, onLongPress }) => {
 
       <DataContainer>
         <Title>{data.name}</Title>
-        <Price>R$ {data.price}</Price>
+        <Price>
+R$
+          {data.price}
+        </Price>
       </DataContainer>
     </Container>
   );

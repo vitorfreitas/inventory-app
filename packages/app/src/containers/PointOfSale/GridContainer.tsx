@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components/native";
-import { Feather } from "@expo/vector-icons";
-import { SectionGrid } from "react-native-super-grid";
+import React from 'react';
+import styled from 'styled-components/native';
+import { Feather } from '@expo/vector-icons';
+import { SectionGrid } from 'react-native-super-grid';
 
-import GridItem from "./GridItem";
-import { ItemContainer } from "./styled";
-import Product from "shared/interfaces/product";
+import Product from 'shared/interfaces/product';
+import GridItem from './GridItem';
+import { ItemContainer } from './styled';
 
 const AddProductItem = styled(ItemContainer)`
   align-items: center;
@@ -18,14 +18,14 @@ interface Props {
   products: Product[];
   onCreateProduct: () => void;
   onProductLongPress: (product: Product) => void;
-  onChangeVisualizationMode: (vMode: "grid" | "list") => void;
+  onChangeVisualizationMode: (vMode: 'grid' | 'list') => void;
 }
 
 const GridContainer: React.SFC<Props> = ({
   t,
   products,
   onCreateProduct,
-  onProductLongPress
+  onProductLongPress,
 }) => {
   const addProductItem = () => (
     <AddProductItem onPress={onCreateProduct}>
@@ -43,7 +43,7 @@ const GridContainer: React.SFC<Props> = ({
     <SectionGrid
       itemDimension={100}
       spacing={5}
-      sections={[{ title: "Products", data: [{}, ...products] }]}
+      sections={[{ title: 'Products', data: [{}, ...products] }]}
       renderItem={_renderItem}
     />
   );

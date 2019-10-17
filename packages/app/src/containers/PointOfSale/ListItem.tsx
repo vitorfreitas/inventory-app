@@ -1,12 +1,13 @@
-import React from "react";
-import styled from "styled-components/native";
-import Ripple from "react-native-material-ripple";
-import { Feather } from "@expo/vector-icons";
-import Product from "shared/interfaces/product";
-import { View } from "react-native";
+import React from 'react';
+import { View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import Ripple from 'react-native-material-ripple';
+import styled from 'styled-components/native';
+
+import Product from 'shared/interfaces/product';
 
 const Container = styled(Ripple).attrs({
-  rippleOpacity: 0.1
+  rippleOpacity: 0.1,
 })`
   width: 100%;
   border-radius: 4px;
@@ -39,25 +40,25 @@ const DataContainer = styled.View`
 const Title = styled.Text`
   color: #212121;
   font-size: 14px;
-  font-family: "Poppins Medium";
+  font-family: 'Poppins Medium';
 `;
 
 const Price = styled.Text`
   font-size: 14px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
 `;
 
 const Tip = styled.Text`
   font-size: 11px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   color: #9e9e9e;
   justify-content: center;
 `;
 
 interface Props {
-  data: Product;
-  t: (term) => string;
-  onLongPress: (product) => void;
+  data: Product
+  t: (term) => string
+  onLongPress: (product) => void
 }
 
 const ListItem: React.SFC<Props> = ({ t, data, onLongPress }) => {
@@ -74,12 +75,15 @@ const ListItem: React.SFC<Props> = ({ t, data, onLongPress }) => {
           <Title>{data.name}</Title>
 
           <Tip>
-            {t("pos.hold-tip")}
+            {t('pos.hold-tip')}
             <Feather name="chevron-right" />
           </Tip>
         </View>
 
-        <Price>R$ {data.price}</Price>
+        <Price>
+          R$
+          {data.price}
+        </Price>
       </DataContainer>
     </Container>
   );
