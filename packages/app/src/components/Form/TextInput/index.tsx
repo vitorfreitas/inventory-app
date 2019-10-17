@@ -3,7 +3,7 @@ import { TextInputMask } from 'react-native-masked-text'
 
 import styled from 'styled-components/native'
 import { MediumText } from 'components/Typography/Text'
-import * as V from '@styles/variables'
+import * as V from 'styles/variables'
 
 const Container = styled.View<{ width?: string }>`
   width: ${({ width }) => width || '100%'};

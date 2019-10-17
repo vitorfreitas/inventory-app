@@ -9,7 +9,7 @@ import Inventory from "../Inventory";
 import Metrics from "../Metrics";
 import More from "../More";
 import TabIcon from "./TabIcon";
-import * as V from "@styles/variables";
+import * as V from "styles/variables";
 
 const tabBarIcons = {
   PointOfSale: "shopping-cart",

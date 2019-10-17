@@ -1,11 +1,11 @@
-import styled from "styled-components/native";
-import Ripple from "react-native-material-ripple";
-import * as V from "@styles/variables";
+import styled from 'styled-components/native'
+import Ripple from 'react-native-material-ripple'
+import * as V from 'styles/variables'
 
 export const Content = styled.ScrollView`
   flex: 1;
   background: ${V.Color.background};
-`;
+`
 
 export const ItemContainer = styled(Ripple).attrs({
   rippleOpacity: 0.1
@@ -14,4 +14,4 @@ export const ItemContainer = styled(Ripple).attrs({
   height: 115px;
   border-radius: 4px;
   border: 1px solid #eee;
-`;
+`

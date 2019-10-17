@@ -3,7 +3,7 @@ import { View } from "react-native";
 import Navbar from "../../components/Navbar";
 import SearchInput from "../../components/SearchInput";
 import InventoryProducts from "../../containers/InventoryProducts";
-import { Toolbar } from "@styles/styled";
+import { Toolbar } from "styles/styled";
 import { Heading, ContentTitle, Content } from "./styled";
 import { products } from "../../mocks/products.json";
 import styled from "styled-components/native";

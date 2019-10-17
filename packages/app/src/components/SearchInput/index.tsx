@@ -1,5 +1,5 @@
 import React from "react";
-import { FullWidthInput } from "@styles/styled";
+import { FullWidthInput } from "styles/styled";
 import { Feather } from "@expo/vector-icons";
 
 type Props = {

@@ -1,32 +1,31 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
-import Navbar from "../../components/Navbar";
-import SearchInput from "../../components/SearchInput";
-import GridContainer from "./GridContainer";
-import ListContainer from "./ListContainer";
-import Heading from "./Heading";
-import { Content } from "./styled";
-import DescriptionModal from "./Description";
-import { products } from "../../mocks/products.json";
+import { Toolbar } from 'styles/styled'
+import Navbar from 'components/Navbar'
+import SearchInput from 'components/SearchInput'
+import { products } from 'mocks/products.json'
 
-import { Toolbar } from "@styles/styled";
+import GridContainer from './GridContainer'
+import ListContainer from './ListContainer'
+import Heading from './Heading'
+import { Content } from './styled'
+import DescriptionModal from './Description'
 
 interface Props {
-  data?: object;
-  navigate: (page: string) => void;
-  t: (key: string) => string;
+  data?: object
+  navigate: (page: string) => void
+  t: (key: string) => string
 }
 
 const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
-  const [visualizationMode, setVisualizationMode] = useState("list");
-  const [selectedProduct, setSelectedProduct] = useState(false);
+  const [visualizationMode, setVisualizationMode] = useState('list')
+  const [selectedProduct, setSelectedProduct] = useState(false)
 
-  const openDescriptionModalOnLongPress = product =>
-    setSelectedProduct(product);
+  const openDescriptionModalOnLongPress = product => setSelectedProduct(product)
 
-  const closeDescriptionModal = () => setSelectedProduct(false);
+  const closeDescriptionModal = () => setSelectedProduct(false)
 
-  const navigateToCreateProductPage = () => navigate("CreateProduct");
+  const navigateToCreateProductPage = () => navigate('CreateProduct')
 
   const productListProps = {
     t,
@@ -34,22 +33,22 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
     products,
     onProductLongPress: openDescriptionModalOnLongPress,
     onChangeVisualizationMode: setVisualizationMode
-  };
+  }
 
   return (
     <>
-      <Navbar title={t("navbar.sell")} />
+      <Navbar title={t('navbar.sell')} />
       <Toolbar>
-        <SearchInput placeholder={t("pos.placeholder")}></SearchInput>
+        <SearchInput placeholder={t('pos.placeholder')}></SearchInput>
       </Toolbar>
       <Content>
         <Heading
-          title={t("pos.products")}
+          title={t('pos.products')}
           onChangeVisualizationMode={setVisualizationMode}
           visualizationMode={visualizationMode}
         />
 
-        {visualizationMode === "grid" ? (
+        {visualizationMode === 'grid' ? (
           <GridContainer {...productListProps} />
         ) : (
           <ListContainer {...productListProps} />
@@ -62,7 +61,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
         />
       </Content>
     </>
-  );
-};
+  )
+}
 
-export default HomeContainer;
+export default HomeContainer

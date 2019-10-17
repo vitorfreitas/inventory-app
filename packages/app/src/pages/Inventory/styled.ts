@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { Text } from "@styles/styled";
+import { Text } from "styles/styled";
 
 export const ContentTitle = styled(Text)`
   font-size: 18px;

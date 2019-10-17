@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/native'
 import Ripple from 'react-native-material-ripple'
 
-import * as V from '@styles/variables'
+import * as V from 'styles/variables'
 import { MediumText } from 'components/Typography/Text'
 
 const Container = styled(Ripple).attrs({

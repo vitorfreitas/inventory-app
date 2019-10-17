@@ -7,9 +7,6 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "baseUrl": "./src",
-    "paths": {
-      "@styles/*": ["styles/*"]
-    }
+    "baseUrl": "./src"
   }
 }
