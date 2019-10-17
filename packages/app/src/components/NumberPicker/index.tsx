@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components/native";
-import { Feather } from "@expo/vector-icons";
+import React from 'react';
+import styled from 'styled-components/native';
+import { Feather } from '@expo/vector-icons';
 
 const Container = styled.View`
   flex-direction: row;

@@ -1,8 +1,8 @@
-import React, { ReactNode, useEffect, useState } from 'react'
-import { Keyboard, View } from 'react-native'
+import React, { ReactNode, useEffect, useState } from 'react';
+import { Keyboard, View } from 'react-native';
 
-import { TabBarContainer, TabBarIconContainer } from './styled'
-import useKeyboard from 'hooks/keyboard'
+import useKeyboard from 'hooks/keyboard';
+import { TabBarContainer, TabBarIconContainer } from './styled';
 
 interface Props {
   navigation: {
@@ -23,17 +23,16 @@ const TabBar: React.FC<Props> = ({
   navigation,
   activeTintColor,
   inactiveTintColor,
-  onTabPress
+  onTabPress,
 }) => {
-  const keyboardVisible = useKeyboard()
-  const { routes, index } = navigation.state
+  const keyboardVisible = useKeyboard();
+  const { routes, index } = navigation.state;
 
-  const tabIsFocused = tabIndex => tabIndex === index
-  const currentTintColor = tabIndex =>
-    tabIsFocused(tabIndex) ? activeTintColor : inactiveTintColor
+  const tabIsFocused = (tabIndex) => tabIndex === index;
+  const currentTintColor = (tabIndex) => (tabIsFocused(tabIndex) ? activeTintColor : inactiveTintColor);
 
   if (keyboardVisible) {
-    return <View />
+    return <View />;
   }
 
   return (
@@ -43,12 +42,12 @@ const TabBar: React.FC<Props> = ({
           {renderIcon({
             route,
             focused: tabIsFocused(index),
-            tintColor: currentTintColor(index)
+            tintColor: currentTintColor(index),
           })}
         </TabBarIconContainer>
       ))}
     </TabBarContainer>
-  )
-}
+  );
+};
 
-export default TabBar
+export default TabBar;

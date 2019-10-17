@@ -1,6 +1,6 @@
-import React from "react";
-import { ScrollView, View } from "react-native";
-import ProductCard from "./ProductCard";
+import React from 'react';
+import { ScrollView, View } from 'react-native';
+import ProductCard from './ProductCard';
 
 type Props = {
   products: any[];
