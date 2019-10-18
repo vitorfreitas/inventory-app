@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import { Toolbar } from 'styles/styled';
-import Navbar from 'components/Navbar';
-import SearchInput from 'components/SearchInput';
-import { products } from 'mocks/products.json';
+import { Toolbar } from 'styles/styled'
+import Navbar from 'components/Navbar'
+import SearchInput from 'components/SearchInput'
+import { products } from 'mocks/products.json'
 
-import GridContainer from './GridContainer';
-import ListContainer from './ListContainer';
-import Heading from './Heading';
-import { Content } from './styled';
-import DescriptionModal from './Description';
+import Product from 'shared/interfaces/product'
+import GridContainer from './GridContainer'
+import ListContainer from './ListContainer'
+import Heading from './Heading'
+import { Content } from './styled'
+import DescriptionModal from './Description'
+import CartButton from './CartButton'
 
 interface Props {
   data?: object
@@ -17,30 +19,42 @@ interface Props {
   t: (key: string) => string
 }
 
+interface CartItem {
+  product: Product
+  quantity: number
+}
+
 const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
-  const [visualizationMode, setVisualizationMode] = useState('list');
-  const [selectedProduct, setSelectedProduct] = useState(false);
+  const [visualizationMode, setVisualizationMode] = useState<'list' | 'grid'>('list')
+  const [selectedProduct, setSelectedProduct] = useState<Product | boolean>(false)
+  const [cart, setCartItems] = useState<CartItem[]>([])
 
-  const openDescriptionModalOnLongPress = (product) => setSelectedProduct(product);
+  const openDescriptionModalOnLongPress = (product: Product) => setSelectedProduct(product)
 
-  const closeDescriptionModal = () => setSelectedProduct(false);
+  const closeDescriptionModal = () => setSelectedProduct(false)
 
-  const navigateToCreateProductPage = () => navigate('CreateProduct');
+  const navigateToCreateProductPage = () => navigate('CreateProduct')
+
+  const handleAddItemToCart = (item: Product, quantity = 1) => 
+    setCartItems([...cart, { product: item, quantity }])
 
   const productListProps = {
     t,
-    onCreateProduct: navigateToCreateProductPage,
     products,
+    onAddToCart: handleAddItemToCart,
+    onCreateProduct: navigateToCreateProductPage,
     onProductLongPress: openDescriptionModalOnLongPress,
     onChangeVisualizationMode: setVisualizationMode,
-  };
+  }
 
   return (
     <>
       <Navbar title={t('navbar.sell')} />
+
       <Toolbar>
         <SearchInput placeholder={t('pos.placeholder')} />
       </Toolbar>
+
       <Content>
         <Heading
           title={t('pos.products')}
@@ -53,15 +67,23 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
         ) : (
           <ListContainer {...productListProps} />
         )}
-
-        <DescriptionModal
-          t={t}
-          open={!!selectedProduct}
-          onClose={closeDescriptionModal}
-        />
       </Content>
-    </>
-  );
-};
 
-export default HomeContainer;
+      <DescriptionModal
+        t={t}
+        product={selectedProduct}
+        open={!!selectedProduct}
+        onAddToCart={handleAddItemToCart}
+        onClose={closeDescriptionModal}
+      />
+
+      <CartButton
+        cartMessage={t('pos.cart.button-message')}
+        emptyCartMessage={t('pos.cart.empty-cart')}
+        cart={cart}
+      />
+    </>
+  )
+}
+
+export default HomeContainer

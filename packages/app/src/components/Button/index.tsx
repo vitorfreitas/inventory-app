@@ -22,11 +22,12 @@ const Text = styled.Text`
 `;
 
 interface Props {
-  text: string
+  text: string,
+  onPress: (args?: any) => any
 }
 
-const Button: React.SFC<Props> = ({ text }) => (
-  <Container>
+const Button: React.SFC<Props> = ({ text, onPress }) => (
+  <Container onPress={onPress}>
     <Text>{text}</Text>
   </Container>
 );

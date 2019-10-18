@@ -13,6 +13,10 @@
     },
     "create": {
       "title": "Create Product"
+    },
+    "cart": {
+      "button-message": "Your cart",
+      "empty-cart": "Add items to your cart!"
     }
   }
 }

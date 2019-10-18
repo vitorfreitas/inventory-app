@@ -13,6 +13,10 @@
     },
     "create": {
       "title": "Criar produto"
+    },
+    "cart": {
+      "button-message": "Seu carrinho",
+      "empty-cart": "Adicione itens ao carrinho!"
     }
   }
 }

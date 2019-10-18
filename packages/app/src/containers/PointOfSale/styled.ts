@@ -8,7 +8,7 @@ export const Content = styled.ScrollView`
 `
 
 export const ItemContainer = styled(Ripple).attrs({
-  rippleOpacity: 0.1
+  rippleOpacity: 0.1,
 })`
   margin: 4px;
   height: 115px;

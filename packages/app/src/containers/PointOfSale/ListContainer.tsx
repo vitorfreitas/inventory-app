@@ -46,7 +46,7 @@ const AddProductContainer = styled.View`
 interface Props {
   products: Product[]
   t: (path) => string
-  onAddToCart: (item: Product) => void
+  onAddToCart: (item: Product, quantity?: number) => void
   onCreateProduct: () => void
   onProductLongPress: (product: Product) => void
 }
