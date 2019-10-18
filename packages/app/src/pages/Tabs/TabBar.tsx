@@ -1,7 +1,5 @@
-import React, { ReactNode, useEffect, useState } from 'react';
-import { Keyboard, View } from 'react-native';
+import React, { ReactNode } from 'react';
 
-import useKeyboard from 'hooks/keyboard';
 import { TabBarContainer, TabBarIconContainer } from './styled';
 
 interface Props {
@@ -25,15 +23,10 @@ const TabBar: React.FC<Props> = ({
   inactiveTintColor,
   onTabPress,
 }) => {
-  const keyboardVisible = useKeyboard();
   const { routes, index } = navigation.state;
 
   const tabIsFocused = (tabIndex) => tabIndex === index;
   const currentTintColor = (tabIndex) => (tabIsFocused(tabIndex) ? activeTintColor : inactiveTintColor);
-
-  if (keyboardVisible) {
-    return <View />;
-  }
 
   return (
     <TabBarContainer>
