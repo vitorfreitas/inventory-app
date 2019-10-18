@@ -39,12 +39,18 @@ const GridItem: React.SFC<Props> = ({ data, onPress, onLongPress }) => {
   const handleLongPress = () => onLongPress(data)
   const handlePress = () => onPress(data)
 
+  const formatName = (name: string): string => {
+    if (name.length <= 10) return name
+
+    return `${name.substring(0, 9)}...`
+  }
+
   return (
     <Container onLongPress={handleLongPress} onPress={handlePress}>
       <Image source={{ uri: data.picture }} />
 
       <DataContainer>
-        <Title>{data.name}</Title>
+        <Title>{formatName(data.name)}</Title>
         <Price>
           R$
           {data.price}
