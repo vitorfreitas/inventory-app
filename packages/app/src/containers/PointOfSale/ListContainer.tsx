@@ -1,16 +1,16 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import Ripple from 'react-native-material-ripple';
-import { Feather } from '@expo/vector-icons';
+import React from 'react'
+import styled from 'styled-components/native'
+import Ripple from 'react-native-material-ripple'
+import { Feather } from '@expo/vector-icons'
 
-import Product from 'shared/interfaces/product';
-import ListItem from './ListItem';
+import Product from 'shared/interfaces/product'
+import ListItem from './ListItem'
 
 const ProductsContainer = styled.View`
   margin-top: 24px;
   border-top-color: #eee;
   border-top-width: 1px;
-`;
+`
 
 const AddProductItem = styled(Ripple).attrs({
   rippleOpacity: 0.1,
@@ -21,13 +21,13 @@ const AddProductItem = styled(Ripple).attrs({
   flex-direction: row;
   align-items: center;
   justify-content: center;
-`;
+`
 
 const AddProductIcon = styled.View`
   align-self: center;
   align-items: center;
   justify-content: center;
-`;
+`
 
 const AddProductText = styled.Text`
   color: #9e9e9e;
@@ -35,35 +35,38 @@ const AddProductText = styled.Text`
   margin-top: 4px;
   margin-left: 17px;
   font-family: 'Poppins Medium';
-`;
+`
 
 const AddProductContainer = styled.View`
   padding-left: 32px;
   padding-right: 32px;
   margin-top: 16px;
-`;
+`
 
 interface Props {
-  t: (path) => string
   products: Product[]
+  t: (path) => string
+  onAddToCart: (item: Product) => void
   onCreateProduct: () => void
-  onProductLongPress: (product) => void
+  onProductLongPress: (product: Product) => void
 }
 
 const ListContainer: React.SFC<Props> = ({
   t,
   products,
+  onAddToCart,
   onCreateProduct,
   onProductLongPress,
 }) => {
   const _renderItem = (product, index) => (
     <ListItem
       t={t}
+      onPress={onAddToCart}
       data={product}
       onLongPress={onProductLongPress}
       key={index}
     />
-  );
+  )
 
   return (
     <>
@@ -78,7 +81,7 @@ const ListContainer: React.SFC<Props> = ({
 
       <ProductsContainer>{products.map(_renderItem)}</ProductsContainer>
     </>
-  );
-};
+  )
+}
 
-export default ListContainer;
+export default ListContainer
