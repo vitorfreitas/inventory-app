@@ -9,7 +9,7 @@ import Product from 'shared/interfaces/product'
 import GridContainer from './GridContainer'
 import ListContainer from './ListContainer'
 import Heading from './Heading'
-import { Content } from './styled'
+import { Content, GutterBottom } from './styled'
 import DescriptionModal from './Description'
 import CartButton from './CartButton'
 
@@ -35,8 +35,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
 
   const navigateToCreateProductPage = () => navigate('CreateProduct')
 
-  const handleAddItemToCart = (item: Product, quantity = 1) => 
-    setCartItems([...cart, { product: item, quantity }])
+  const handleAddItemToCart = (item: Product, quantity = 1) => setCartItems([...cart, { product: item, quantity }])
 
   const productListProps = {
     t,
@@ -67,6 +66,8 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
         ) : (
           <ListContainer {...productListProps} />
         )}
+
+        <GutterBottom />
       </Content>
 
       <DescriptionModal
