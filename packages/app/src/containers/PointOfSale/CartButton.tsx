@@ -50,14 +50,20 @@ const BadgeText = styled(NormalText)`
   margin-top: 2px; /* centralize */
 `
 
+interface CartItem {
+  product: Product
+  quantity: number
+}
+
 interface Props {
   emptyCartMessage: string
   cartMessage: string
-  cart: Product[]
+  cart: CartItem[]
 }
 
 const CartButton: React.SFC<Props> = ({ cart, cartMessage, emptyCartMessage }) => {
-  const productsPrice = (): number => cart.reduce((acc, cur) => acc + cur.price, 0)
+  const productsPrice = cart.reduce((acc, cur) => acc + cur.product.price * cur.quantity, 0)
+  const cartLength = cart.reduce((acc, cur) => acc + cur.quantity, 0)
 
   if (cart.length === 0) {
     return (
@@ -75,11 +81,11 @@ const CartButton: React.SFC<Props> = ({ cart, cartMessage, emptyCartMessage }) =
     <Container>
       <Text>
         {`${cartMessage} = R$`}
-        {productsPrice().toFixed(2)}
+        {productsPrice.toFixed(2)}
       </Text>
 
       <Badge>
-        <BadgeText>{cart.length}</BadgeText>
+        <BadgeText>{cartLength}</BadgeText>
       </Badge>
     </Container>
   )
