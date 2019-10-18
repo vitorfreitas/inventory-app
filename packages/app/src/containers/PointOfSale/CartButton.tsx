@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import Ripple from 'react-native-material-ripple'
+import * as Animatable from 'react-native-animatable'
 
 import { MediumText, NormalText } from 'components/Typography/Text'
 import * as V from 'styles/variables'
@@ -61,6 +62,8 @@ interface Props {
   cart: CartItem[]
 }
 
+const AnimatedContainer = Animatable.createAnimatableComponent<any>(Container)
+
 const CartButton: React.SFC<Props> = ({ cart, cartMessage, emptyCartMessage }) => {
   const productsPrice = cart.reduce((acc, cur) => acc + cur.product.price * cur.quantity, 0)
   const cartLength = cart.reduce((acc, cur) => acc + cur.quantity, 0)
@@ -78,7 +81,11 @@ const CartButton: React.SFC<Props> = ({ cart, cartMessage, emptyCartMessage }) =
   }
 
   return (
-    <Container>
+    <AnimatedContainer
+      key={cart.length}
+      animation={cart.length === 1 ? 'bounceIn' : 'bounce'}
+      useNativeDriver
+    >
       <Text>
         {`${cartMessage} = R$`}
         {productsPrice.toFixed(2)}
@@ -87,7 +94,7 @@ const CartButton: React.SFC<Props> = ({ cart, cartMessage, emptyCartMessage }) =
       <Badge>
         <BadgeText>{cartLength}</BadgeText>
       </Badge>
-    </Container>
+    </AnimatedContainer>
   )
 }
 
