@@ -1,10 +1,12 @@
-import React, { useEffect, useState, Component } from 'react';
-import { View } from 'react-native';
-import { ApolloProvider } from 'react-apollo';
-import * as Font from 'expo-font';
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import { View } from 'react-native'
+import { ApolloProvider } from 'react-apollo'
+import * as Font from 'expo-font'
 
-import AppContainer from './pages/Tabs';
-import client from './graphql';
+import store from 'store'
+import AppContainer from './pages/Tabs'
+import client from './graphql'
 
 export default class App extends Component {
   public state = {
@@ -16,20 +18,22 @@ export default class App extends Component {
       Poppins: require('../assets/fonts/Poppins-Regular.ttf'),
       'Poppins Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
       'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    }).then(() => this.setState({ fontIsLoaded: true }));
+    }).then(() => this.setState({ fontIsLoaded: true }))
   }
 
   render() {
-    const { fontIsLoaded } = this.state;
+    const { fontIsLoaded } = this.state
 
     if (!fontIsLoaded) {
-      return <View />;
+      return <View />
     }
 
     return (
-      <ApolloProvider client={client}>
-        <AppContainer />
-      </ApolloProvider>
-    );
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <AppContainer />
+        </ApolloProvider>
+      </Provider>
+    )
   }
 }

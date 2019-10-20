@@ -15,8 +15,15 @@
       "title": "Criar produto"
     },
     "cart": {
+      "title": "Carrinho",
       "button-message": "Seu carrinho",
-      "empty-cart": "Adicione itens ao carrinho!"
+      "empty-cart": "Adicione itens ao carrinho!",
+      "discount": "APLICAR DESCONTO",
+      "finish-button": "Vender",
+      "success": "Você acabou de finalizar uma venda! Volte para a loja e continue o bom trabalho!"
     }
+  },
+  "dialogs": {
+    "success": "Parabéns!"
   }
 }

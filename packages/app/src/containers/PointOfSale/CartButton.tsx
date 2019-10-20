@@ -6,6 +6,7 @@ import * as Animatable from 'react-native-animatable'
 import { MediumText, NormalText } from 'components/Typography/Text'
 import * as V from 'styles/variables'
 import Product from 'shared/interfaces/product'
+import { ICartItem } from './interfaces'
 
 const Container = styled(Ripple).attrs({
   rippleOpacity: 0.1,
@@ -51,20 +52,16 @@ const BadgeText = styled(NormalText)`
   margin-top: 2px; /* centralize */
 `
 
-interface CartItem {
-  product: Product
-  quantity: number
-}
-
 interface Props {
   emptyCartMessage: string
   cartMessage: string
-  cart: CartItem[]
+  cart: ICartItem[]
+  onPress: () => any
 }
 
 const AnimatedContainer = Animatable.createAnimatableComponent<any>(Container)
 
-const CartButton: React.SFC<Props> = ({ cart, cartMessage, emptyCartMessage }) => {
+const CartButton: React.SFC<Props> = ({ cart, cartMessage, emptyCartMessage, onPress }) => {
   const productsPrice = cart.reduce((acc, cur) => acc + cur.product.price * cur.quantity, 0)
   const cartLength = cart.reduce((acc, cur) => acc + cur.quantity, 0)
 
@@ -82,6 +79,7 @@ const CartButton: React.SFC<Props> = ({ cart, cartMessage, emptyCartMessage }) =
 
   return (
     <AnimatedContainer
+      onPress={onPress}
       key={cart.length}
       animation={cart.length === 1 ? 'bounceIn' : 'bounce'}
       useNativeDriver
