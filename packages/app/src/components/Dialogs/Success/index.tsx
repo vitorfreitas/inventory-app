@@ -1,54 +1,12 @@
 import React from 'react'
-import styled from 'styled-components/native'
 import LottieView from 'lottie-react-native'
 
-import { BoldText, NormalText } from 'components/Typography/Text'
 import Link from 'components/Link'
 import { t } from 'locations'
-
-const Modal = styled.Modal.attrs({
-  transparent: true,
-  animationType: 'fade',
-})``
-
-const Background = styled.View`
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.2);
-
-  align-items: center;
-  justify-content: center;
-
-  top: 0;
-  left: 0;
-  position: absolute;
-`
-
-const Container = styled.View`
-  width: 80%;
-  height: 400px;
-  padding: 12px;
-  background: #fff;
-  border-radius: 12px;
-  align-items: center;
-`
-
-const Title = styled(BoldText)`
-  color: #333;
-  font-size: 28px;
-  text-align: center;
-`
-
-const Message = styled(NormalText)`
-  color: #757575;
-  text-align: center;
-`
-
-const Footer = styled.View`
-  margin-top: auto;
-  align-items: center;
-  justify-content: center;
-`
+import { Modal } from 'react-native'
+import {
+  Background, Container, Title, Message, Footer,
+} from '../styled'
 
 interface Props {
   open: boolean
