@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, Alert, AlertButton } from 'react-native'
 import styled from 'styled-components/native'
 
 import Container from 'components/Layout/Container'
 import Navbar from 'components/Navbar'
 import Link from 'components/Link'
 import { SuccessDialog } from 'components/Dialogs'
+import Product from 'shared/interfaces/product'
 import { ICartItem } from '../PointOfSale/interfaces'
 import FinishPurchaseButton from './FinishPurchaseButton'
 import ChooseClient from './ChooseClient'
@@ -36,13 +37,36 @@ interface Props {
   cart?: ICartItem[]
   onSuccess: () => void
   t: (path: string) => string
+  onRemoveFromCart: (item: Product) => void
 }
 
-const CartContainer: React.SFC<Props> = ({ t, cart, onSuccess }) => {
+const CartContainer: React.SFC<Props> = ({ t, cart, onSuccess, onRemoveFromCart }) => {
   const [purchaseFinished, setPurchaseFinished] = useState(false)
 
   const productsPrice = cart.reduce((acc, cur) => acc + cur.product.price * cur.quantity, 0)
   const finishButtonText = `${t('pos.cart.finish-button')} = R$ ${productsPrice.toFixed(2)}`
+
+  const handleRemoveFromCart = (item: Product) => {
+    const title = t('pos.cart.remove-title')
+    const message = t('pos.cart.remove-message')
+    const okText = t('pos.cart.remove-ok')
+    const cancelText = t('pos.cart.remove-cancel')
+
+    const buttons: AlertButton[] = [
+      { text: okText, onPress: () => onRemoveFromCart(item) },
+      { text: cancelText }
+    ]
+
+    Alert.alert(title, message, buttons)
+  }
+
+  const _renderCartItem = ({ item }) => (
+    <CartItem
+      data={item.product} 
+      onRemove={handleRemoveFromCart} 
+      quantity={item.quantity} 
+    />
+  )
 
   const handleSuccessDialogClose = () => {
     setPurchaseFinished(false)
@@ -57,7 +81,7 @@ const CartContainer: React.SFC<Props> = ({ t, cart, onSuccess }) => {
         <FlatList
           data={cart}
           keyExtractor={(i) => i.product.picture}
-          renderItem={({ item }) => <CartItem data={item.product} quantity={item.quantity} />}
+          renderItem={_renderCartItem}
         />
 
         <GutterBottom />

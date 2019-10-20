@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import CartContainer from 'containers/Cart'
 import { t } from 'locations'
 import { IStore } from 'store'
+import Product from 'shared/interfaces/product'
 
 interface Props {
   navigation: {
@@ -21,7 +22,22 @@ const Cart: React.SFC<Props> = ({ navigation }) => {
     navigation.goBack()
   }
 
-  return <CartContainer t={t} cart={cart} onSuccess={handleCartSuccess} />
+  const handleRemoveItemFromCart = (item: Product) => {
+    dispatch({ type: 'REMOVE_FROM_CART', payload: item })
+  }
+
+  useEffect(() => {
+    if (cart.length === 0) navigation.goBack()
+  }, [cart.length])
+
+  return (
+    <CartContainer
+      t={t}
+      cart={cart}
+      onRemoveFromCart={handleRemoveItemFromCart}
+      onSuccess={handleCartSuccess}
+    />
+  )
 }
 
 export default Cart

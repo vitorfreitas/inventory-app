@@ -20,7 +20,11 @@
       "empty-cart": "Adicione itens ao carrinho!",
       "discount": "APLICAR DESCONTO",
       "finish-button": "Vender",
-      "success": "Você acabou de finalizar uma venda! Volte para a loja e continue o bom trabalho!"
+      "success": "Você acabou de finalizar uma venda! Volte para a loja e continue o bom trabalho!",
+      "remove-title": "Deseja remover este item do carrinho?",
+      "remove-message": "Não se preocupe, você poderá adicionar novamente quando quiser.",
+      "remove-ok": "Sim, remova do carrinho",
+      "remove-cancel": "Voltar atrás"
     }
   },
   "dialogs": {
