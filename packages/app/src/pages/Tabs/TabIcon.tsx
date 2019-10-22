@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Animated } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import React, { useEffect, useState } from 'react'
+import { Animated } from 'react-native'
+import { Feather } from '@expo/vector-icons'
 
-const AnimatedIcon = Animated.createAnimatedComponent(Feather);
+const AnimatedIcon = Animated.createAnimatedComponent(Feather)
 interface Props {
   name: string
   color: string
@@ -10,16 +10,16 @@ interface Props {
 }
 
 const TabIcon: React.SFC<Props> = ({ name, color, focused }) => {
-  const [size] = useState(new Animated.Value(1));
+  const [size] = useState(new Animated.Value(1))
 
   useEffect(() => {
-    const value = focused ? 1.3 : 1;
+    const value = focused ? 1.3 : 1
 
     Animated.timing(size, {
       toValue: value,
-      duration: 80,
-    }).start();
-  }, [focused]);
+      duration: 80
+    }).start()
+  }, [focused])
 
   return (
     <AnimatedIcon
@@ -28,7 +28,7 @@ const TabIcon: React.SFC<Props> = ({ name, color, focused }) => {
       size={20}
       style={{ transform: [{ scale: size }], padding: 3 }}
     />
-  );
-};
+  )
+}
 
-export default TabIcon;
+export default TabIcon

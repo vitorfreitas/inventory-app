@@ -1,35 +1,36 @@
-import React, { useState } from 'react';
-import { TextInputMask } from 'react-native-masked-text';
+import React, { useState } from 'react'
+import { TextInputMask } from 'react-native-masked-text'
 
-import styled from 'styled-components/native';
-import { MediumText } from 'components/Typography/Text';
-import * as V from 'styles/variables';
+import styled from 'styled-components/native'
+import { MediumText } from 'components/Typography/Text'
+import * as V from 'styles/variables'
 
 const Container = styled.View<{ width?: string }>`
-  width: ${({ width }) => width || '100%'};
+  margin-top: 10px;
   margin-bottom: 12px;
-`;
+`
 
 const Label = styled(MediumText)`
-  color: #757575;
-  font-size: 12px;
-`;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 8px;
+`
 
 const MaskedInput = styled(TextInputMask)<{ isFocused: boolean }>`
   color: #333;
   font-size: 16px;
   font-family: 'Poppins Medium';
   border-bottom-width: ${({ isFocused }) => (isFocused ? '2px' : '1px')};
-  border-color: ${({ isFocused }) => (isFocused ? V.Color.primary : '#bdbdbd')};
-`;
+  border-color: ${({ isFocused }) => (isFocused ? V.Color.primary : '#e0e0e0')};
+`
 
 const Input = styled.TextInput<{ isFocused: boolean }>`
   color: #333;
   font-size: 16px;
   font-family: 'Poppins Medium';
   border-bottom-width: ${({ isFocused }) => (isFocused ? '2px' : '1px')};
-  border-color: ${({ isFocused }) => (isFocused ? V.Color.primary : '#bdbdbd')};
-`;
+  border-color: ${({ isFocused }) => (isFocused ? V.Color.primary : '#e0e0e0')};
+`
 
 interface Props {
   label: string
@@ -52,6 +53,7 @@ interface Props {
   value?: string
   width?: string
   placeholder?: string
+  style?: any
   onChange?: (value) => void
 }
 
@@ -63,13 +65,14 @@ const TextInput: React.FC<Props> = ({
   placeholder,
   width,
   mask,
+  style
 }) => {
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false)
 
-  const toggleIsFocused = () => setIsFocused(!isFocused);
+  const toggleIsFocused = () => setIsFocused(!isFocused)
 
   return (
-    <Container width={width}>
+    <Container width={width} style={style}>
       <Label>{label}</Label>
 
       {mask ? (
@@ -95,7 +98,7 @@ const TextInput: React.FC<Props> = ({
         />
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default TextInput;
+export default TextInput

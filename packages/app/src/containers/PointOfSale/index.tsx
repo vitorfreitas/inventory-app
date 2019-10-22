@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import { Toolbar } from 'styles/styled';
-import Navbar from 'components/Navbar';
-import SearchInput from 'components/SearchInput';
-import { products } from 'mocks/products.json';
+import { Toolbar } from 'styles/styled'
+import Navbar from 'components/Navbar'
+import SearchInput from 'components/SearchInput'
+import { products } from 'mocks/products.json'
 
-import GridContainer from './GridContainer';
-import ListContainer from './ListContainer';
-import Heading from './Heading';
-import { Content } from './styled';
-import DescriptionModal from './Description';
+import GridContainer from './GridContainer'
+import ListContainer from './ListContainer'
+import Heading from './Heading'
+import { Content } from './styled'
+import DescriptionModal from './Description'
 
 interface Props {
   data?: object
@@ -18,26 +18,26 @@ interface Props {
 }
 
 const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
-  const [visualizationMode, setVisualizationMode] = useState('list');
-  const [selectedProduct, setSelectedProduct] = useState(false);
+  const [visualizationMode, setVisualizationMode] = useState('list')
+  const [selectedProduct, setSelectedProduct] = useState(false)
 
-  const openDescriptionModalOnLongPress = (product) => setSelectedProduct(product);
+  const openDescriptionModalOnLongPress = product => setSelectedProduct(product)
 
-  const closeDescriptionModal = () => setSelectedProduct(false);
+  const closeDescriptionModal = () => setSelectedProduct(false)
 
-  const navigateToCreateProductPage = () => navigate('CreateProduct');
+  const navigateToCreateProductPage = () => navigate('CreateProduct')
 
   const productListProps = {
     t,
     onCreateProduct: navigateToCreateProductPage,
     products,
     onProductLongPress: openDescriptionModalOnLongPress,
-    onChangeVisualizationMode: setVisualizationMode,
-  };
+    onChangeVisualizationMode: setVisualizationMode
+  }
 
   return (
     <>
-      <Navbar title={t('navbar.sell')} />
+      <Navbar title={t('navbar.sell')} withProfile withBackButton={false} />
       <Toolbar>
         <SearchInput placeholder={t('pos.placeholder')} />
       </Toolbar>
@@ -61,7 +61,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
         />
       </Content>
     </>
-  );
-};
+  )
+}
 
-export default HomeContainer;
+export default HomeContainer

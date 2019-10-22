@@ -1,11 +1,13 @@
-import React from 'react';
-import { View, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native'
+import styled from 'styled-components/native'
+import { Color } from 'styles/variables'
 
-const { height: deviceHeight } = Dimensions.get('window');
-const tabBarHeight = 80;
+const { height: deviceHeight } = Dimensions.get('window')
 
-const Container: React.SFC = ({ children }) => (
-  <View style={{ height: deviceHeight - tabBarHeight }}>{children}</View>
-);
+const Container = styled.View`
+  flex: 1;
+  height: ${deviceHeight};
+  background-color: ${Color.background};
+`
 
-export default Container;
+export default Container
