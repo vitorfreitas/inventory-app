@@ -34,13 +34,12 @@ const TabNavigator = createBottomTabNavigator(
           focused={focused}
           color={tintColor}
         />
-      ),
-      tabBarOptions: {
-        activeTintColor: V.Color.primary,
-        style: { height: 60, paddingTop: 5 },
-        labelStyle: { fontWeight: 'bold', fontSize: 14 }
-      }
-    })
+      )
+    }),
+    tabBarOptions: {
+      keyboardHidesTabBar: true,
+      activeTintColor: V.Color.primary
+    }
   }
 )
 

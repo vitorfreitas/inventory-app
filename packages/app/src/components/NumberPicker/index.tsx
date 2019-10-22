@@ -13,22 +13,27 @@ const Button = styled.TouchableOpacity`
   border: 2px solid #000;
 `;
 
-export const Quantity = styled.Text`
+const Quantity = styled.Text`
   margin: 0 10px;
   font-size: 14px;
   margin-top: 3px;
   font-family: "Poppins Medium";
 `;
 
-const NumberPicker: React.SFC = () => (
+interface Props {
+  quantity: number
+  onChange: (value: number) => void
+}
+
+const NumberPicker: React.SFC<Props> = ({ quantity, onChange }) => (
   <Container>
-    <Button>
+    <Button onPress={() => onChange(quantity - 1)}>
       <Feather size={20} name="minus" />
     </Button>
 
-    <Quantity>8</Quantity>
+    <Quantity>{quantity}</Quantity>
 
-    <Button>
+    <Button onPress={() => onChange(quantity + 1)}>
       <Feather size={20} name="plus" />
     </Button>
   </Container>

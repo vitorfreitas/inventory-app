@@ -7,8 +7,12 @@ export const Content = styled.ScrollView`
   background: ${V.Color.background};
 `
 
+export const GutterBottom = styled.View`
+  height: 70px;
+`
+
 export const ItemContainer = styled(Ripple).attrs({
-  rippleOpacity: 0.1
+  rippleOpacity: 0.1,
 })`
   margin: 4px;
   height: 115px;

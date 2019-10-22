@@ -16,6 +16,7 @@ const AddProductItem = styled(ItemContainer)`
 interface Props {
   t: (path: string) => string;
   products: Product[];
+  onAddToCart: (item: Product, quantity?: number) => void
   onCreateProduct: () => void;
   onProductLongPress: (product: Product) => void;
   onChangeVisualizationMode: (vMode: 'grid' | 'list') => void;
@@ -24,6 +25,7 @@ interface Props {
 const GridContainer: React.SFC<Props> = ({
   t,
   products,
+  onAddToCart,
   onCreateProduct,
   onProductLongPress,
 }) => {
@@ -36,7 +38,7 @@ const GridContainer: React.SFC<Props> = ({
   const _renderItem = ({ item, index }) => {
     if (index === 0) return addProductItem();
 
-    return <GridItem data={item} onLongPress={onProductLongPress} />;
+    return <GridItem data={item} onPress={onAddToCart} onLongPress={onProductLongPress} />;
   };
 
   return (

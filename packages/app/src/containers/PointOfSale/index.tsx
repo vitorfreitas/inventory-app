@@ -5,23 +5,39 @@ import Navbar from 'components/Navbar'
 import SearchInput from 'components/SearchInput'
 import { products } from 'mocks/products.json'
 
+import Product from 'shared/interfaces/product'
 import GridContainer from './GridContainer'
 import ListContainer from './ListContainer'
 import Heading from './Heading'
-import { Content } from './styled'
+import { Content, GutterBottom } from './styled'
 import DescriptionModal from './Description'
+import CartButton from './CartButton'
+import { ICartItem } from './interfaces'
 
 interface Props {
   data?: object
   navigate: (page: string) => void
   t: (key: string) => string
+  cart: ICartItem[]
+  onAddCartItem: (item: Product, quantity?: number) => void
 }
 
-const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
-  const [visualizationMode, setVisualizationMode] = useState('list')
-  const [selectedProduct, setSelectedProduct] = useState(false)
+const HomeContainer: React.SFC<Props> = ({
+  t,
+  data,
+  cart,
+  onAddCartItem,
+  navigate
+}) => {
+  const [visualizationMode, setVisualizationMode] = useState<'list' | 'grid'>(
+    'list'
+  )
+  const [selectedProduct, setSelectedProduct] = useState<Product | boolean>(
+    false
+  )
 
-  const openDescriptionModalOnLongPress = product => setSelectedProduct(product)
+  const openDescriptionModalOnLongPress = (product: Product) =>
+    setSelectedProduct(product)
 
   const closeDescriptionModal = () => setSelectedProduct(false)
 
@@ -29,8 +45,9 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
 
   const productListProps = {
     t,
-    onCreateProduct: navigateToCreateProductPage,
     products,
+    onAddToCart: onAddCartItem,
+    onCreateProduct: navigateToCreateProductPage,
     onProductLongPress: openDescriptionModalOnLongPress,
     onChangeVisualizationMode: setVisualizationMode
   }
@@ -41,6 +58,7 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
       <Toolbar>
         <SearchInput placeholder={t('pos.placeholder')} />
       </Toolbar>
+
       <Content>
         <Heading
           title={t('pos.products')}
@@ -54,12 +72,23 @@ const HomeContainer: React.SFC<Props> = ({ t, data, navigate }) => {
           <ListContainer {...productListProps} />
         )}
 
-        <DescriptionModal
-          t={t}
-          open={!!selectedProduct}
-          onClose={closeDescriptionModal}
-        />
+        <GutterBottom />
       </Content>
+
+      <DescriptionModal
+        t={t}
+        product={selectedProduct}
+        open={!!selectedProduct}
+        onAddToCart={onAddCartItem}
+        onClose={closeDescriptionModal}
+      />
+
+      <CartButton
+        onPress={() => navigate('Cart')}
+        cartMessage={t('pos.cart.button-message')}
+        emptyCartMessage={t('pos.cart.empty-cart')}
+        cart={cart}
+      />
     </>
   )
 }

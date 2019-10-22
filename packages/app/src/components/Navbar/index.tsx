@@ -7,6 +7,7 @@ import { withNavigation } from 'react-navigation'
 const Container = styled.View`
   width: 100%;
   height: 60px;
+  background: #fff;
   padding: 10px 20px;
   flex-direction: row;
   align-items: center;

@@ -13,6 +13,21 @@
     },
     "create": {
       "title": "Create Product"
+    },
+    "cart": {
+      "title": "Your Cart",
+      "button-message": "Your cart",
+      "empty-cart": "Add items to your cart!",
+      "discount": "APPLY DISCOUNT",
+      "finish-button": "Sell",
+      "success": "You just finished you purchase! Get back to your store and keep rockin'!",
+      "remove-title": "Want to remove this item from your cart?",
+      "remove-message": "Don't worry. You can add it again later if you want.",
+      "remove-ok": "Yes, remove it please.",
+      "remove-cancel": "Get back"
     }
+  },
+  "dialogs": {
+    "success": "Congratulations!"
   }
 }
