@@ -1,0 +1,14 @@
+type Address {
+  id: ID
+  street: String
+  neighborhood: String
+  complement: String
+  zipcode: String
+}
+
+input AddressInput {
+  street: String!
+  neighborhood: String!
+  complement: String!
+  zipcode: String!
+}

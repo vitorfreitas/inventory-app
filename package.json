@@ -1,11 +1,12 @@
 {
   "private": true,
   "name": "stock",
-  "scripts": {
-    "app": "yarn workspace app start",
-    "lint:app": "yarn workspace app lint"
-  },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "app": "yarn workspace app start",
+    "server": "yarn workspace server start",
+    "server:dev": "yarn workspace server start:dev"
+  }
 }

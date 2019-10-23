@@ -1,0 +1,21 @@
+type Query {
+  atomProducts: [Product]
+}
+
+type Mutation {
+  createProduct(product: ProductInput!): Product!
+  updateProduct(product: ProductInput!): Product!
+}
+
+type Product {
+  id: ID
+  name: String
+  price: Float
+  composition: [Product]
+}
+
+input ProductInput {
+  name: String!
+  price: Float!
+  composition: [ProductInput!]
+}
