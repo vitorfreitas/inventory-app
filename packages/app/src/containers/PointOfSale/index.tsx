@@ -23,23 +23,14 @@ interface Props {
 }
 
 const HomeContainer: React.SFC<Props> = ({
-  t,
-  data,
-  cart,
-  onAddCartItem,
-  navigate
+  t, data, cart, onAddCartItem, navigate,
 }) => {
-  const [visualizationMode, setVisualizationMode] = useState<'list' | 'grid'>(
-    'list'
-  )
-  const [selectedProduct, setSelectedProduct] = useState<Product | boolean>(
-    false
-  )
+  const [visualizationMode, setVisualizationMode] = useState<'list' | 'grid'>('list')
+  const [selectedProduct, setSelectedProduct] = useState<Product>(null)
 
-  const openDescriptionModalOnLongPress = (product: Product) =>
-    setSelectedProduct(product)
+  const openDescriptionModalOnLongPress = (product: Product) => setSelectedProduct(product)
 
-  const closeDescriptionModal = () => setSelectedProduct(false)
+  const closeDescriptionModal = () => setSelectedProduct(null)
 
   const navigateToCreateProductPage = () => navigate('CreateProduct')
 
@@ -49,7 +40,7 @@ const HomeContainer: React.SFC<Props> = ({
     onAddToCart: onAddCartItem,
     onCreateProduct: navigateToCreateProductPage,
     onProductLongPress: openDescriptionModalOnLongPress,
-    onChangeVisualizationMode: setVisualizationMode
+    onChangeVisualizationMode: setVisualizationMode,
   }
 
   return (
