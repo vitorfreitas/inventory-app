@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal } from 'react-native'
+import { Modal, StyleProp, ViewStyle } from 'react-native'
 import styled from 'styled-components/native'
 import { Feather } from '@expo/vector-icons'
 
@@ -40,12 +40,15 @@ const CloseModalButton = styled.TouchableOpacity`
 interface Props {
   open: boolean
   onClose: () => void
+  containerStyle?: StyleProp<ViewStyle>
 }
 
-const DefaultModal: React.SFC<Props> = ({ open, onClose, children }) => (
+const DefaultModal: React.SFC<Props> = ({
+  open, onClose, containerStyle, children,
+}) => (
   <Modal transparent visible={open} onRequestClose={onClose} animationType="fade">
     <Background>
-      <Container>{children}</Container>
+      <Container style={containerStyle}>{children}</Container>
 
       <CloseModalButton onPress={onClose}>
         <Feather name="x" size={25} color="#757575" />
