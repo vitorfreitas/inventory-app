@@ -1,26 +1,34 @@
 import { generateToken } from '../auth'
 import { IAuthPayload } from '../auth/model'
-import { getValidationErrorsMessages } from '../../utils'
+import { User } from '@stock/shared/interfaces'
 
-import User, { IUser } from './model'
+import UserModel, { IUser } from './model'
 
 const resolvers = {
   Query: {
-    user: (root, args, { user }) => user
+    user: async (
+      root,
+      args,
+      context: { user: { id: string } }
+    ): Promise<IUser> => {
+      const { user } = context
+
+      return UserModel.findOne({ id: user.id })
+    }
   },
   Mutation: {
-    createUser: async (_, { user }): Promise<IAuthPayload> => {
+    createUser: async (_, args: { user: User }): Promise<IAuthPayload> => {
+      const { user } = args
+
       try {
-        const createdUser = await User.create(user)
+        const createdUser = await UserModel.create(user)
 
         return {
           token: generateToken(createdUser.id),
           user: createdUser
         }
       } catch (err) {
-        return {
-          errors: getValidationErrorsMessages(err)
-        }
+        throw new Error(err)
       }
     }
   }

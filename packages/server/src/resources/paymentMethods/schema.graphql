@@ -12,9 +12,9 @@ type User {
   businessName: String
   phone: String
   email: String
+  cpnj: String
   customers: [Customer]
   products: [Product]
-  baseProducts: [BaseProduct]
 }
 
 input UserInput {

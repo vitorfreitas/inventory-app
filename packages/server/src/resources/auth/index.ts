@@ -1,31 +1,34 @@
 import * as jwt from 'jsonwebtoken'
+import { ContextParameters } from 'graphql-yoga/dist/types'
 
 import config from '../../config'
 import logger from '../../lib/logger'
-import User, { IUser } from '../users/model'
 
-async function getUser(authorization: string) {
+function getUser(req: ContextParameters): { id: string } {
+  const { authorization } = req.request.headers
+
   if (!authorization) {
-    return null
+    return { id: null }
   }
 
   const [_, token] = authorization.split(' ')
 
   if (!token) {
-    return null
+    return { id: null }
   }
 
   try {
     const { id: userId } = jwt.verify(token, config.JWT_SECRET) as {
       id: string
     }
-    const user = await User.findById(userId)
 
-    return user
+    return {
+      id: userId
+    }
   } catch (err) {
     logger.error(err)
 
-    return null
+    return { id: null }
   }
 }
 

@@ -1,24 +1,10 @@
 import { hashSync, compareSync } from 'bcrypt'
 import { model, Schema, Document, Model } from 'mongoose'
 
-import { IAddress, AddressSchema } from './address/model'
-import { IProduct, ProductSchema } from './products/model'
-import { ICustomer, CustomerSchema } from './customers/model'
+import { User } from '@stock/shared/interfaces'
 
-import { nameIsValid, emailIsValid, phoneIsValid } from '../../lib/validations'
-
-import { INVALID_EMAIL, INVALID_NAME } from '../../lib/errors'
-
-interface IUser extends Document {
-  name: string
-  businessName: string
-  phone: string
-  cpnj: string
-  email: string
-  password?: string
-  address: IAddress
-  products: [IProduct]
-  customers: [ICustomer]
+interface IUser extends User, Document {
+  password: string
   encryptPassword: (password: string | undefined) => string
   authenticate: (plainPassword: string) => boolean
 }
@@ -27,10 +13,6 @@ const schema = new Schema(
   {
     name: {
       type: String,
-      validate: {
-        validator: nameIsValid,
-        message: () => INVALID_NAME
-      },
       required: true
     },
     businessName: {
@@ -42,32 +24,15 @@ const schema = new Schema(
       unique: true,
       required: true
     },
-    cnpj: {
-      type: String,
-      unique: true
-    },
     email: {
       type: String,
-      validate: {
-        validator: emailIsValid,
-        message: () => INVALID_EMAIL
-      },
       unique: true,
       required: true
     },
     password: {
       type: String,
-      required: true,
+      required: false,
       hidden: true
-    },
-    address: {
-      type: AddressSchema
-    },
-    products: {
-      type: [ProductSchema]
-    },
-    customers: {
-      type: [CustomerSchema]
     }
   },
   {

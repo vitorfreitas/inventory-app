@@ -1,27 +1,26 @@
+import { User } from '@stock/shared/interfaces'
+
 import { generateToken } from '../auth/'
+import UserModel, { IUser } from '../users/model'
 import { IAuthPayload } from './model'
-
-import User, { IUser } from '../users/model'
-
 import { INVALID_CREDENTIALS } from '../../lib/errors'
 
 const resolvers = {
   Mutation: {
-    login: async (_, { email, password }): Promise<IAuthPayload> => {
-      const user = await User.findOne({ email: email.toLowerCase() })
+    login: async (_, args: User): Promise<IAuthPayload> => {
+      const { email, password } = args
+      const user: IUser = await UserModel.findOne({
+        email: email.toLowerCase()
+      })
 
       if (!user) {
-        return {
-          errors: [INVALID_CREDENTIALS]
-        }
+        throw new Error(INVALID_CREDENTIALS)
       }
 
       const passwordIsCorrect = user.authenticate(password)
 
       if (!passwordIsCorrect) {
-        return {
-          errors: [INVALID_CREDENTIALS]
-        }
+        throw new Error(INVALID_CREDENTIALS)
       }
 
       return {

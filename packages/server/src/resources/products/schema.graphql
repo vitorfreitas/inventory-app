@@ -1,5 +1,5 @@
 type Query {
-  atomProducts: [Product]
+  products: [Product!]!
 }
 
 type Mutation {
@@ -11,11 +11,16 @@ type Product {
   id: ID
   name: String
   price: Float
-  composition: [Product]
+  quantity: Int
+  combo: [Product]
+  composition: [BaseProduct]
 }
 
 input ProductInput {
   name: String!
   price: Float!
-  composition: [ProductInput!]
+  photo: String
+  quantity: Int
+  combo: [ID]
+  composition: [ID]
 }
