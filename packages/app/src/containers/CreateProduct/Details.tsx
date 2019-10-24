@@ -8,7 +8,7 @@ import Link from 'components/Link'
 
 const Modal = styled.Modal.attrs({
   transparent: true,
-  animationType: 'fade',
+  animationType: 'fade'
 })``
 
 const Background = styled.View`
@@ -35,7 +35,6 @@ const Heading = styled.View`
 `
 
 const QuantityInput = styled.TextInput`
-  width: 20%;
   font-size: 45px;
   align-self: center;
   text-align: center;
@@ -96,7 +95,7 @@ interface InputRef {
 const unitOptions = [
   { label: 'Unidade', value: 'un' },
   { label: 'Grama', value: 'g' },
-  { label: 'Mililitro', value: 'ml' },
+  { label: 'Mililitro', value: 'ml' }
 ]
 
 const Details: React.SFC<Props> = ({
@@ -109,10 +108,19 @@ const Details: React.SFC<Props> = ({
   minimumAmount,
   measurementUnit,
   onQuantityChange,
-  onMinimumAmountChange,
+  onMinimumAmountChange
 }) => {
   const selectInputRef: InputRef = useRef()
   const minimumAmountRef: InputRef = useRef()
+
+  const handleQuantityInputChange = (value: string) => {
+    const valueToNumber = Number(value)
+
+    if (isNaN(valueToNumber)) return
+    if (valueToNumber < 0) return
+
+    onQuantityChange(value)
+  }
 
   return (
     <Modal visible={open} onRequestClose={onClose}>
@@ -125,7 +133,7 @@ const Details: React.SFC<Props> = ({
               autoFocus
               keyboardType="number-pad"
               value={quantity}
-              onChangeText={onQuantityChange}
+              onChangeText={handleQuantityInputChange}
             />
           </Heading>
 
