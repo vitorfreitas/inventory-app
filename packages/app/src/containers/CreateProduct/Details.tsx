@@ -79,6 +79,7 @@ interface Props {
   quantity: string
   minimumAmount: string
   measurementUnit: string
+  t: (path: string) => string
   onClose: () => void
   onFinish: () => void
   onQuantityChange: (value: string) => void
@@ -99,6 +100,7 @@ const unitOptions = [
 ]
 
 const Details: React.SFC<Props> = ({
+  t,
   open,
   onClose,
   onFinish,
@@ -117,7 +119,7 @@ const Details: React.SFC<Props> = ({
       <Background>
         <Container>
           <Heading>
-            <FormTitle>Quantidade em estoque</FormTitle>
+            <FormTitle>{t('pos.create.quantity-title')}</FormTitle>
 
             <QuantityInput
               autoFocus
@@ -131,7 +133,7 @@ const Details: React.SFC<Props> = ({
             onPress={() => selectInputRef.current.focus()}
             style={{ paddingRight: 0, borderBottomWidth: 0 }}
           >
-            <Label>Vender por</Label>
+            <Label>{t('pos.create.sell-by')}</Label>
             <SelectInput
               mode="dialog"
               ref={selectInputRef}
@@ -144,7 +146,7 @@ const Details: React.SFC<Props> = ({
           </InputContainer>
 
           <InputContainer onPress={() => minimumAmountRef.current.focus()}>
-            <Label>Qtde mínima em estoque</Label>
+            <Label>{t('pos.create.minumum-qty')}</Label>
             <RowInput
               ref={minimumAmountRef as any}
               keyboardType="number-pad"
@@ -155,9 +157,9 @@ const Details: React.SFC<Props> = ({
           </InputContainer>
 
           <FooterButton>
-            <Link onPress={onClose}>Cancelar</Link>
+            <Link onPress={onClose}>{t('pos.create.cancel')}</Link>
 
-            <Button text="Finalizar" onPress={onFinish} />
+            <Button text={t('pos.create.finish')} onPress={onFinish} />
           </FooterButton>
         </Container>
       </Background>

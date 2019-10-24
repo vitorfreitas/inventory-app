@@ -99,11 +99,11 @@ const CreateProductContainer: React.SFC<Props> = ({ t }) => {
           </Content>
 
           <Form>
-            <FormTitle>Informações do produto</FormTitle>
+            <FormTitle>{t('pos.create.form-title')}</FormTitle>
             <TextInput
               onChange={handleInputChange('name')}
               value={product.name}
-              label="Nome"
+              label={t('pos.create.name')}
               placeholder="ex.: Pizza de mozzarela"
             />
             <TextInput
@@ -111,20 +111,21 @@ const CreateProductContainer: React.SFC<Props> = ({ t }) => {
               type="number-pad"
               onChange={handleInputChange('price')}
               value={product.price}
-              label="Preço de venda"
+              label={t('pos.create.price')}
               placeholder="R$ 0,00"
             />
           </Form>
         </ScrollView>
 
         <Footer>
-          <Link onPress={toggleDetailsDialog}>Salvar</Link>
+          <Link onPress={toggleDetailsDialog}>{t('pos.create.save')}</Link>
 
-          <Button onPress={() => {}} text="Ingredientes" />
+          <Button onPress={() => {}} text={t('pos.create.composition')} />
         </Footer>
       </Container>
 
       <Details
+        t={t}
         {...product}
         open={detailsOpen}
         onClose={toggleDetailsDialog}

@@ -12,7 +12,17 @@
       "add": "Adicionar"
     },
     "create": {
-      "title": "Criar produto"
+      "title": "Criar produto",
+      "form-title": "Informações do produto",
+      "name": "Nome",
+      "price": "Preço de venda",
+      "save": "Salvar",
+      "composition": "Ingredientes",
+      "quantity-title": "Quantidade em estoque",
+      "sell-by": "Vender por",
+      "minumum-qty": "Qtde mínima em estoque",
+      "cancel": "Cancelar",
+      "finish": "Finalizar"
     },
     "cart": {
       "title": "Carrinho",

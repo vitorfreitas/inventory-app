@@ -12,7 +12,17 @@
       "add": "Add to cart"
     },
     "create": {
-      "title": "Create Product"
+      "title": "Create Product",
+      "form-title": "Product Information",
+      "name": "Name",
+      "price": "Price",
+      "save": "Save",
+      "composition": "Composition",
+      "quantity-title": "Product Quantity",
+      "sell-by": "Sell by",
+      "minumum-qty": "Minimum qty on inventory",
+      "cancel": "Cancel",
+      "finish": "Finish"
     },
     "cart": {
       "title": "Your Cart",
