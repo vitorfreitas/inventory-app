@@ -6,6 +6,13 @@ import Product from 'shared/interfaces/product'
 import ProductPicture from './ProductPicture'
 
 const Container = styled.View`
+  padding: 20px;
+  border-color: #eee;
+  background: #fafafa;
+  border-bottom-width: 1px;
+`
+
+const Content = styled.View`
   align-items: center;
   flex-direction: row;
 `
@@ -28,12 +35,14 @@ interface Props {
 
 const ProductOverview: React.SFC<Props> = ({ product }) => (
   <Container>
-    <ProductPicture />
+    <Content>
+      <ProductPicture />
 
-    <NameAndPriceContainer>
-      <Name>{product.name || 'Product name'}</Name>
-      <Price>{product.price || 'R$ 0,00'}</Price>
-    </NameAndPriceContainer>
+      <NameAndPriceContainer>
+        <Name>{product.name || 'Product name'}</Name>
+        <Price>{product.price || 'R$ 0,00'}</Price>
+      </NameAndPriceContainer>
+    </Content>
   </Container>
 )
 
