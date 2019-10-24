@@ -3,35 +3,17 @@ import styled from 'styled-components/native'
 import { ScrollView } from 'react-native'
 
 import Navbar from 'components/Navbar'
-import { MediumText, NormalText } from 'components/Typography/Text'
 import TextInput from 'components/Form/TextInput'
 import Button from 'components/Button'
 import Link from 'components/Link'
 import Container from 'components/Layout/Container'
+import ProductOverview from 'components/ProductOverview'
 import { Text } from 'styles/styled'
-import ProductPicture from './ProductPicture'
 import Details from './Details'
 
 const Content = styled.View`
   padding: 20px;
   background: #fafafa;
-`
-
-const ProductOverview = styled.View`
-  align-items: center;
-  flex-direction: row;
-`
-
-const Name = styled(MediumText)`
-  font-size: 16px;
-`
-
-const Price = styled(NormalText)`
-  color: #757575;
-`
-
-const NameAndPriceContainer = styled.View`
-  margin-left: 12px;
 `
 
 const Form = styled.KeyboardAvoidingView`
@@ -67,7 +49,7 @@ const CreateProductContainer: React.SFC<Props> = ({ t }) => {
   const [detailsOpen, setDetailsOpen] = useState<boolean>(false)
   const [product, setProduct] = useState({
     name: '',
-    price: '',
+    price: null,
     quantity: '1',
     measurementUnit: 'un',
     minimumAmount: '1',
@@ -88,14 +70,7 @@ const CreateProductContainer: React.SFC<Props> = ({ t }) => {
 
         <ScrollView style={{ paddingBottom: 16 }}>
           <Content>
-            <ProductOverview>
-              <ProductPicture />
-
-              <NameAndPriceContainer>
-                <Name>{product.name || 'Product name'}</Name>
-                <Price>{product.price || 'R$ 0,00'}</Price>
-              </NameAndPriceContainer>
-            </ProductOverview>
+            <ProductOverview product={product} />
           </Content>
 
           <Form>
