@@ -3,6 +3,8 @@
     "sell": "Vender"
   },
   "pos": {
+    "unit": "Unidade",
+    "gram": "Grama",
     "placeholder": "Procurando o que hoje?",
     "products": "Produtos",
     "hold-tip": "Segure para ver mais",
@@ -22,7 +24,10 @@
       "sell-by": "Vender por",
       "minumum-qty": "Qtde mínima em estoque",
       "cancel": "Cancelar",
-      "finish": "Finalizar"
+      "finish": "Finalizar",
+      "ingredients": "Ingredientes",
+      "ingredient-title": "Quantidade do ingrediente",
+      "ingredients-label": "Ingrediente"
     },
     "cart": {
       "title": "Carrinho",

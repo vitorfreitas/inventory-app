@@ -1,8 +1,20 @@
-import React from 'react';
+import React from 'react'
 
-import CreateProductContainer from 'containers/CreateProduct';
-import { t } from '../../locations';
+import CreateProductContainer from 'containers/CreateProduct'
+import { t } from 'locations'
 
-const CreateProduct = () => <CreateProductContainer t={t} />;
+interface Props {
+  navigation: {
+    navigate: (page: string) => void
+  }
+}
 
-export default CreateProduct;
+const CreateProduct: React.SFC<Props> = ({ navigation }) => {
+  const handleSelectIngredients = () => {
+    navigation.navigate('Ingredients')
+  }
+
+  return <CreateProductContainer t={t} onSelectIngredients={handleSelectIngredients} />
+}
+
+export default CreateProduct

@@ -11,14 +11,9 @@ import ProductOverview from 'components/ProductOverview'
 import { Text } from 'styles/styled'
 import Details from './Details'
 
-const Content = styled.View`
-  padding: 20px;
-  background: #fafafa;
-`
-
 const Form = styled.KeyboardAvoidingView`
   flex: 1;
-  margin-top: 12px;
+  border-top-width: 0;
   border: 1px solid #eee;
   background-color: #ffffff;
   padding: 12px 24px 16px 24px;
@@ -43,9 +38,10 @@ const Footer = styled.View`
 
 interface Props {
   t: (path: string) => string
+  onSelectIngredients: () => void
 }
 
-const CreateProductContainer: React.SFC<Props> = ({ t }) => {
+const CreateProductContainer: React.SFC<Props> = ({ t, onSelectIngredients }) => {
   const [detailsOpen, setDetailsOpen] = useState<boolean>(false)
   const [product, setProduct] = useState({
     name: '',
@@ -69,9 +65,7 @@ const CreateProductContainer: React.SFC<Props> = ({ t }) => {
         <Navbar title={t('pos.create.title')} />
 
         <ScrollView style={{ paddingBottom: 16 }}>
-          <Content>
-            <ProductOverview product={product} />
-          </Content>
+          <ProductOverview product={product} />
 
           <Form>
             <FormTitle>{t('pos.create.form-title')}</FormTitle>
@@ -95,7 +89,7 @@ const CreateProductContainer: React.SFC<Props> = ({ t }) => {
         <Footer>
           <Link onPress={toggleDetailsDialog}>{t('pos.create.save')}</Link>
 
-          <Button onPress={() => {}} text={t('pos.create.composition')} />
+          <Button onPress={onSelectIngredients} text={t('pos.create.composition')} />
         </Footer>
       </Container>
 
