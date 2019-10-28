@@ -37,22 +37,28 @@ const Footer = styled.View`
 `
 
 interface Props {
+  product: {
+    name: string
+    price: string
+    quantity: string
+    measurementUnit: string
+    minimumAmount: string
+  }
   t: (path: string) => string
   onSelectIngredients: () => void
+  onChangeProduct: (product: any) => void
 }
 
-const CreateProductContainer: React.SFC<Props> = ({ t, onSelectIngredients }) => {
+const CreateProductContainer: React.SFC<Props> = ({
+  t,
+  onSelectIngredients,
+  product,
+  onChangeProduct,
+}) => {
   const [detailsOpen, setDetailsOpen] = useState<boolean>(false)
-  const [product, setProduct] = useState({
-    name: '',
-    price: null,
-    quantity: '1',
-    measurementUnit: 'un',
-    minimumAmount: '1',
-  })
 
   const handleInputChange = (field) => (value) => {
-    setProduct({ ...product, [field]: value })
+    onChangeProduct({ ...product, [field]: value })
   }
 
   const toggleDetailsDialog = () => setDetailsOpen(!detailsOpen)

@@ -68,6 +68,8 @@ const Footer = styled.View`
 
 interface Props {
   t: (path: string) => string
+  ingredients: IBaseProduct[]
+  onChangeIngredient: (ingredients: IBaseProduct[]) => void
 }
 
 const ingredientsFromApi: IBaseProduct[] = [
@@ -97,27 +99,26 @@ const ingredientsFromApi: IBaseProduct[] = [
   },
 ]
 
-const IngredientsContainer: React.SFC<Props> = ({ t }) => {
-  const [ingredients, setIngredients] = useState<IBaseProduct[]>([])
+const IngredientsContainer: React.SFC<Props> = ({ t, ingredients, onChangeIngredient }) => {
   const [selectedIngredient, setSelectedIngredient] = useState<IBaseProduct>()
   const [addProductIsOpen, setAddProductDialogIsOpen] = useState<boolean>(false)
 
   const toggleAddProductDialog = () => setAddProductDialogIsOpen(!addProductIsOpen)
 
   const handleEditIngredient = (ingredient: IBaseProduct) => {
-    const updatedIngredientsList = ingredients.map((item) => {
+    const updatedIngredientsList: IBaseProduct[] = ingredients.map((item) => {
       if (item.id !== selectedIngredient.id) return item
 
       return ingredient
     })
 
-    setIngredients(updatedIngredientsList)
+    onChangeIngredient(updatedIngredientsList)
     toggleAddProductDialog()
     setSelectedIngredient(null)
   }
 
   const handleAddIngredient = (ingredient: IBaseProduct) => {
-    setIngredients([...ingredients, ingredient])
+    onChangeIngredient([...ingredients, ingredient])
     toggleAddProductDialog()
   }
 
