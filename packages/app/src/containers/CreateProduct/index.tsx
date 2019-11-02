@@ -8,7 +8,7 @@ import Button from 'components/Button'
 import Link from 'components/Link'
 import Container from 'components/Layout/Container'
 import ProductOverview from 'components/ProductOverview'
-import { Text } from 'styles/styled'
+import { BoldText } from 'components/Typography/Text'
 import Details from './Details'
 
 const Form = styled.KeyboardAvoidingView`
@@ -19,9 +19,8 @@ const Form = styled.KeyboardAvoidingView`
   padding: 12px 24px 16px 24px;
 `
 
-const FormTitle = styled(Text)`
+const FormTitle = styled(BoldText)`
   margin: 16px 0;
-  font-family: 'Poppins Bold';
   font-size: 18px;
 `
 
