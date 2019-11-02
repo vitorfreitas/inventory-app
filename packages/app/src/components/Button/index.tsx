@@ -8,6 +8,7 @@ const Container = styled(Ripple)`
   border-radius: 4px;
   padding: 6px 18px;
   background: ${V.Color.primary};
+  opacity: ${({ disabled }) => (disabled ? 0.4 : 1)};
 
   align-items: center;
   align-self: flex-start;
@@ -23,11 +24,12 @@ const Text = styled.Text`
 
 interface Props {
   text: string
+  disabled?: boolean
   onPress: (args?: any) => any
 }
 
-const Button: React.SFC<Props> = ({ text, onPress }) => (
-  <Container onPress={onPress}>
+const Button: React.SFC<Props> = ({ text, onPress, disabled }) => (
+  <Container onPress={onPress} disabled={disabled}>
     <Text>{text}</Text>
   </Container>
 )
