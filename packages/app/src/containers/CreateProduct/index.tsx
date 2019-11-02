@@ -53,11 +53,11 @@ const CreateProductContainer: React.SFC<Props> = ({
   t,
   onSelectIngredients,
   product,
-  onChangeProduct,
+  onChangeProduct
 }) => {
   const [detailsOpen, setDetailsOpen] = useState<boolean>(false)
 
-  const handleInputChange = (field) => (value) => {
+  const handleInputChange = field => value => {
     onChangeProduct({ ...product, [field]: value })
   }
 
@@ -95,7 +95,11 @@ const CreateProductContainer: React.SFC<Props> = ({
         <Footer>
           <Link onPress={toggleDetailsDialog}>{t('pos.create.save')}</Link>
 
-          <Button onPress={onSelectIngredients} text={t('pos.create.composition')} />
+          <Button
+            disabled={!product.name || !product.price}
+            onPress={onSelectIngredients}
+            text={t('pos.create.composition')}
+          />
         </Footer>
       </Container>
 

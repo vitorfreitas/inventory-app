@@ -27,7 +27,7 @@ const FormTitle = styled(BoldText)`
 `
 
 const AddProductItem = styled(Ripple).attrs({
-  rippleOpacity: 0.1,
+  rippleOpacity: 0.1
 })`
   padding: 8px 12px;
   border-radius: 8px;
@@ -70,6 +70,7 @@ interface Props {
   t: (path: string) => string
   ingredients: IBaseProduct[]
   onChangeIngredient: (ingredients: IBaseProduct[]) => void
+  onCreate: () => void
 }
 
 const ingredientsFromApi: IBaseProduct[] = [
@@ -77,36 +78,42 @@ const ingredientsFromApi: IBaseProduct[] = [
     id: '1',
     name: 'Carne de Hambúrguer',
     quantity: '1',
-    unit: 'un',
+    unit: 'un'
   },
   {
     id: '2',
     name: 'Tomate',
     quantity: '1',
-    unit: 'un',
+    unit: 'un'
   },
   {
     id: '3',
     name: 'Gel de cabelo',
     quantity: '1',
-    unit: 'g',
+    unit: 'g'
   },
   {
     id: '4',
     name: 'Pomada capilar',
     quantity: '1',
-    unit: 'g',
-  },
+    unit: 'g'
+  }
 ]
 
-const IngredientsContainer: React.SFC<Props> = ({ t, ingredients, onChangeIngredient }) => {
+const IngredientsContainer: React.SFC<Props> = ({
+  t,
+  ingredients,
+  onChangeIngredient,
+  onCreate
+}) => {
   const [selectedIngredient, setSelectedIngredient] = useState<IBaseProduct>()
   const [addProductIsOpen, setAddProductDialogIsOpen] = useState<boolean>(false)
 
-  const toggleAddProductDialog = () => setAddProductDialogIsOpen(!addProductIsOpen)
+  const toggleAddProductDialog = () =>
+    setAddProductDialogIsOpen(!addProductIsOpen)
 
   const handleEditIngredient = (ingredient: IBaseProduct) => {
-    const updatedIngredientsList: IBaseProduct[] = ingredients.map((item) => {
+    const updatedIngredientsList: IBaseProduct[] = ingredients.map(item => {
       if (item.id !== selectedIngredient.id) return item
 
       return ingredient
@@ -136,8 +143,12 @@ const IngredientsContainer: React.SFC<Props> = ({ t, ingredients, onChangeIngred
         <Form>
           <FormTitle>{t('pos.create.ingredients')}</FormTitle>
 
-          {ingredients.map((i) => (
-            <Ingredient key={i.id} onPress={handleIngredientPress} ingredient={i} />
+          {ingredients.map(i => (
+            <Ingredient
+              key={i.id}
+              onPress={handleIngredientPress}
+              ingredient={i}
+            />
           ))}
 
           <AddProductContainer>
@@ -152,12 +163,10 @@ const IngredientsContainer: React.SFC<Props> = ({ t, ingredients, onChangeIngred
 
         <Footer>
           <Link onPress={() => {}}>Cancel</Link>
-          
-          <Button onPress={() => {}} text="Create product" />
+
+          <Button onPress={onCreate} text="Create product" />
         </Footer>
       </Container>
-
-      
 
       <AddIngredient
         t={t}
