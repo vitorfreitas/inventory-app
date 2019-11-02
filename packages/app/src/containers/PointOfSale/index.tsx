@@ -1,70 +1,94 @@
-import React, { useState } from "react";
-import { Feather } from "@expo/vector-icons";
-import styled from "styled-components/native";
+import React, { useState } from 'react'
 
-import Navbar from "../../components/Navbar";
-import GridContainer from "./GridContainer";
-import ListContainer from "./ListContainer";
-import { Content, Row, SearchInput } from "./styled";
-import DescriptionModal from "./Description";
-import { products as productList } from "./products.json";
-import Product from "shared/interfaces/product";
+import { Toolbar } from 'styles/styled'
+import Navbar from 'components/Navbar'
+import SearchInput from 'components/SearchInput'
+import { products } from 'mocks/products.json'
 
-const products: Product[] = productList;
-
-const Toolbar = styled(Row)`
-  padding: 15px;
-  background: #fff;
-  border-color: #eee;
-  margin-bottom: 10px;
-  border-bottom-width: 1px;
-`;
+import Product from 'shared/interfaces/product'
+import GridContainer from './GridContainer'
+import ListContainer from './ListContainer'
+import Heading from './Heading'
+import { Content, GutterBottom } from './styled'
+import DescriptionModal from './Description'
+import CartButton from './CartButton'
+import { ICartItem } from './interfaces'
 
 interface Props {
-  data?: object;
-  t: (key: string) => string;
+  data?: object
+  navigate: (page: string) => void
+  t: (key: string) => string
+  cart: ICartItem[]
+  onAddCartItem: (item: Product, quantity?: number) => void
 }
 
-const HomeContainer: React.SFC<Props> = ({ t, data }) => {
-  const [visualizationMode, setVisualizationMode] = useState("list");
-  const [selectedProduct, setSelectedProduct] = useState(false);
+const HomeContainer: React.SFC<Props> = ({
+  t,
+  data,
+  cart,
+  onAddCartItem,
+  navigate
+}) => {
+  const [visualizationMode, setVisualizationMode] = useState<'list' | 'grid'>(
+    'list'
+  )
+  const [selectedProduct, setSelectedProduct] = useState<Product | boolean>(
+    false
+  )
 
-  const openDescriptionModalOnLongPress = product =>
-    setSelectedProduct(product);
+  const openDescriptionModalOnLongPress = (product: Product) =>
+    setSelectedProduct(product)
 
   const closeDescriptionModal = () => setSelectedProduct(false);
 
+  const navigateToCreateProductPage = () => navigate('CreateProduct')
+
+  const productListProps = {
+    t,
+    products,
+    onAddToCart: onAddCartItem,
+    onCreateProduct: navigateToCreateProductPage,
+    onProductLongPress: openDescriptionModalOnLongPress,
+    onChangeVisualizationMode: setVisualizationMode
+  }
+
   return (
     <>
-      <Navbar title={t("navbar.sell")} />
+      <Navbar title={t('navbar.sell')} withProfile withBackButton={false} />
+      <Toolbar>
+        <SearchInput placeholder={t('pos.placeholder')} />
+      </Toolbar>
 
       <Content>
-        <Toolbar>
-          <Feather name="search" size={25} />
-          <SearchInput placeholder={t("pos.placeholder")} />
-        </Toolbar>
+        <Heading
+          title={t('pos.products')}
+          onChangeVisualizationMode={setVisualizationMode}
+          visualizationMode={visualizationMode}
+        />
 
-        {visualizationMode === "grid" ? (
-          <GridContainer
-            products={products}
-            onProductLongPress={openDescriptionModalOnLongPress}
-            onChangeVisualizationMode={setVisualizationMode}
-          />
+        {visualizationMode === 'grid' ? (
+          <GridContainer {...productListProps} />
         ) : (
-          <ListContainer
-            t={t}
-            products={products}
-            onProductLongPress={openDescriptionModalOnLongPress}
-            onChangeVisualizationMode={setVisualizationMode}
-          />
+          <ListContainer {...productListProps} />
         )}
 
-        <DescriptionModal
-          t={t}
-          open={!!selectedProduct}
-          onClose={closeDescriptionModal}
-        />
+        <GutterBottom />
       </Content>
+
+      <DescriptionModal
+        t={t}
+        product={selectedProduct}
+        open={!!selectedProduct}
+        onAddToCart={onAddCartItem}
+        onClose={closeDescriptionModal}
+      />
+
+      <CartButton
+        onPress={() => navigate('Cart')}
+        cartMessage={t('pos.cart.button-message')}
+        emptyCartMessage={t('pos.cart.empty-cart')}
+        cart={cart}
+      />
     </>
   );
 };

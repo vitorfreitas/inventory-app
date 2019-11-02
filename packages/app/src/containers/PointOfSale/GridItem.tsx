@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import { ItemContainer as Container } from './styled'
 import Product from 'shared/interfaces/product'
+import { ItemContainer as Container } from './styled'
 
 const Image = styled.Image`
-  width: 100%;
   height: 70px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -32,19 +31,30 @@ const Price = styled.Text`
 
 interface Props {
   data: Product
+  onPress: (product: Product) => void
   onLongPress: (product: Product) => void
 }
 
-const GridItem: React.SFC<Props> = ({ data, onLongPress }) => {
+const GridItem: React.SFC<Props> = ({ data, onPress, onLongPress }) => {
   const handleLongPress = () => onLongPress(data)
+  const handlePress = () => onPress(data)
+
+  const formatName = (name: string): string => {
+    if (name.length <= 10) return name
+
+    return `${name.substring(0, 9)}...`
+  }
 
   return (
-    <Container onLongPress={handleLongPress}>
+    <Container onLongPress={handleLongPress} onPress={handlePress}>
       <Image source={{ uri: data.picture }} />
 
       <DataContainer>
-        <Title>{data.name}</Title>
-        <Price>R$ {data.price}</Price>
+        <Title>{formatName(data.name)}</Title>
+        <Price>
+          R$
+          {data.price}
+        </Price>
       </DataContainer>
     </Container>
   )

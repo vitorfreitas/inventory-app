@@ -1,79 +1,86 @@
 import React from 'react'
-import { ScrollView, View } from 'react-native'
 import styled from 'styled-components/native'
 import Ripple from 'react-native-material-ripple'
 import { Feather } from '@expo/vector-icons'
 
-import ListItem from './ListItem'
-import Heading from './Heading'
 import Product from 'shared/interfaces/product'
+import ListItem from './ListItem'
 
-const AddProductItem = styled(Ripple)`
-  width: 90%;
-  height: 80px;
-  margin: 0 auto;
-  background: #f1f2fa;
-  border-radius: 4px;
-  margin-bottom: 12px;
-  elevation: 2;
+const ProductsContainer = styled.View`
+  margin-top: 24px;
+  border-top-color: #eee;
+  border-top-width: 1px;
+`
 
+const AddProductItem = styled(Ripple).attrs({
+  rippleOpacity: 0.1,
+})`
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px #bdbdbd dashed;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+`
+
+const AddProductIcon = styled.View`
+  align-self: center;
+  align-items: center;
+  justify-content: center;
 `
 
 const AddProductText = styled.Text`
-  color: #d8d9e1;
-  font-size: 20px;
+  color: #9e9e9e;
+  font-size: 14px;
   margin-top: 4px;
-  font-family: Poppins;
+  margin-left: 17px;
+  font-family: 'Poppins Medium';
+`
+
+const AddProductContainer = styled.View`
+  padding-left: 32px;
+  padding-right: 32px;
+  margin-top: 16px;
 `
 
 interface Props {
-  t: (path) => string
   products: Product[]
-  onProductLongPress: (product) => void
-  onChangeVisualizationMode: (vMode: 'grid' | 'list') => any
+  t: (path) => string
+  onAddToCart: (item: Product, quantity?: number) => void
+  onCreateProduct: () => void
+  onProductLongPress: (product: Product) => void
 }
 
 const ListContainer: React.SFC<Props> = ({
   t,
   products,
-  onChangeVisualizationMode,
-  onProductLongPress
+  onAddToCart,
+  onCreateProduct,
+  onProductLongPress,
 }) => {
-  const _renderItem = (product, index) => {
-    if (index === 0) {
-      return (
-        <AddProductItem key={index}>
-          <Feather name="plus" size={40} color="#d8d9e1" />
-          <AddProductText>{t('pos.add')}</AddProductText>
-        </AddProductItem>
-      )
-    }
-
-    return (
-      <ListItem
-        t={t}
-        data={product}
-        onLongPress={onProductLongPress}
-        key={index}
-      />
-    )
-  }
+  const _renderItem = (product, index) => (
+    <ListItem
+      t={t}
+      onPress={onAddToCart}
+      data={product}
+      onLongPress={onProductLongPress}
+      key={index}
+    />
+  )
 
   return (
-    <ScrollView>
-      <View style={{ marginBottom: 10 }}>
-        <Heading
-          title="Products"
-          visualizationMode="list"
-          onChangeVisualizationMode={onChangeVisualizationMode}
-        />
-      </View>
+    <>
+      <AddProductContainer>
+        <AddProductItem onPress={onCreateProduct}>
+          <AddProductIcon>
+            <Feather name="plus" size={18} color="#9e9e9e" />
+          </AddProductIcon>
+          <AddProductText>{t('pos.add')}</AddProductText>
+        </AddProductItem>
+      </AddProductContainer>
 
-      {products.map(_renderItem)}
-    </ScrollView>
+      <ProductsContainer>{products.map(_renderItem)}</ProductsContainer>
+    </>
   )
 }
 

@@ -1,16 +1,18 @@
 import React from 'react'
 import styled from 'styled-components/native'
-
-import * as V from '@styles/variables'
+import BackButton from './BackButton'
+import * as V from 'styles/variables'
+import { withNavigation } from 'react-navigation'
 
 const Container = styled.View`
   width: 100%;
   height: 60px;
+  background: #fff;
   padding: 10px 20px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
+  background-color: #ffffff;
   border-color: #eee;
   border-bottom-width: 1px;
 `
@@ -31,18 +33,34 @@ const Avatar = styled.Image`
 
 interface Props {
   title: string
+  withProfile?: boolean
+  navigation?: any
+  withBackButton?: boolean
 }
 
-const Navbar: React.SFC<Props> = ({ title }) => {
-  return (
-    <Container>
-      <Title>{title}</Title>
+const ButtonContainer = styled.View`
+  height: 40px;
+  width: 40px;
+`
 
-      <Avatar
-        source={{ uri: 'https://randomuser.me/api/portraits/men/22.jpg' }}
-      />
-    </Container>
-  )
-}
+const Navbar: React.SFC<Props> = ({
+  title,
+  withProfile,
+  navigation,
+  withBackButton = true
+}) => (
+  <Container>
+    {withBackButton ? <BackButton onPress={() => navigation.goBack()} /> : null}
 
-export default Navbar
+    <Title>{title}</Title>
+    <ButtonContainer>
+      {withProfile ? (
+        <Avatar
+          source={{ uri: 'https://randomuser.me/api/portraits/men/22.jpg' }}
+        />
+      ) : null}
+    </ButtonContainer>
+  </Container>
+)
+
+export default withNavigation(Navbar)

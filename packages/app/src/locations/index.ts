@@ -23,12 +23,14 @@ I18n.translations = {
 }
 
 const setLanguageToI18n = () => {
-  const language = getDeviceLanguage()
-  const normalizedLanguage = normalizeTranslate[language]
-  const hasLanguage = I18n.translations.hasOwnProperty(normalizedLanguage)
-  hasLanguage
-    ? (I18n.locale = normalizedLanguage)
-    : (I18n.defaultLocale = 'pt_BR')
+  try {
+    const language = getDeviceLanguage()
+    const normalizedLanguage = normalizeTranslate[language]
+
+    I18n.locale = normalizedLanguage
+  } catch (err) {
+    I18n.locale = 'pt_BR'
+  }
 }
 
 setLanguageToI18n()

@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components/native'
+import React from 'react';
+import styled from 'styled-components/native';
 
-export const StyledText = styled.Text``
+export const StyledText = styled.Text``;
 
-const Title: React.SFC = ({ children }) => <StyledText>{children}</StyledText>
+const Title: React.SFC = ({ children }) => <StyledText>{children}</StyledText>;
 
-export default Title
+export default Title;

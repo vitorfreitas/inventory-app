@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components/native'
-import Ripple from 'react-native-material-ripple'
+import React from 'react';
+import styled from 'styled-components/native';
+import Ripple from 'react-native-material-ripple';
 
-import * as V from '@styles/variables'
+import * as V from 'styles/variables';
 
 const Container = styled(Ripple)`
   border-radius: 4;
@@ -12,23 +12,24 @@ const Container = styled(Ripple)`
   align-items: center;
   align-self: flex-start;
   justify-content: center;
-`
+`;
 
 const Text = styled.Text`
   color: #fff;
   font-size: 16px;
   margin-top: 2px;
   font-family: 'Poppins Medium';
-`
+`;
 
 interface Props {
-  text: string
+  text: string,
+  onPress: (args?: any) => any
 }
 
-const Button: React.SFC<Props> = ({ text }) => (
-  <Container>
+const Button: React.SFC<Props> = ({ text, onPress }) => (
+  <Container onPress={onPress}>
     <Text>{text}</Text>
   </Container>
-)
+);
 
-export default Button
+export default Button;

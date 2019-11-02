@@ -1,30 +1,21 @@
 import styled from 'styled-components/native'
 import Ripple from 'react-native-material-ripple'
+import * as V from 'styles/variables'
 
-export const Content = styled.View`
+export const Content = styled.ScrollView`
   flex: 1;
-  background: #fafafe;
+  background: ${V.Color.background};
+`
+
+export const GutterBottom = styled.View`
+  height: 70px;
 `
 
 export const ItemContainer = styled(Ripple).attrs({
-  rippleOpacity: 0.1
+  rippleOpacity: 0.1,
 })`
   margin: 4px;
   height: 115px;
-  elevation: 2;
-  background: #fff;
   border-radius: 4px;
-`
-
-export const Row = styled.View`
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`
-
-export const SearchInput = styled.TextInput`
-  flex: 1;
-  font-size: 16px;
-  text-align: right;
+  border: 1px solid #eee;
 `
