@@ -12,8 +12,12 @@ const Ingredients = () => {
   const handleIngredientChange = (ingredients: IBaseProduct[]) => {
     dispatch({
       type: 'UPDATE_PRODUCT',
-      payload: { ingredients },
+      payload: { ingredients }
     })
+  }
+
+  const createProduct = () => {
+    console.log(product)
   }
 
   return (
@@ -21,6 +25,7 @@ const Ingredients = () => {
       t={t}
       ingredients={product.ingredients}
       onChangeIngredient={handleIngredientChange}
+      onCreate={createProduct}
     />
   )
 }
