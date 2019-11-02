@@ -5,7 +5,7 @@ import Ripple from 'react-native-material-ripple'
 
 import { Row } from 'styles/styled'
 import * as V from 'styles/variables'
-import Button from 'components/Button'
+import Button from 'components/Form/Button'
 import NumberPicker from 'components/NumberPicker'
 import DefaultModal from 'components/DefaultModal'
 import Product from 'shared/interfaces/product'
@@ -19,7 +19,7 @@ const Picture = styled.Image`
 `
 
 const EditButton = styled(Ripple).attrs({
-  rippleOpacity: 0.1,
+  rippleOpacity: 0.1
 })`
   width: 50px;
   height: 50px;
@@ -91,7 +91,13 @@ interface Props {
   onAddToCart: (product: Product, quantity?: number) => void
 }
 
-const DescriptionModal: React.FC<Props> = ({ t, product, open, onClose, onAddToCart }) => {
+const DescriptionModal: React.FC<Props> = ({
+  t,
+  product,
+  open,
+  onClose,
+  onAddToCart
+}) => {
   const [quantity, setQuantity] = useState(1)
 
   const addToCartAndCloseModal = () => {
@@ -102,32 +108,32 @@ const DescriptionModal: React.FC<Props> = ({ t, product, open, onClose, onAddToC
   return (
     <DefaultModal open={open} onClose={onClose}>
       <Picture source={{ uri: product.picture }} />
-  
+
       <EditButton>
         <Feather name="edit-3" color="#fff" size={20} />
       </EditButton>
-  
+
       <Heading>
         <Title>{product.name}</Title>
         <Price>R$ {product.price}</Price>
       </Heading>
-  
+
       <CompositionContainer>
         <CompositionRow>
           <CompositionName>Pão de Hamburguer</CompositionName>
           <CompositionValue>1 un</CompositionValue>
         </CompositionRow>
-  
+
         <CompositionRow>
           <CompositionName>Pão de Hamburguer</CompositionName>
           <CompositionValue>1 un</CompositionValue>
         </CompositionRow>
-  
+
         <CompositionRow>
           <CompositionName>Pão de Hamburguer</CompositionName>
           <CompositionValue>1 un</CompositionValue>
         </CompositionRow>
-  
+
         <Row>
           <SeeMore>
             {t('pos.description.see-more')}
@@ -135,10 +141,13 @@ const DescriptionModal: React.FC<Props> = ({ t, product, open, onClose, onAddToC
           </SeeMore>
         </Row>
       </CompositionContainer>
-  
+
       <Footer>
         <NumberPicker quantity={quantity} onChange={setQuantity} />
-        <Button onPress={addToCartAndCloseModal} text={t('pos.description.add')} />
+        <Button
+          onPress={addToCartAndCloseModal}
+          text={t('pos.description.add')}
+        />
       </Footer>
     </DefaultModal>
   )
