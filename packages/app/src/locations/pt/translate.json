@@ -3,6 +3,8 @@
     "sell": "Vender"
   },
   "pos": {
+    "unit": "Unidade",
+    "gram": "Grama",
     "placeholder": "Procurando o que hoje?",
     "products": "Produtos",
     "hold-tip": "Segure para ver mais",
@@ -12,7 +14,20 @@
       "add": "Adicionar"
     },
     "create": {
-      "title": "Criar produto"
+      "title": "Criar produto",
+      "form-title": "Informações do produto",
+      "name": "Nome",
+      "price": "Preço de venda",
+      "save": "Salvar",
+      "composition": "Ingredientes",
+      "quantity-title": "Quantidade em estoque",
+      "sell-by": "Vender por",
+      "minumum-qty": "Qtde mínima em estoque",
+      "cancel": "Cancelar",
+      "finish": "Finalizar",
+      "ingredients": "Ingredientes",
+      "ingredient-title": "Quantidade do ingrediente",
+      "ingredients-label": "Ingrediente"
     },
     "cart": {
       "title": "Carrinho",

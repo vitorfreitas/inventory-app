@@ -33,14 +33,12 @@ const HomeContainer: React.SFC<Props> = ({
   const [visualizationMode, setVisualizationMode] = useState<'list' | 'grid'>(
     'list'
   )
-  const [selectedProduct, setSelectedProduct] = useState<Product | boolean>(
-    false
-  )
+  const [selectedProduct, setSelectedProduct] = useState<Product>(null)
 
   const openDescriptionModalOnLongPress = (product: Product) =>
     setSelectedProduct(product)
 
-  const closeDescriptionModal = () => setSelectedProduct(false)
+  const closeDescriptionModal = () => setSelectedProduct(null)
 
   const navigateToCreateProductPage = () => navigate('CreateProduct')
 

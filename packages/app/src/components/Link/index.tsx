@@ -8,14 +8,18 @@ import { MediumText } from 'components/Typography/Text'
 const Container = styled(Ripple).attrs({
   rippleOpacity: 0.1,
 })`
-  padding: 6px 15px;
+  padding: 6px 18px;
   border-radius: 4px;
-  background: #fff;
+  background: transparent;
+
+  align-items: center;
+  align-self: flex-start;
+  justify-content: center;
 `
 
 const L = styled(MediumText)`
   font-size: 16px;
-  margin-bottom: -2px;
+  margin-top: 2px;
   color: ${V.Color.primary};
 `
 

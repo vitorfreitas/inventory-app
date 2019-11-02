@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.2",
+    "@types/ramda": "^0.26.33",
     "@types/react-redux": "^7.1.5",
     "@types/styled-components": "^4.1.19",
     "apollo-boost": "^0.4.4",
@@ -23,6 +24,7 @@
     "graphql": "^14.5.8",
     "i18n-js": "^3.3.0",
     "lottie-react-native": "~2.6.1",
+    "ramda": "^0.26.1",
     "react": "16.8.3",
     "react-apollo": "^3.1.2",
     "react-dom": "16.8.3",
@@ -32,6 +34,7 @@
     "react-native-masked-text": "^1.13.0",
     "react-native-material-ripple": "^0.9.1",
     "react-native-reanimated": "~1.2.0",
+    "react-native-select-input-ios": "^2.0.2",
     "react-native-super-grid": "^3.1.1",
     "react-native-web": "^0.11.7",
     "react-navigation": "^4.0.10",
@@ -53,6 +56,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "expo-cli": "^3.4.1",
     "expo-yarn-workspaces": "^1.2.1",
     "typescript": "^3.4.5"
   },

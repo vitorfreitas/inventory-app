@@ -3,6 +3,8 @@
     "sell": "Sell"
   },
   "pos": {
+    "unit": "Unit",
+    "gram": "Gram",
     "placeholder": "What are you looking for?",
     "products": "Products",
     "hold-tip": "Hold to more",
@@ -12,7 +14,20 @@
       "add": "Add to cart"
     },
     "create": {
-      "title": "Create Product"
+      "title": "Create Product",
+      "form-title": "Product Information",
+      "name": "Name",
+      "price": "Price",
+      "save": "Save",
+      "composition": "Composition",
+      "quantity-title": "Product Quantity",
+      "sell-by": "Sell by",
+      "minumum-qty": "Minimum qty on inventory",
+      "cancel": "Cancel",
+      "finish": "Finish",
+      "ingredients": "Ingredients",
+      "ingredient-title": "Ingredient quantity",
+      "ingredients-label": "Ingredient"
     },
     "cart": {
       "title": "Your Cart",

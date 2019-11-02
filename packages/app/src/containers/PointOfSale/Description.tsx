@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/native'
 import { Feather } from '@expo/vector-icons'
 import Ripple from 'react-native-material-ripple'
+import { View } from 'react-native'
 
 import { Row } from 'styles/styled'
 import * as V from 'styles/variables'
@@ -103,6 +104,10 @@ const DescriptionModal: React.FC<Props> = ({
   const addToCartAndCloseModal = () => {
     onAddToCart(product, quantity)
     onClose()
+  }
+
+  if (!open) {
+    return <View />
   }
 
   return (

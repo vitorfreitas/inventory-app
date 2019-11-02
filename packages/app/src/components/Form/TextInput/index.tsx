@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { TextInputMask } from 'react-native-masked-text'
+import { StyleProp, ViewStyle } from 'react-native'
 
 import styled from 'styled-components/native'
 import { MediumText } from 'components/Typography/Text'
@@ -34,13 +35,7 @@ const Input = styled.TextInput<{ isFocused: boolean }>`
 
 interface Props {
   label: string
-  type?:
-    | 'default'
-    | 'number-pad'
-    | 'decimal-pad'
-    | 'numeric'
-    | 'email-address'
-    | 'phone-pad'
+  type?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad'
   mask?:
     | 'cel-phone'
     | 'cnpj'
@@ -53,7 +48,7 @@ interface Props {
   value?: string
   width?: string
   placeholder?: string
-  style?: any
+  style?: StyleProp<ViewStyle>
   onChange?: (value) => void
 }
 
@@ -65,7 +60,7 @@ const TextInput: React.FC<Props> = ({
   placeholder,
   width,
   mask,
-  style
+  style,
 }) => {
   const [isFocused, setIsFocused] = useState(false)
 
