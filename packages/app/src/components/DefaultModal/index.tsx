@@ -1,7 +1,7 @@
-import React from 'react';
-import { Modal } from 'react-native';
-import styled from 'styled-components/native';
-import { Feather } from '@expo/vector-icons';
+import React from 'react'
+import { Modal, StyleProp, ViewStyle } from 'react-native'
+import styled from 'styled-components/native'
+import { Feather } from '@expo/vector-icons'
 
 const Background = styled.View`
   width: 100%;
@@ -11,7 +11,7 @@ const Background = styled.View`
   top: 0;
   left: 0;
   position: absolute;
-`;
+`
 
 const Container = styled.View`
   width: 90%;
@@ -21,7 +21,7 @@ const Container = styled.View`
   background: #fff;
   align-self: center;
   border-radius: 6px;
-`;
+`
 
 const CloseModalButton = styled.TouchableOpacity`
   width: 50px;
@@ -35,28 +35,26 @@ const CloseModalButton = styled.TouchableOpacity`
   bottom: 15px;
   align-self: center;
   position: absolute;
-`;
+`
 
 interface Props {
   open: boolean
   onClose: () => void
+  containerStyle?: StyleProp<ViewStyle>
 }
 
-const DefaultModal: React.SFC<Props> = ({ open, onClose, children }) => (
-  <Modal
-    transparent
-    visible={open}
-    onRequestClose={onClose}
-    animationType="slide"
-  >
+const DefaultModal: React.SFC<Props> = ({
+  open, onClose, containerStyle, children,
+}) => (
+  <Modal transparent visible={open} onRequestClose={onClose} animationType="fade">
     <Background>
-      <Container>{children}</Container>
+      <Container style={containerStyle}>{children}</Container>
 
       <CloseModalButton onPress={onClose}>
         <Feather name="x" size={25} color="#757575" />
       </CloseModalButton>
     </Background>
   </Modal>
-);
+)
 
-export default DefaultModal;
+export default DefaultModal

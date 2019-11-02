@@ -1,8 +1,38 @@
-import React from 'react';
+import React from 'react'
 
-import CreateProductContainer from 'containers/CreateProduct';
-import { t } from '../../locations';
+import CreateProductContainer from 'containers/CreateProduct'
+import { t } from 'locations'
+import { useDispatch, useSelector } from 'react-redux'
 
-const CreateProduct = () => <CreateProductContainer t={t} />;
+interface Props {
+  navigation: {
+    navigate: (page: string) => void
+  }
+}
 
-export default CreateProduct;
+const CreateProduct: React.SFC<Props> = ({ navigation }) => {
+  const product = useSelector((state: any) => state.product)
+  const dispatch = useDispatch()
+
+  const handleProductChange = (product) => {
+    dispatch({
+      type: 'UPDATE_PRODUCT',
+      payload: product,
+    })
+  }
+
+  const handleSelectIngredients = () => {
+    navigation.navigate('Ingredients')
+  }
+
+  return (
+    <CreateProductContainer
+      t={t}
+      product={product}
+      onChangeProduct={handleProductChange}
+      onSelectIngredients={handleSelectIngredients}
+    />
+  )
+}
+
+export default CreateProduct
