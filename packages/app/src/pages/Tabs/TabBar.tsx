@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from 'react';
 
-import { TabBarContainer, TabBarIconContainer } from './styled'
+import { TabBarContainer, TabBarIconContainer } from './styled';
 
 interface Props {
   navigation: {
@@ -16,18 +16,17 @@ interface Props {
   renderIcon?: ({ route, focused, tintColor }) => ReactNode
 }
 
-const TabBar: React.SFC<Props> = ({
+const TabBar: React.FC<Props> = ({
   renderIcon,
   navigation,
   activeTintColor,
   inactiveTintColor,
-  onTabPress
+  onTabPress,
 }) => {
-  const { routes, index } = navigation.state
+  const { routes, index } = navigation.state;
 
-  const tabIsFocused = tabIndex => tabIndex === index
-  const currentTintColor = tabIndex =>
-    tabIsFocused(tabIndex) ? activeTintColor : inactiveTintColor
+  const tabIsFocused = (tabIndex) => tabIndex === index;
+  const currentTintColor = (tabIndex) => (tabIsFocused(tabIndex) ? activeTintColor : inactiveTintColor);
 
   return (
     <TabBarContainer>
@@ -36,12 +35,12 @@ const TabBar: React.SFC<Props> = ({
           {renderIcon({
             route,
             focused: tabIsFocused(index),
-            tintColor: currentTintColor(index)
+            tintColor: currentTintColor(index),
           })}
         </TabBarIconContainer>
       ))}
     </TabBarContainer>
-  )
-}
+  );
+};
 
-export default TabBar
+export default TabBar;

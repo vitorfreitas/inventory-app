@@ -19,15 +19,15 @@ export const Space = {
   md: `3.2rem`,
   lg: `4.8rem`,
   xlg: `6.4rem`,
-  xxlg: `9.6rem`,
-}
+  xxlg: `9.6rem`
+};
 
 export const Height = {
   headerSm: `${Space.lg}`,
   headerLg: `${Space.xlg}`,
   footer: `4rem`,
   mainTop: `${Space.md}`
-}
+};
 
 // --------------------------------------------------
 // 2. Colors
@@ -47,8 +47,9 @@ export const Color = {
   grayLighter: `#efefef`,
   grayWhite: `#f1f1f1`,
   yellow: `#e6af05`,
-  primary: '#1976d2'
-}
+  primary: "#1976d2",
+  background: "#fafafa"
+};
 
 // --------------------------------------------------
 // 3. zIndex
@@ -58,31 +59,31 @@ export const ZIndex = {
   bg: `-1`,
   default: `1`,
   footer: `5`,
-  header: `5`,
-}
+  header: `5`
+};
 
 // --------------------------------------------------
 // 4. Misc
 // --------------------------------------------------
 
 export const Transition = {
-  default: `.25s`,
-}
+  default: `.25s`
+};
 
 export const BorderRadius = {
-  box: `2px`,
-}
+  box: `2px`
+};
 
 export const Border = {
   box: `1px solid var(--borderColor)`,
-  default: `1px solid var(--borderColor)`,
-}
+  default: `1px solid var(--borderColor)`
+};
 
 export const BoxShadow = {
-  box: `0 1px 3px var(--boxShadow)`,
-}
+  box: `0 1px 3px var(--boxShadow)`
+};
 
 export const MaxSize = {
   md: `750px`,
-  lg: `1080px`,
-}
+  lg: `1080px`
+};
