@@ -1,11 +1,3 @@
-scalar Date
-
-enum Unit {
-  Gram
-  Milliliter
-  Unit
-}
-
 type Query {
   baseProducts: [BaseProduct]!
 }
