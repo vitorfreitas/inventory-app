@@ -13,7 +13,7 @@ type BaseProduct {
   name: String!
   unit: Unit
   costPrice: Float!
-  additionalPrice: Float!
+  additionalPrice: Float
   quantity: Int
   minQuantity: Int
   expirationDate: Date
@@ -23,7 +23,7 @@ input BaseProductInput {
   name: String!
   unit: Unit
   costPrice: Float!
-  additionalPrice: Float!
+  additionalPrice: Float
   quantity: Int
   minQuantity: Int
   expirationDate: Date
