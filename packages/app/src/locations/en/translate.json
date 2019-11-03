@@ -42,6 +42,10 @@
       "remove-cancel": "Get back"
     }
   },
+  "inventory": {
+    "title": "Inventory",
+    "searchbar": "Search for products"
+  },
   "dialogs": {
     "success": "Congratulations!"
   }

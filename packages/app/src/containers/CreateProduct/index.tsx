@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components/native'
 import { ScrollView } from 'react-native'
 
@@ -8,7 +8,8 @@ import Button from 'components/Form/Button'
 import Link from 'components/Link'
 import Container from 'components/Layout/Container'
 import ProductOverview from 'components/ProductOverview'
-import { Text } from 'styles/styled'
+import { BoldText } from 'components/Typography/Text'
+import { AppProductInput } from 'interfaces'
 import Details from './Details'
 
 const Form = styled.KeyboardAvoidingView`
@@ -19,9 +20,8 @@ const Form = styled.KeyboardAvoidingView`
   padding: 12px 24px 16px 24px;
 `
 
-const FormTitle = styled(Text)`
+const FormTitle = styled(BoldText)`
   margin: 16px 0;
-  font-family: 'Poppins Bold';
   font-size: 18px;
 `
 
@@ -37,24 +37,21 @@ const Footer = styled.View`
 `
 
 interface Props {
-  product: {
-    name: string
-    price: string
-    quantity: string
-    measurementUnit: string
-    minimumAmount: string
-  }
+  product: AppProductInput
   t: (path: string) => string
   onSelectIngredients: () => void
   onChangeProduct: (product: any) => void
+  onCreate: () => void
 }
 
 const CreateProductContainer: React.SFC<Props> = ({
   t,
   onSelectIngredients,
   product,
-  onChangeProduct
+  onChangeProduct,
+  onCreate
 }) => {
+  const maskedInputMask = useRef<{ getRawValue: () => number }>()
   const [detailsOpen, setDetailsOpen] = useState<boolean>(false)
 
   const handleInputChange = field => value => {
@@ -63,7 +60,15 @@ const CreateProductContainer: React.SFC<Props> = ({
 
   const toggleDetailsDialog = () => setDetailsOpen(!detailsOpen)
 
-  const saveProduct = () => console.log(product)
+  const savePriceRawValue = () => {
+    const rawPrice = maskedInputMask.current.getRawValue()
+
+    onChangeProduct({ rawPrice: rawPrice * 10 })
+  }
+
+  React.useEffect(() => {
+    console.log(product)
+  }, [product])
 
   return (
     <>
@@ -82,9 +87,13 @@ const CreateProductContainer: React.SFC<Props> = ({
               placeholder="ex.: Pizza de mozzarela"
             />
             <TextInput
+              maskRef={maskedInputMask}
               mask="money"
               type="number-pad"
-              onChange={handleInputChange('price')}
+              onChange={value => {
+                handleInputChange('price')(value)
+                savePriceRawValue()
+              }}
               value={product.price}
               label={t('pos.create.price')}
               placeholder="R$ 0,00"
@@ -108,7 +117,7 @@ const CreateProductContainer: React.SFC<Props> = ({
         {...product}
         open={detailsOpen}
         onClose={toggleDetailsDialog}
-        onFinish={saveProduct}
+        onFinish={onCreate}
         onQuantityChange={handleInputChange('quantity')}
         onChangeMeasurementUnit={handleInputChange('measurementUnit')}
         onMinimumAmountChange={handleInputChange('minimumAmount')}

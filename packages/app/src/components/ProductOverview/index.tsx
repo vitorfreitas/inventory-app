@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 import { MediumText, NormalText } from 'components/Typography/Text'
 import Product from 'shared/interfaces/product'
 import ProductPicture from './ProductPicture'
+import { AppProductInput } from 'interfaces'
 
 const Container = styled.View`
   padding: 20px;
@@ -30,7 +31,7 @@ const NameAndPriceContainer = styled.View`
 `
 
 interface Props {
-  product: Partial<Product>
+  product: AppProductInput
 }
 
 const ProductOverview: React.SFC<Props> = ({ product }) => (

@@ -1,34 +1,52 @@
-import React, { Component } from 'react'
-import { View } from 'react-native'
+import React from 'react'
+import { createStackNavigator } from 'react-navigation-stack'
+
 import { Toolbar } from 'styles/styled'
 import styled from 'styled-components/native'
-import Navbar from '../../components/Navbar'
-import SearchInput from '../../components/SearchInput'
-import InventoryProducts from '../../containers/InventoryProducts'
+import Navbar from 'components/Navbar'
+import SearchInput from 'components/SearchInput'
+import InventoryProducts from 'containers/InventoryProducts'
+import { products } from 'mocks/products.json'
+import { t } from 'locations'
 import { Heading, ContentTitle, Content } from './styled'
-import { products } from '../../mocks/products.json'
+import EditProduct from './EditProduct'
 
 const Container = styled.View`
   flex: 1;
 `
 
-export default class Inventory extends Component {
-  render() {
-    return (
-      <Container>
-        <Navbar title="Inventory" withProfile withBackButton={false} />
-        <Toolbar>
-          <SearchInput placeholder="Search for products" />
-        </Toolbar>
+const Inventory: React.FC = ({ navigation }) => {
+  return (
+    <Container>
+      <Navbar title={t('inventory.title')} withProfile withBackButton={false} />
 
-        <Content>
-          <Heading>
-            <ContentTitle>Produtos</ContentTitle>
-          </Heading>
+      <Toolbar>
+        <SearchInput placeholder={t('inventory.searchbar')} />
+      </Toolbar>
 
-          <InventoryProducts products={products} />
-        </Content>
-      </Container>
-    )
-  }
+      <Content>
+        <Heading>
+          <ContentTitle>Produtos</ContentTitle>
+        </Heading>
+
+        <InventoryProducts
+          products={products}
+          onEdit={product => navigation.navigate('EditProduct', product)}
+        />
+      </Content>
+    </Container>
+  )
 }
+
+const InventoryStackNavigator = createStackNavigator(
+  {
+    Inventory,
+    EditProduct
+  },
+  {
+    headerMode: 'none',
+    defaultNavigationOptions: {}
+  }
+)
+
+export default InventoryStackNavigator

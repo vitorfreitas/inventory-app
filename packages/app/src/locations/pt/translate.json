@@ -42,6 +42,10 @@
       "remove-cancel": "Voltar atrás"
     }
   },
+  "inventory": {
+    "title": "Estoque",
+    "searchbar": "Busque por produtos"
+  },
   "dialogs": {
     "success": "Parabéns!"
   }

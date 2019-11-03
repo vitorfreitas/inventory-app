@@ -14,15 +14,19 @@ const CreateProduct: React.SFC<Props> = ({ navigation }) => {
   const product = useSelector((state: any) => state.product)
   const dispatch = useDispatch()
 
-  const handleProductChange = (product) => {
+  const handleProductChange = product => {
     dispatch({
       type: 'UPDATE_PRODUCT',
-      payload: product,
+      payload: product
     })
   }
 
   const handleSelectIngredients = () => {
     navigation.navigate('Ingredients')
+  }
+
+  const createProduct = () => {
+    console.log(product)
   }
 
   return (
@@ -31,6 +35,7 @@ const CreateProduct: React.SFC<Props> = ({ navigation }) => {
       product={product}
       onChangeProduct={handleProductChange}
       onSelectIngredients={handleSelectIngredients}
+      onCreate={createProduct}
     />
   )
 }

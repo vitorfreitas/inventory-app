@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, RefObject } from 'react'
 import { TextInputMask } from 'react-native-masked-text'
 import { StyleProp, ViewStyle } from 'react-native'
 
@@ -35,7 +35,13 @@ const Input = styled.TextInput<{ isFocused: boolean }>`
 
 interface Props {
   label: string
-  type?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad'
+  type?:
+    | 'default'
+    | 'number-pad'
+    | 'decimal-pad'
+    | 'numeric'
+    | 'email-address'
+    | 'phone-pad'
   mask?:
     | 'cel-phone'
     | 'cnpj'
@@ -50,6 +56,7 @@ interface Props {
   placeholder?: string
   style?: StyleProp<ViewStyle>
   onChange?: (value) => void
+  maskRef?: RefObject<any>
 }
 
 const TextInput: React.FC<Props> = ({
@@ -61,6 +68,7 @@ const TextInput: React.FC<Props> = ({
   width,
   mask,
   style,
+  maskRef
 }) => {
   const [isFocused, setIsFocused] = useState(false)
 
@@ -72,6 +80,7 @@ const TextInput: React.FC<Props> = ({
 
       {mask ? (
         <MaskedInput
+          ref={maskRef}
           type={mask}
           value={value}
           keyboardType={type}
