@@ -3,7 +3,30 @@ import { Product } from '@stock/shared/interfaces'
 
 interface IProduct extends Product, Document {
   user: Schema.Types.ObjectId
+  active: Boolean
 }
+
+const comboItemSchema = new Schema({
+  details: {
+    type: Schema.Types.ObjectId,
+    ref: 'Product'
+  },
+  quantity: {
+    type: Number,
+    default: 1
+  }
+})
+
+const compositionItemSchema = new Schema({
+  details: {
+    type: Schema.Types.ObjectId,
+    ref: 'BaseProduct'
+  },
+  quantity: {
+    type: Number,
+    default: 1
+  }
+})
 
 const schema = new Schema(
   {
@@ -18,18 +41,19 @@ const schema = new Schema(
       type: Number,
       required: true
     },
-    combo: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Product'
-      }
-    ],
-    composition: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'BaseProduct'
-      }
-    ],
+    active: {
+      type: Boolean,
+      default: true,
+      hidden: true
+    },
+    combo: {
+      type: [comboItemSchema],
+      default: []
+    },
+    composition: {
+      type: [compositionItemSchema],
+      default: []
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User'

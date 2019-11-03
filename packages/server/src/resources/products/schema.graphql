@@ -1,19 +1,49 @@
 type Query {
-  products: [Product!]!
+  product(id: String!): Product!
+  products: [Product]!
 }
 
 type Mutation {
   createProduct(product: ProductInput!): Product!
   updateProduct(product: ProductInput!): Product!
+  deleteProduct(id: ID!): Response!
+}
+
+type comboItem {
+  details: Product
+  quantity: Int!
+}
+
+input comboItemInput {
+  id: ID!
+  quantity: Int!
+}
+
+type compositionItem {
+  details: BaseProduct
+  quantity: Int!
+}
+
+input compositionItemInput {
+  id: ID!
+  quantity: Int!
 }
 
 type Product {
-  id: ID
-  name: String
-  price: Float
+  id: ID!
+  name: String!
+  price: Float!
   quantity: Int
-  combo: [Product]
-  composition: [BaseProduct]
+
+  """
+  Products that compose this Product
+  """
+  combo: [comboItem!]!
+
+  """
+  BaseProducts that compose this Product
+  """
+  composition: [compositionItem!]!
 }
 
 input ProductInput {
@@ -21,6 +51,14 @@ input ProductInput {
   price: Float!
   photo: String
   quantity: Int
-  combo: [ID]
-  composition: [ID]
+
+  """
+  Products that compose this Product
+  """
+  combo: [comboItemInput!]! = []
+
+  """
+  BaseProducts that compose this Product
+  """
+  composition: [compositionItemInput!]! = []
 }
