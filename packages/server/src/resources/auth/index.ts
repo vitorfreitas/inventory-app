@@ -1,10 +1,11 @@
+import { Schema } from 'mongoose'
 import * as jwt from 'jsonwebtoken'
 import { ContextParameters } from 'graphql-yoga/dist/types'
 
 import config from '../../config'
 import logger from '../../lib/logger'
 
-function getUser(req: ContextParameters): { id: string } {
+function getUser(req: ContextParameters): { id: Schema.Types.ObjectId } {
   const { authorization } = req.request.headers
 
   if (!authorization) {
@@ -19,7 +20,7 @@ function getUser(req: ContextParameters): { id: string } {
 
   try {
     const { id: userId } = jwt.verify(token, config.JWT_SECRET) as {
-      id: string
+      id: Schema.Types.ObjectId
     }
 
     return {
@@ -32,7 +33,7 @@ function getUser(req: ContextParameters): { id: string } {
   }
 }
 
-function generateToken(userId: string): string {
+function generateToken(userId: Schema.Types.ObjectId): string {
   return jwt.sign({ id: userId }, config.JWT_SECRET)
 }
 
