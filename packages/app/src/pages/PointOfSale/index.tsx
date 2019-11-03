@@ -10,6 +10,7 @@ import { IStore } from 'store'
 import Product from 'shared/interfaces/product'
 import CreateProduct from './CreateProduct'
 import Ingredients from './Ingredients'
+import Cart from './Cart'
 
 const FETCH_USERS = gql`
   {
@@ -58,18 +59,19 @@ const PointOfSaleStackNavigation = createStackNavigator(
     PointOfSale,
     CreateProduct,
     Ingredients,
+    Cart
   },
   {
     headerMode: 'none',
-    defaultNavigationOptions: {},
-  },
+    defaultNavigationOptions: {}
+  }
 )
 
 PointOfSaleStackNavigation.navigationOptions = ({ navigation }) => {
   const { routeName } = navigation.state.routes[navigation.state.index]
 
   return {
-    tabBarVisible: !hideTabbarOn.some((route) => routeName == route),
+    tabBarVisible: !hideTabbarOn.some(route => routeName == route)
   }
 }
 export default PointOfSaleStackNavigation
