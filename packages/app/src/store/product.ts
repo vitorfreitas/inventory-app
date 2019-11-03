@@ -1,19 +1,20 @@
 const defaultProduct = {
   name: '',
   price: null,
+  rawPrice: null,
   quantity: '1',
   measurementUnit: 'un',
   minimumAmount: '1',
-  ingredients: [],
+  ingredients: []
 }
 
 const productReducer = (state = defaultProduct, action) => {
-  const updateProduct = (product) => ({ ...state, ...product })
+  const updateProduct = product => ({ ...state, ...product })
   const resetState = () => defaultProduct
 
   const types = {
     UPDATE_PRODUCT: updateProduct,
-    RESET_STATE: resetState,
+    RESET_STATE: resetState
   }
 
   return types[action.type] ? types[action.type](action.payload) : state
