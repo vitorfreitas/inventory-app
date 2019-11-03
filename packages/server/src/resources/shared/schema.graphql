@@ -1,0 +1,11 @@
+scalar Date
+
+enum Unit {
+  Gram
+  Milliliter
+  Unit
+}
+
+type Response {
+  message: String!
+}
