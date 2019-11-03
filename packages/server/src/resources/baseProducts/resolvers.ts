@@ -13,7 +13,8 @@ const resolvers = {
       const { user } = context
 
       return BaseProductModel.find({
-        user: user.id
+        user: user.id,
+        active: true
       })
     }
   },
@@ -48,6 +49,29 @@ const resolvers = {
         },
         product
       )
+    },
+    deleteBaseProduct: async (
+      root,
+      args: { id: number },
+      context,
+      info
+    ): Promise<{}> => {
+      const { id } = args
+
+      try {
+        await BaseProductModel.updateOne(
+          {
+            id
+          },
+          { active: false }
+        )
+
+        return {}
+      } catch (err) {
+        logger.error(err)
+
+        throw new Error(err)
+      }
     }
   }
 }

@@ -4,6 +4,7 @@ import { Unit } from '@stock/shared/enums'
 
 interface IBaseProduct extends BaseProduct, Document {
   user: Schema.Types.ObjectId
+  active: Boolean
 }
 
 const schema = new Schema(
@@ -30,6 +31,11 @@ const schema = new Schema(
     },
     expirationDate: {
       type: Date
+    },
+    active: {
+      type: Boolean,
+      default: true,
+      hidden: true
     },
     user: {
       type: Schema.Types.ObjectId,

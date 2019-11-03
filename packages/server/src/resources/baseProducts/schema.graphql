@@ -13,6 +13,7 @@ type Query {
 type Mutation {
   createBaseProduct(product: BaseProductInput!): BaseProduct!
   updateBaseProduct(product: BaseProductInput!): BaseProduct!
+  deleteBaseProduct(id: ID!): Response!
 }
 
 type BaseProduct {
