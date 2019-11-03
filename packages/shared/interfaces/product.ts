@@ -1,11 +1,20 @@
 import { Schema } from "mongoose";
-import BaseProduct from "./baseProduct";
+
+interface comboItem {
+  id: Schema.Types.ObjectId;
+  quantity: number;
+}
+
+interface compositionItem {
+  id: Schema.Types.ObjectId;
+  quantity: number;
+}
 
 export default interface Product {
   name: string;
   photo: string;
   price: number;
   quantity: number;
-  combo: [Schema.Types.ObjectId];
-  composition: [Schema.Types.ObjectId];
+  combo: [comboItem];
+  composition: [compositionItem];
 }
