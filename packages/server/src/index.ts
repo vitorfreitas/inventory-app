@@ -10,7 +10,7 @@ const { API_PORT = 3000 } = config
 const options: Options = {
   port: API_PORT,
   tracing: true,
-  playground: config.NODE_ENV !== 'production' ? '/' : false,
+  playground: config.NODE_ENV === 'development' ? '/' : false,
   endpoint: '/graphql'
 }
 
