@@ -7,26 +7,26 @@ type Mutation {
   createSale(sale: SaleInput!): Sale!
 }
 
-type SaleCompositionItem {
-  quantity: Int!
-  details: BaseProduct
-}
+# type SaleCompositionItem {
+#   quantity: Int!
+#   details: BaseProduct
+# }
 
-input SaleCompositionItemInput {
-  id: String!
-  quantity: Int!
-}
+# input SaleCompositionItemInput {
+#   id: String!
+#   quantity: Int!
+# }
 
-type SaleComboItem {
-  quantity: Int!
-  details: Product
-}
+# type SaleComboItem {
+#   quantity: Int!
+#   details: Product
+# }
 
-input SaleComboItemInput {
-  id: ID!
-  quantity: Int!
-  composition: [SaleCompositionItemInput]! = []
-}
+# input SaleComboItemInput {
+#   id: ID!
+#   quantity: Int!
+#   composition: [SaleCompositionItemInput]! = []
+# }
 
 type SaleItem {
   quantity: Int!
@@ -36,8 +36,6 @@ type SaleItem {
 input SaleItemInput {
   id: ID!
   quantity: Int!
-  combo: [SaleComboItemInput]! = []
-  composition: [SaleCompositionItemInput]! = []
 }
 
 type Sale {

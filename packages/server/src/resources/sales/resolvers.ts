@@ -32,16 +32,13 @@ const resolvers = {
       args: { id: string },
       context: { user: { id: string } }
     ): Promise<ISale> => {
-      const { id: saleId } = args
+      const { id } = args
       const { user } = context
-
-      console.log(saleId)
-      console.log(user)
 
       try {
         const sale = await populateDetails(
           SaleModel.findOne({
-            _id: saleId,
+            _id: id,
             user: user.id
           })
         )
@@ -84,35 +81,13 @@ const resolvers = {
       const { user } = context
       const { sale } = args
 
-      console.log(sale)
-
       const normalizedSale = {
         ...sale,
         user: user.id,
         products: sale.products.map(product => {
           return {
             details: product.id,
-            quantity: product.quantity,
-            composition: product.composition.map(baseProduct => {
-              return {
-                details: baseProduct.id,
-                quantity: baseProduct.quantity
-              }
-            }),
-            combo: product.combo.map(comboProduct => {
-              return {
-                details: comboProduct.id,
-                quantity: comboProduct.quantity,
-                composition: comboProduct.composition.map(
-                  comboProductCompostion => {
-                    return {
-                      details: comboProductCompostion.id,
-                      quantity: comboProductCompostion.quantity
-                    }
-                  }
-                )
-              }
-            })
+            quantity: product.quantity
           }
         })
       }
