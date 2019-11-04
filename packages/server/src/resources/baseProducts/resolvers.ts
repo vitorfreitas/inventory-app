@@ -66,7 +66,7 @@ const resolvers = {
 
       return BaseProductModel.updateOne(
         {
-          id: product.id
+          _id: product.id
         },
         product
       )
@@ -82,7 +82,7 @@ const resolvers = {
       try {
         await BaseProductModel.updateOne(
           {
-            id
+            _id: id
           },
           { active: false }
         )
