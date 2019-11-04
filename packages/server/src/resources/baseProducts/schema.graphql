@@ -1,4 +1,5 @@
 type Query {
+  baseProduct(id: ID!): BaseProduct!
   baseProducts: [BaseProduct]!
 }
 
