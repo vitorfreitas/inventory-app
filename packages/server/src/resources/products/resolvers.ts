@@ -24,13 +24,13 @@ const resolvers = {
       args: { id: String },
       context: { user: { id: string } }
     ) => {
-      const { id: productId } = args
+      const { id } = args
       const { user } = context
 
       try {
         const product = await populateDetails(
           ProductModel.findOne({
-            id: productId,
+            _id: id,
             user: user.id
           })
         )
