@@ -1,0 +1,26 @@
+type Query {
+  user: User
+}
+
+type Mutation {
+  createUser(user: UserInput!): AuthPayload!
+}
+
+type User {
+  id: ID
+  name: String
+  businessName: String
+  phone: String
+  email: String
+  customers: [Customer]
+  products: [Product]
+  baseProducts: [BaseProduct]
+}
+
+input UserInput {
+  name: String
+  businessName: String
+  phone: String
+  email: String
+  password: String
+}

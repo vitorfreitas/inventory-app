@@ -13,6 +13,7 @@ import { Content, GutterBottom } from './styled'
 import DescriptionModal from './Description'
 import CartButton from './CartButton'
 import { ICartItem } from './interfaces'
+import Button from 'components/Form/Button'
 
 interface Props {
   data?: object
@@ -40,6 +41,8 @@ const HomeContainer: React.SFC<Props> = ({
   const closeDescriptionModal = () => setSelectedProduct(null)
 
   const navigateToCreateProductPage = () => navigate('CreateProduct')
+
+  const cartButtonMessage = t('pos.cart.button-message')
 
   const productListProps = {
     t,

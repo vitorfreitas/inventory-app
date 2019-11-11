@@ -1,0 +1,31 @@
+type Query {
+  baseProduct(id: ID!): BaseProduct!
+  baseProducts: [BaseProduct]!
+}
+
+type Mutation {
+  createBaseProduct(product: BaseProductInput!): BaseProduct!
+  updateBaseProduct(product: BaseProductInput!): BaseProduct!
+  deleteBaseProduct(id: ID!): Response!
+}
+
+type BaseProduct {
+  id: ID!
+  name: String!
+  unit: Unit
+  costPrice: Float!
+  additionalPrice: Float
+  quantity: Int
+  minQuantity: Int
+  expirationDate: Date
+}
+
+input BaseProductInput {
+  name: String!
+  unit: Unit
+  costPrice: Float!
+  additionalPrice: Float
+  quantity: Int
+  minQuantity: Int
+  expirationDate: Date
+}

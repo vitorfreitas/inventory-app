@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native'
 
 import Navbar from 'components/Navbar'
 import TextInput from 'components/Form/TextInput'
-import Button from 'components/Button'
+import Button from 'components/Form/Button'
 import Link from 'components/Link'
 import Container from 'components/Layout/Container'
 import ProductOverview from 'components/ProductOverview'

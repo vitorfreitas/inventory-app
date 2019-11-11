@@ -1,6 +1,20 @@
+import { Schema } from "mongoose";
+
+interface comboItem {
+  id: Schema.Types.ObjectId;
+  quantity: number;
+}
+
+interface compositionItem {
+  id: Schema.Types.ObjectId;
+  quantity: number;
+}
+
 export default interface Product {
-  id: string
-  name: string
-  picture: string
-  price: number
+  name: string;
+  photo: string;
+  price: number;
+  quantity: number;
+  combo: [comboItem];
+  composition: [compositionItem];
 }
