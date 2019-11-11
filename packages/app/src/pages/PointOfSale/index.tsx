@@ -11,6 +11,7 @@ import Product from 'shared/interfaces/product'
 import CreateProduct from './CreateProduct'
 import Ingredients from './Ingredients'
 import Cart from './Cart'
+import CreateBaseProduct from './CreateBaseProduct'
 
 const FETCH_USERS = gql`
   {
@@ -58,6 +59,7 @@ const PointOfSaleStackNavigation = createStackNavigator(
   {
     PointOfSale,
     CreateProduct,
+    CreateBaseProduct,
     Ingredients,
     Cart
   },

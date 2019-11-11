@@ -25,6 +25,7 @@
       "minumum-qty": "Minimum qty on inventory",
       "cancel": "Cancel",
       "finish": "Finish",
+      "create-ingredient": "Create Base Product",
       "ingredients": "Ingredients",
       "ingredient-title": "Ingredient quantity",
       "ingredients-label": "Ingredient"

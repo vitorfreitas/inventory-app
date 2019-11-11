@@ -25,6 +25,7 @@
       "minumum-qty": "Qtde mínima em estoque",
       "cancel": "Cancelar",
       "finish": "Finalizar",
+      "create-ingredient": "Criar ingrediente",
       "ingredients": "Ingredientes",
       "ingredient-title": "Quantidade do ingrediente",
       "ingredients-label": "Ingrediente"

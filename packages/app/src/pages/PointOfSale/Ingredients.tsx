@@ -5,7 +5,13 @@ import IngredientsContainer from 'containers/Ingredients'
 import { t } from 'locations'
 import { IBaseProduct } from 'containers/Ingredients/interfaces'
 
-const Ingredients = () => {
+interface Props {
+  navigation: {
+    navigate: (page: string) => void
+  }
+}
+
+const Ingredients: React.SFC<Props> = ({ navigation }) => {
   const product = useSelector((state: any) => state.product)
   const dispatch = useDispatch()
 
@@ -20,12 +26,17 @@ const Ingredients = () => {
     console.log(product)
   }
 
+  const navigateToCreateBaseProduct = () => {
+    navigation.navigate('CreateBaseProduct')
+  }
+
   return (
     <IngredientsContainer
       t={t}
       ingredients={product.ingredients}
       onChangeIngredient={handleIngredientChange}
       onCreate={createProduct}
+      onCreateBaseProduct={navigateToCreateBaseProduct}
     />
   )
 }

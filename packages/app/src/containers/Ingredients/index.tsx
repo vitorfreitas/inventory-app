@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/native'
-import Ripple from 'react-native-material-ripple'
 
 import ProductOverview from 'components/ProductOverview'
 import { BoldText, NormalText, MediumText } from 'components/Typography/Text'
@@ -12,6 +11,12 @@ import { IBaseProduct } from './interfaces'
 import Ingredient from './Ingredient'
 import Link from 'components/Link'
 import Button from 'components/Button'
+import {
+  AddProductContainer,
+  AddProductItem,
+  AddProductIcon,
+  AddProductText
+} from './styled'
 
 const Form = styled.ScrollView`
   flex: 1;
@@ -24,35 +29,6 @@ const Form = styled.ScrollView`
 const FormTitle = styled(BoldText)`
   margin: 16px 0;
   font-size: 18px;
-`
-
-const AddProductItem = styled(Ripple).attrs({
-  rippleOpacity: 0.1
-})`
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px #bdbdbd dashed;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`
-
-const AddProductIcon = styled.View`
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-`
-
-const AddProductText = styled.Text`
-  color: #9e9e9e;
-  font-size: 14px;
-  margin-top: 4px;
-  margin-left: 17px;
-  font-family: 'Poppins Medium';
-`
-
-const AddProductContainer = styled.View`
-  margin-top: 16px;
 `
 
 const Footer = styled.View`
@@ -71,6 +47,7 @@ interface Props {
   ingredients: IBaseProduct[]
   onChangeIngredient: (ingredients: IBaseProduct[]) => void
   onCreate: () => void
+  onCreateBaseProduct: () => void
 }
 
 const ingredientsFromApi: IBaseProduct[] = [
@@ -104,7 +81,8 @@ const IngredientsContainer: React.SFC<Props> = ({
   t,
   ingredients,
   onChangeIngredient,
-  onCreate
+  onCreate,
+  onCreateBaseProduct
 }) => {
   const [selectedIngredient, setSelectedIngredient] = useState<IBaseProduct>()
   const [addProductIsOpen, setAddProductDialogIsOpen] = useState<boolean>(false)
@@ -132,6 +110,11 @@ const IngredientsContainer: React.SFC<Props> = ({
   const handleIngredientPress = (ingredient: IBaseProduct) => {
     setSelectedIngredient(ingredient)
     toggleAddProductDialog()
+  }
+
+  const closeAddProductAndNavigateToCreateBaseProduct = () => {
+    toggleAddProductDialog()
+    onCreateBaseProduct()
   }
 
   return (
@@ -174,6 +157,7 @@ const IngredientsContainer: React.SFC<Props> = ({
         defaultIngredient={selectedIngredient}
         ingredients={ingredientsFromApi}
         open={addProductIsOpen}
+        onCreateBaseProduct={closeAddProductAndNavigateToCreateBaseProduct}
         onClose={toggleAddProductDialog}
         onFinish={handleAddIngredient}
         onEdit={handleEditIngredient}
