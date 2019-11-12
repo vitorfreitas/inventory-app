@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components/native'
 import SelectInput from 'react-native-select-input-ios'
 import DatePicker from 'react-native-datepicker'
@@ -28,37 +28,25 @@ const Footer = styled.View`
   justify-content: space-between;
 `
 
-const ingredients: IBaseProduct[] = [
+const ingredients = [
   {
     id: '1',
-    name: 'Carne de Hambúrguer',
-    quantity: '1',
-    unit: 'un'
+    name: 'Grama',
   },
   {
     id: '2',
-    name: 'Tomate',
-    quantity: '1',
-    unit: 'un'
+    name: 'Unidade',
   },
   {
     id: '3',
-    name: 'Gel de cabelo',
-    quantity: '1',
-    unit: 'g'
+    name: 'Litro',
   },
-  {
-    id: '4',
-    name: 'Pomada capilar',
-    quantity: '1',
-    unit: 'g'
-  }
 ]
 
 interface Props {
   currentBaseProduct: IBaseProduct
   onChangeInputField: (field: string, value: string) => void
-  onSaveBaseProduct: () => void
+  onSaveBaseProduct: (costPrice: number) => void
 }
 
 const formatToSelectPickerFormat = (ingredient: IBaseProduct) => ({
@@ -70,94 +58,105 @@ const CreateBaseProductContainer: React.SFC<Props> = ({
   currentBaseProduct,
   onChangeInputField,
   onSaveBaseProduct
-}) => (
-  <>
-    <Container>
-      <TextInput
-        label="Nome do ingrediente"
-        placeholder="Farinha de Mandioca"
-        onChange={value => onChangeInputField('name', value)}
-      />
+}) =>{
+  const maskedInputMask = useRef<{ getRawValue: () => number }>()
 
-      <InputContainer>
-        <MediumText>Unidade</MediumText>
-        <SelectInput
-          mode="dialog"
-          style={{ borderBottomWidth: 1, borderColor: '#e0e0e0' }}
-          labelStyle={{ color: '#bbb' }}
-          value={currentBaseProduct?.name}
-          onSubmitEditing={value => onChangeInputField('unit', value)}
-          onValueChange={value => onChangeInputField('unit', value)}
-          options={ingredients.map(formatToSelectPickerFormat)}
+  const formatCostAndSave = () => {
+    const rawCost = maskedInputMask.current.getRawValue()
+
+    onSaveBaseProduct(rawCost)
+  }
+
+  return (
+    <>
+      <Container>
+        <TextInput
+          label="Nome do ingrediente"
+          placeholder="Farinha de Mandioca"
+          onChange={value => onChangeInputField('name', value)}
         />
-      </InputContainer>
-
-      <TextInput
-        label="Preço de custo"
-        type="number-pad"
-        mask="money"
-        value={currentBaseProduct?.costPrice}
-        placeholder="R$ 0,00"
-        onChange={value => onChangeInputField('costPrice', value)}
-      />
-
-      <TextInput 
-        label="Quantidade em estoque"
-        placeholder="10"
-        type="number-pad"
-        mask="only-numbers"
-        value={currentBaseProduct?.quantity}
-        onChange={value => onChangeInputField('quantity', value)}
-      />
-
-      <TextInput 
-        label="Quantidade mínima em estoque"
-        placeholder="3"
-        mask="only-numbers"
-        type="number-pad"
-        value={currentBaseProduct?.minQuantity}
-        onChange={value => onChangeInputField('minQuantity', value)}
-      />
-
-      <InputContainer>
-        <MediumText>Data de validade</MediumText>
-        <DatePicker
-          style={{ width: '100%' }}
-          date={currentBaseProduct?.expirationDate}
-          mode="date"
-          placeholder="select date"
-          format="DD/MM/YYYY"
-          confirmBtnText="Salvar"
-          cancelBtnText="Voltar"
-          customStyles={{
-            dateIcon: {
-              display: 'none',
-            },
-            dateInput: {
-              borderWidth: 0,
-              borderBottomWidth: 1,
-              borderColor: '#e0e0e0',
-              justifyContent: 'center',
-              alignItems: 'flex-start',
-            },
-            placeholderText: {
-              textAlign: 'left',
-            }
-          }}
-          onDateChange={(date) => onChangeInputField('expirationDate', date)}
+  
+        <InputContainer>
+          <MediumText>Unidade</MediumText>
+          <SelectInput
+            mode="dialog"
+            style={{ borderBottomWidth: 1, borderColor: '#e0e0e0' }}
+            labelStyle={{ color: '#bbb' }}
+            value={currentBaseProduct?.name}
+            onSubmitEditing={value => onChangeInputField('unit', value)}
+            onValueChange={value => onChangeInputField('unit', value)}
+            options={ingredients.map(formatToSelectPickerFormat)}
+          />
+        </InputContainer>
+  
+        <TextInput
+          maskRef={maskedInputMask}
+          label="Preço de custo"
+          type="number-pad"
+          mask="money"
+          value={currentBaseProduct?.costPrice}
+          placeholder="R$ 0,00"
+          onChange={(value) => onChangeInputField('costPrice', value)}
         />
-      </InputContainer>
-    </Container>
-
-    <Footer>
-      <Link onPress={() => {}}>Voltar</Link>
-
-      <Button
-        onPress={onSaveBaseProduct}
-        text="Salvar"
-      />
-    </Footer>
-  </>
-)
+  
+        <TextInput 
+          label="Quantidade em estoque"
+          placeholder="10"
+          type="number-pad"
+          mask="only-numbers"
+          value={currentBaseProduct?.quantity}
+          onChange={value => onChangeInputField('quantity', value)}
+        />
+  
+        <TextInput 
+          label="Quantidade mínima em estoque"
+          placeholder="3"
+          mask="only-numbers"
+          type="number-pad"
+          value={currentBaseProduct?.minQuantity}
+          onChange={value => onChangeInputField('minQuantity', value)}
+        />
+  
+        <InputContainer>
+          <MediumText>Data de validade</MediumText>
+          <DatePicker
+            style={{ width: '100%' }}
+            date={currentBaseProduct?.expirationDate}
+            mode="date"
+            placeholder="Validade do produto"
+            format="DD/MM/YYYY"
+            confirmBtnText="Salvar"
+            cancelBtnText="Voltar"
+            customStyles={{
+              dateIcon: {
+                display: 'none',
+              },
+              dateInput: {
+                borderWidth: 0,
+                borderBottomWidth: 1,
+                borderColor: '#e0e0e0',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+              },
+              placeholderText: {
+                textAlign: 'left',
+              }
+            }}
+            onDateChange={(date) => onChangeInputField('expirationDate', date)}
+          />
+        </InputContainer>
+      </Container>
+  
+      <Footer>
+        <Link onPress={() => {}}>Voltar</Link>
+  
+        <Button
+          onPress={formatCostAndSave}
+          text="Salvar"
+        />
+      </Footer>
+    </>
+  )
+} 
 
 export default CreateBaseProductContainer
