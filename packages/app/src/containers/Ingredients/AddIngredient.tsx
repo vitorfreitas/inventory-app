@@ -108,8 +108,9 @@ const AddIngredient: React.FC<Props> = ({
   edit
 }) => {
   const mappedUnits = {
-    un: t('pos.unit'),
-    g: t('pos.gram')
+    Unit: t('pos.unit'),
+    Gram: t('pos.gram'),
+    Milliliter: t('pos.milliliter')
   }
 
   const initialIngredient = {

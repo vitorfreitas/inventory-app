@@ -17,6 +17,7 @@ import {
   AddProductIcon,
   AddProductText
 } from './styled'
+import { AppProductInput } from 'interfaces'
 
 const Form = styled.ScrollView`
   flex: 1;
@@ -44,42 +45,19 @@ const Footer = styled.View`
 
 interface Props {
   t: (path: string) => string
+  product: AppProductInput
   ingredients: IBaseProduct[]
+  selectedIngredients: IBaseProduct[]
   onChangeIngredient: (ingredients: IBaseProduct[]) => void
   onCreate: () => void
   onCreateBaseProduct: () => void
 }
 
-const ingredientsFromApi: IBaseProduct[] = [
-  {
-    id: '1',
-    name: 'Carne de Hambúrguer',
-    quantity: '1',
-    unit: 'un'
-  },
-  {
-    id: '2',
-    name: 'Tomate',
-    quantity: '1',
-    unit: 'un'
-  },
-  {
-    id: '3',
-    name: 'Gel de cabelo',
-    quantity: '1',
-    unit: 'g'
-  },
-  {
-    id: '4',
-    name: 'Pomada capilar',
-    quantity: '1',
-    unit: 'g'
-  }
-]
-
 const IngredientsContainer: React.SFC<Props> = ({
   t,
+  product,
   ingredients,
+  selectedIngredients,
   onChangeIngredient,
   onCreate,
   onCreateBaseProduct
@@ -90,7 +68,7 @@ const IngredientsContainer: React.SFC<Props> = ({
   const toggleAddProductDialog = () =>
     setAddProductDialogIsOpen(!addProductIsOpen)
 
-  const handleEditIngredient = (ingredient: IBaseProduct) => {
+  const updateIngredientOnProduct = (ingredient: IBaseProduct) => {
     const updatedIngredientsList: IBaseProduct[] = ingredients.map(item => {
       if (item.id !== selectedIngredient.id) return item
 
@@ -102,12 +80,12 @@ const IngredientsContainer: React.SFC<Props> = ({
     setSelectedIngredient(null)
   }
 
-  const handleAddIngredient = (ingredient: IBaseProduct) => {
-    onChangeIngredient([...ingredients, ingredient])
+  const addIngredientToProduct = (ingredient: IBaseProduct) => {
+    onChangeIngredient([...selectedIngredients, ingredient])
     toggleAddProductDialog()
   }
 
-  const handleIngredientPress = (ingredient: IBaseProduct) => {
+  const openEditIngredientDialog = (ingredient: IBaseProduct) => {
     setSelectedIngredient(ingredient)
     toggleAddProductDialog()
   }
@@ -121,15 +99,15 @@ const IngredientsContainer: React.SFC<Props> = ({
     <>
       <Container>
         <Navbar title="Ingredientes" />
-        <ProductOverview product={{ name: 'Pizza de mozzarela' }} />
+        <ProductOverview product={product} />
 
         <Form>
           <FormTitle>{t('pos.create.ingredients')}</FormTitle>
 
-          {ingredients.map(i => (
+          {selectedIngredients.map(i => (
             <Ingredient
               key={i.id}
-              onPress={handleIngredientPress}
+              onPress={openEditIngredientDialog}
               ingredient={i}
             />
           ))}
@@ -155,12 +133,12 @@ const IngredientsContainer: React.SFC<Props> = ({
         t={t}
         edit={!!selectedIngredient}
         defaultIngredient={selectedIngredient}
-        ingredients={ingredientsFromApi}
+        ingredients={ingredients}
         open={addProductIsOpen}
         onCreateBaseProduct={closeAddProductAndNavigateToCreateBaseProduct}
         onClose={toggleAddProductDialog}
-        onFinish={handleAddIngredient}
-        onEdit={handleEditIngredient}
+        onFinish={addIngredientToProduct}
+        onEdit={updateIngredientOnProduct}
       />
     </>
   )

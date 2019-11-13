@@ -5,6 +5,7 @@
   "pos": {
     "unit": "Unit",
     "gram": "Gram",
+    "milliliter": "Milliliter",
     "placeholder": "What are you looking for?",
     "products": "Products",
     "hold-tip": "Hold to more",
