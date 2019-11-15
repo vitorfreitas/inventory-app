@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/native'
+import LottieView from 'lottie-react-native'
 
 import ProductOverview from 'components/ProductOverview'
-import { BoldText, NormalText, MediumText } from 'components/Typography/Text'
+import { BoldText } from 'components/Typography/Text'
 import Container from 'components/Layout/Container'
 import Navbar from 'components/Navbar'
 import { Feather } from '@expo/vector-icons'
@@ -45,6 +46,7 @@ const Footer = styled.View`
 
 interface Props {
   t: (path: string) => string
+  loading?: boolean
   product: AppProductInput
   ingredients: IBaseProduct[]
   selectedIngredients: IBaseProduct[]
@@ -55,6 +57,7 @@ interface Props {
 
 const IngredientsContainer: React.SFC<Props> = ({
   t,
+  loading,
   product,
   ingredients,
   selectedIngredients,
@@ -93,6 +96,26 @@ const IngredientsContainer: React.SFC<Props> = ({
   const closeAddProductAndNavigateToCreateBaseProduct = () => {
     toggleAddProductDialog()
     onCreateBaseProduct()
+  }
+
+  if (loading) {
+    return (
+      <>
+        <LottieView
+          autoPlay
+          loop={true}
+          style={{
+            width: '60%',
+            alignSelf: 'center',
+            paddingTop: 150,
+            marginBottom: 100
+          }}
+          source={require('../../../assets/animations/315-loader-ring.json')}
+        />
+
+        <BoldText textAlign="center">Buscando seus ingredientes...</BoldText>
+      </>
+    )
   }
 
   return (

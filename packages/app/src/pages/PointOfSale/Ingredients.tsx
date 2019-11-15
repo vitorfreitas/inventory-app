@@ -2,12 +2,10 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { gql } from 'apollo-boost'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import LottieView from 'lottie-react-native'
 
 import { t } from 'locations'
 import IngredientsContainer from 'containers/Ingredients'
 import { IBaseProduct } from 'containers/Ingredients/interfaces'
-import { BoldText } from 'components/Typography/Text'
 import { AppProductInput } from 'interfaces'
 
 const FETCH_INGREDIENTS = gql`
@@ -76,31 +74,12 @@ const Ingredients: React.SFC<Props> = ({ navigation }) => {
     navigation.popToTop()
   }
 
-  if (loading) {
-    return (
-      <>
-        <LottieView
-          autoPlay
-          loop={true}
-          style={{
-            width: '60%',
-            alignSelf: 'center',
-            paddingTop: 150,
-            marginBottom: 100
-          }}
-          source={require('../../../assets/animations/315-loader-ring.json')}
-        />
-
-        <BoldText textAlign="center">Buscando seus ingredientes...</BoldText>
-      </>
-    )
-  }
-
   return (
     <IngredientsContainer
       t={t}
+      loading={loading}
       product={product}
-      ingredients={queryData.baseProducts}
+      ingredients={queryData?.baseProducts}
       selectedIngredients={product.ingredients}
       onChangeIngredient={updateProductsIngredients}
       onCreate={createProduct}
