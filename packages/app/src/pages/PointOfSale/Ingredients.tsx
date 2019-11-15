@@ -30,6 +30,7 @@ interface Props {
   navigation: {
     navigate: (page: string) => void
     popToTop: () => void
+    goBack: () => void
   }
 }
 
@@ -84,6 +85,7 @@ const Ingredients: React.SFC<Props> = ({ navigation }) => {
       onChangeIngredient={updateProductsIngredients}
       onCreate={createProduct}
       onCreateBaseProduct={navigateToCreateBaseProduct}
+      onCancel={() => navigation.goBack()}
     />
   )
 }

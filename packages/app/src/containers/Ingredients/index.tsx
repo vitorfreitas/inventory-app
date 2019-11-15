@@ -53,6 +53,7 @@ interface Props {
   onChangeIngredient: (ingredients: IBaseProduct[]) => void
   onCreate: () => void
   onCreateBaseProduct: () => void
+  onCancel: () => void
 }
 
 const IngredientsContainer: React.SFC<Props> = ({
@@ -63,7 +64,8 @@ const IngredientsContainer: React.SFC<Props> = ({
   selectedIngredients,
   onChangeIngredient,
   onCreate,
-  onCreateBaseProduct
+  onCreateBaseProduct,
+  onCancel
 }) => {
   const [selectedIngredient, setSelectedIngredient] = useState<IBaseProduct>()
   const [addProductIsOpen, setAddProductDialogIsOpen] = useState<boolean>(false)
@@ -146,7 +148,7 @@ const IngredientsContainer: React.SFC<Props> = ({
         </Form>
 
         <Footer>
-          <Link onPress={() => {}}>Cancel</Link>
+          <Link onPress={onCancel}>Cancel</Link>
 
           <Button onPress={onCreate} text="Create product" />
         </Footer>
