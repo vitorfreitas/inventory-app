@@ -4,10 +4,10 @@ import { Feather } from '@expo/vector-icons'
 import Ripple from 'react-native-material-ripple'
 import styled from 'styled-components/native'
 
-import Product from 'shared/interfaces/product'
+import Product from '@stock/shared/interfaces/product'
 
 const Container = styled(Ripple).attrs({
-  rippleOpacity: 0.1,
+  rippleOpacity: 0.1
 })`
   width: 100%;
   border-radius: 4px;
@@ -18,6 +18,14 @@ const Container = styled(Ripple).attrs({
   background: #fff;
   border-bottom-color: #eee;
   border-bottom-width: 1px;
+`
+
+const PicturePlaceholder = styled.View`
+  background: #2c3e50;
+  width: 60px;
+  height: 50px;
+  align-self: center;
+  border-radius: 4px;s
 `
 
 const Picture = styled.Image`
@@ -62,15 +70,17 @@ interface Props {
   onLongPress: (product: Product) => void
 }
 
-const ListItem: React.SFC<Props> = ({
-  t, data, onPress, onLongPress,
-}) => {
+const ListItem: React.SFC<Props> = ({ t, data, onPress, onLongPress }) => {
   const handleLongPress = () => onLongPress(data)
   const handlePress = () => onPress(data)
 
   return (
     <Container onPress={handlePress} onLongPress={handleLongPress}>
-      <Picture source={{ uri: data.picture }} />
+      {data.picture ? (
+        <Picture source={{ uri: data.picture }} />
+      ) : (
+        <PicturePlaceholder />
+      )}
 
       <DataContainer>
         <View>

@@ -1,7 +1,15 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import Product from 'shared/interfaces/product'
+
+import Product from '@stock/shared/interfaces/product'
 import { ItemContainer as Container } from './styled'
+
+const ImagePlaceholder = styled.View`
+  height: 70px;
+  background: #2c3e50;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+`
 
 const Image = styled.Image`
   height: 70px;
@@ -47,7 +55,11 @@ const GridItem: React.SFC<Props> = ({ data, onPress, onLongPress }) => {
 
   return (
     <Container onLongPress={handleLongPress} onPress={handlePress}>
-      <Image source={{ uri: data.picture }} />
+      {data.picture ? (
+        <Image source={{ uri: data.picture }} />
+      ) : (
+        <ImagePlaceholder />
+      )}
 
       <DataContainer>
         <Title>{formatName(data.name)}</Title>
