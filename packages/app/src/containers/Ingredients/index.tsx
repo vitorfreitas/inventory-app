@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/native'
-import LottieView from 'lottie-react-native'
 
 import ProductOverview from 'components/ProductOverview'
 import { BoldText } from 'components/Typography/Text'
@@ -19,6 +18,7 @@ import {
   AddProductText
 } from './styled'
 import { AppProductInput } from 'interfaces'
+import LoadingContainer from 'containers/Loading'
 
 const Form = styled.ScrollView`
   flex: 1;
@@ -101,23 +101,7 @@ const IngredientsContainer: React.SFC<Props> = ({
   }
 
   if (loading) {
-    return (
-      <>
-        <LottieView
-          autoPlay
-          loop={true}
-          style={{
-            width: '60%',
-            alignSelf: 'center',
-            paddingTop: 150,
-            marginBottom: 100
-          }}
-          source={require('../../../assets/animations/315-loader-ring.json')}
-        />
-
-        <BoldText textAlign="center">Buscando seus ingredientes...</BoldText>
-      </>
-    )
+    return <LoadingContainer message="Buscando seus ingredientes..." />
   }
 
   return (
