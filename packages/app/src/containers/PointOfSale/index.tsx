@@ -13,6 +13,7 @@ import DescriptionModal from './Description'
 import CartButton from './CartButton'
 import { ICartItem } from './interfaces'
 import Product from '@stock/shared/interfaces/product'
+import LoadingContainer from 'containers/Loading'
 
 interface Props {
   products: Product[]
@@ -48,6 +49,10 @@ const HomeContainer: React.SFC<Props> = ({
     onCreateProduct: navigateToCreateProductPage,
     onProductLongPress: openDescriptionModalOnLongPress,
     onChangeVisualizationMode: setVisualizationMode
+  }
+
+  if (!products) {
+    return <LoadingContainer message="Buscando seus produtos..." />
   }
 
   return (
