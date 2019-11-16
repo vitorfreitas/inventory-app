@@ -22,9 +22,7 @@ const requiredEnvironmentKeys = [
   'JWT_SECRET',
   'MONGO_DATABASE_HOST',
   'MONGO_DATABASE_PORT',
-  'MONGO_DATABASE_NAME',
-  'MONGO_DATABASE_USERNAME',
-  'MONGO_DATABASE_PASSWORD'
+  'MONGO_DATABASE_NAME'
 ]
 
 requiredEnvironmentKeys.forEach(key => {
