@@ -6,7 +6,7 @@ import Container from 'components/Layout/Container'
 import Navbar from 'components/Navbar'
 import Link from 'components/Link'
 import { SuccessDialog } from 'components/Dialogs'
-import Product from 'shared/interfaces/product'
+import Product from '@stock/shared/interfaces/product'
 import { ICartItem } from '../PointOfSale/interfaces'
 import FinishPurchaseButton from './FinishPurchaseButton'
 import ChooseClient from './ChooseClient'
@@ -40,11 +40,21 @@ interface Props {
   onRemoveFromCart: (item: Product) => void
 }
 
-const CartContainer: React.SFC<Props> = ({ t, cart, onSuccess, onRemoveFromCart }) => {
+const CartContainer: React.SFC<Props> = ({
+  t,
+  cart,
+  onSuccess,
+  onRemoveFromCart
+}) => {
   const [purchaseFinished, setPurchaseFinished] = useState(false)
 
-  const productsPrice = cart.reduce((acc, cur) => acc + cur.product.price * cur.quantity, 0)
-  const finishButtonText = `${t('pos.cart.finish-button')} = R$ ${productsPrice.toFixed(2)}`
+  const productsPrice = cart.reduce(
+    (acc, cur) => acc + cur.product.price * cur.quantity,
+    0
+  )
+  const finishButtonText = `${t(
+    'pos.cart.finish-button'
+  )} = R$ ${productsPrice.toFixed(2)}`
 
   const handleRemoveFromCart = (item: Product) => {
     const title = t('pos.cart.remove-title')
@@ -62,9 +72,9 @@ const CartContainer: React.SFC<Props> = ({ t, cart, onSuccess, onRemoveFromCart 
 
   const _renderCartItem = ({ item }) => (
     <CartItem
-      data={item.product} 
-      onRemove={handleRemoveFromCart} 
-      quantity={item.quantity} 
+      data={item.product}
+      onRemove={handleRemoveFromCart}
+      quantity={item.quantity}
     />
   )
 
@@ -80,7 +90,7 @@ const CartContainer: React.SFC<Props> = ({ t, cart, onSuccess, onRemoveFromCart 
 
         <FlatList
           data={cart}
-          keyExtractor={(i) => i.product.picture}
+          keyExtractor={i => i.product.picture}
           renderItem={_renderCartItem}
         />
 
@@ -92,7 +102,10 @@ const CartContainer: React.SFC<Props> = ({ t, cart, onSuccess, onRemoveFromCart 
             <Link>{t('pos.cart.discount')}</Link>
           </Row>
 
-          <FinishPurchaseButton onPress={() => setPurchaseFinished(true)} text={finishButtonText} />
+          <FinishPurchaseButton
+            onPress={() => setPurchaseFinished(true)}
+            text={finishButtonText}
+          />
         </Footer>
       </Container>
 
