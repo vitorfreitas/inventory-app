@@ -1,11 +1,10 @@
 import React from 'react'
 import { View } from 'react-native'
-import Ripple from 'react-native-material-ripple'
 import styled from 'styled-components/native'
-
-import Product from 'shared/interfaces/product'
-import { NormalText } from 'components/Typography/Text'
 import { Feather } from '@expo/vector-icons'
+
+import Product from '@stock/shared/interfaces/product'
+import { NormalText } from 'components/Typography/Text'
 
 const Container = styled.View`
   width: 100%;
@@ -15,6 +14,14 @@ const Container = styled.View`
   background: #fff;
   border-bottom-color: #eee;
   border-bottom-width: 1px;
+`
+
+const PicturePlaceholder = styled.View`
+  background: #2c3e50;
+  width: 60px;
+  height: 50px;
+  align-self: center;
+  border-radius: 4px;s
 `
 
 const Picture = styled.Image`
@@ -85,7 +92,11 @@ interface Props {
 const CartItem: React.SFC<Props> = ({ data, quantity, onRemove }) => (
   <Container>
     <Heading>
-      <Picture source={{ uri: data.picture }} />
+      {data.picture ? (
+        <Picture source={{ uri: data.picture }} />
+      ) : (
+        <PicturePlaceholder />
+      )}
 
       <DataContainer>
         <View>
