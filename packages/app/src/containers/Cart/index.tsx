@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FlatList, Alert, AlertButton } from 'react-native'
 import styled from 'styled-components/native'
+import { equals } from 'ramda'
 
 import Container from 'components/Layout/Container'
 import Navbar from 'components/Navbar'
@@ -11,6 +12,7 @@ import { ICartItem } from '../PointOfSale/interfaces'
 import FinishPurchaseButton from './FinishPurchaseButton'
 import ChooseClient from './ChooseClient'
 import CartItem from './CartItem'
+import LoadingContainer from 'containers/Loading'
 
 const Footer = styled.View`
   bottom: 0;
@@ -35,7 +37,9 @@ const GutterBottom = styled.View`
 
 interface Props {
   cart?: ICartItem[]
+  status: 'success' | 'error' | 'loading' | 'blank'
   onSuccess: () => void
+  onSubmit: () => void
   t: (path: string) => string
   onRemoveFromCart: (item: Product) => void
 }
@@ -43,10 +47,12 @@ interface Props {
 const CartContainer: React.SFC<Props> = ({
   t,
   cart,
+  status,
   onSuccess,
+  onSubmit,
   onRemoveFromCart
 }) => {
-  const [purchaseFinished, setPurchaseFinished] = useState(false)
+  console.log(status)
 
   const productsPrice = cart.reduce(
     (acc, cur) => acc + cur.product.price * cur.quantity,
@@ -78,9 +84,8 @@ const CartContainer: React.SFC<Props> = ({
     />
   )
 
-  const handleSuccessDialogClose = () => {
-    setPurchaseFinished(false)
-    onSuccess()
+  if (equals(status, 'loading')) {
+    return <LoadingContainer message="Processando sua compra..." />
   }
 
   return (
@@ -102,17 +107,14 @@ const CartContainer: React.SFC<Props> = ({
             <Link>{t('pos.cart.discount')}</Link>
           </Row>
 
-          <FinishPurchaseButton
-            onPress={() => setPurchaseFinished(true)}
-            text={finishButtonText}
-          />
+          <FinishPurchaseButton onPress={onSubmit} text={finishButtonText} />
         </Footer>
       </Container>
 
       <SuccessDialog
-        open={purchaseFinished}
+        open={status === 'success'}
         message={t('pos.cart.success')}
-        onClose={handleSuccessDialogClose}
+        onClose={onSuccess}
       />
     </>
   )
