@@ -4,9 +4,7 @@ import LottieView from 'lottie-react-native'
 import Link from 'components/Link'
 import { t } from 'locations'
 import { Modal } from 'react-native'
-import {
-  Background, Container, Title, Message, Footer,
-} from '../styled'
+import { Background, Container, Title, Message, Footer } from '../styled'
 
 interface Props {
   open: boolean
@@ -15,7 +13,7 @@ interface Props {
 }
 
 const SuccessDialog: React.SFC<Props> = ({ open, message, onClose }) => (
-  <Modal visible={open} onRequestClose={onClose}>
+  <Modal visible={open} onRequestClose={onClose} transparent>
     <Background>
       <Container>
         <LottieView
