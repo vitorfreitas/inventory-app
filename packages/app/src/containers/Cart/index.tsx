@@ -90,7 +90,7 @@ const CartContainer: React.SFC<Props> = ({
 
         <FlatList
           data={cart}
-          keyExtractor={i => i.product.picture}
+          keyExtractor={i => i.product.id}
           renderItem={_renderCartItem}
         />
 

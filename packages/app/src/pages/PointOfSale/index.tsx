@@ -16,6 +16,7 @@ import CreateBaseProduct from './CreateBaseProduct'
 const FETCH_PRODUCTS = gql`
   query {
     products {
+      id
       name
       price
     }
