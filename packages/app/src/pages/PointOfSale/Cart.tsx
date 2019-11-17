@@ -24,10 +24,12 @@ const CREATE_SALE = gql`
   }
 `
 
-const Cart: React.SFC<Props> = ({ navigation }) => {
+const Cart: React.FC<Props> = ({ navigation }) => {
   const [status, setStatus] = useState<
     'success' | 'error' | 'loading' | 'blank'
   >('blank')
+  const [discount, setDiscount] = useState<number>(0)
+
   const [createSaleMutation, { data, loading }] = useMutation(CREATE_SALE)
   const cart = useSelector((state: IStore) => state.cart)
   const dispatch = useDispatch()
@@ -48,7 +50,8 @@ const Cart: React.SFC<Props> = ({ navigation }) => {
     }))
 
     const sale = {
-      products
+      products,
+      discount
     }
 
     createSaleMutation({ variables: { sale } })
@@ -74,6 +77,7 @@ const Cart: React.SFC<Props> = ({ navigation }) => {
       onRemoveFromCart={removeItemFromCart}
       onSuccess={cleanCartAndGoBack}
       onSubmit={createSale}
+      onChangeDiscount={discount => setDiscount(discount)}
     />
   )
 }

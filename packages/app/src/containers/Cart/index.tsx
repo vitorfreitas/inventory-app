@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
-import { FlatList, Alert, AlertButton } from 'react-native'
+import { FlatList, Alert, AlertButton, View } from 'react-native'
 import styled from 'styled-components/native'
 import { equals } from 'ramda'
+import { Feather } from '@expo/vector-icons'
 
 import Container from 'components/Layout/Container'
 import Navbar from 'components/Navbar'
 import Link from 'components/Link'
+import LoadingContainer from 'containers/Loading'
 import { SuccessDialog } from 'components/Dialogs'
 import Product from '@stock/shared/interfaces/product'
+import * as V from 'styles/variables'
 import { ICartItem } from '../PointOfSale/interfaces'
 import FinishPurchaseButton from './FinishPurchaseButton'
-import ChooseClient from './ChooseClient'
 import CartItem from './CartItem'
-import LoadingContainer from 'containers/Loading'
+import Discount from './Discount'
 
 const Footer = styled.View`
   bottom: 0;
@@ -40,20 +42,21 @@ interface Props {
   status: 'success' | 'error' | 'loading' | 'blank'
   onSuccess: () => void
   onSubmit: () => void
+  onChangeDiscount: (discount: number) => void
   t: (path: string) => string
   onRemoveFromCart: (item: Product) => void
 }
 
-const CartContainer: React.SFC<Props> = ({
+const CartContainer: React.FC<Props> = ({
   t,
   cart,
   status,
   onSuccess,
   onSubmit,
+  onChangeDiscount,
   onRemoveFromCart
 }) => {
-  console.log(status)
-
+  const [discountIsOpen, setDiscountIsOpen] = useState<boolean>(false)
   const productsPrice = cart.reduce(
     (acc, cur) => acc + cur.product.price * cur.quantity,
     0
@@ -76,13 +79,18 @@ const CartContainer: React.SFC<Props> = ({
     Alert.alert(title, message, buttons)
   }
 
-  const _renderCartItem = ({ item }) => (
+  const renderCartItem = ({ item }) => (
     <CartItem
       data={item.product}
       onRemove={handleRemoveFromCart}
       quantity={item.quantity}
     />
   )
+
+  const updateDiscountAndCloseDialog = (discount: number) => {
+    onChangeDiscount(discount)
+    setDiscountIsOpen(false)
+  }
 
   if (equals(status, 'loading')) {
     return <LoadingContainer message="Processando sua compra..." />
@@ -96,15 +104,28 @@ const CartContainer: React.SFC<Props> = ({
         <FlatList
           data={cart}
           keyExtractor={i => i.product.id}
-          renderItem={_renderCartItem}
+          renderItem={renderCartItem}
         />
 
         <GutterBottom />
 
         <Footer>
           <Row>
-            <ChooseClient />
-            <Link>{t('pos.cart.discount')}</Link>
+            <View />
+
+            <Link
+              onPress={() => setDiscountIsOpen(true)}
+              icon={
+                <Feather
+                  name="plus"
+                  size={20}
+                  color={V.Color.primary}
+                  style={{ marginLeft: 4, marginTop: -4 }}
+                />
+              }
+            >
+              {t('pos.cart.discount.cta')}
+            </Link>
           </Row>
 
           <FinishPurchaseButton onPress={onSubmit} text={finishButtonText} />
@@ -115,6 +136,13 @@ const CartContainer: React.SFC<Props> = ({
         open={status === 'success'}
         message={t('pos.cart.success')}
         onClose={onSuccess}
+      />
+
+      <Discount
+        t={t}
+        open={discountIsOpen}
+        onClose={() => setDiscountIsOpen(false)}
+        onFinish={updateDiscountAndCloseDialog}
       />
     </>
   )
