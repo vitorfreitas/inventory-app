@@ -2,20 +2,29 @@ import React from 'react'
 import { View } from 'react-native'
 
 import ProductCard from './ProductCard'
+import Product from '@stock/shared/interfaces/product'
+import LoadingContainer from 'containers/Loading'
 
 type Props = {
-  products: any[]
+  products: Product[]
+  loading: boolean
   onEdit: (product) => void
 }
 
-const renderProduct = (product, index, onPress) => (
-  <ProductCard data={product} key={index} onPress={() => onPress(product)} />
+const renderProduct = (product, onPress) => (
+  <ProductCard
+    data={product}
+    key={product.id}
+    onPress={() => onPress(product)}
+  />
 )
 
-const InventoryProducts: React.SFC<Props> = ({ products, onEdit }) => (
-  <View>
-    {products.map((product, index) => renderProduct(product, index, onEdit))}
-  </View>
-)
+const InventoryProducts: React.SFC<Props> = ({ products, loading, onEdit }) => {
+  if (loading) {
+    return <LoadingContainer message="Buscando seus produtos..." />
+  }
+
+  return <View>{products.map(product => renderProduct(product, onEdit))}</View>
+}
 
 export default InventoryProducts
