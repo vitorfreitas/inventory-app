@@ -15,7 +15,13 @@ const Container = styled.View`
   flex: 1;
 `
 
-const Inventory: React.FC = ({ navigation }) => {
+interface Props {
+  navigation: {
+    navigate: (page: string, params?: any) => void
+  }
+}
+
+const Inventory: React.SFC<Props> = ({ navigation }) => {
   return (
     <Container>
       <Navbar title={t('inventory.title')} withProfile withBackButton={false} />
