@@ -9,11 +9,11 @@ import logger from '../../lib/logger'
 const populateDetails = (query: Query<IProduct | IProduct[]>) => {
   return query
     .populate({
-      path: 'combo.details',
-      populate: [{ path: 'composition.details' }]
+      path: 'composition.details'
     })
     .populate({
-      path: 'combo.composition'
+      path: 'combo.details',
+      populate: [{ path: 'composition.details' }]
     })
 }
 
