@@ -1,28 +1,36 @@
 import { Query } from 'mongoose'
 import { Sale } from '@stock/shared/interfaces'
+import { SaleItem } from '@stock/shared/interfaces/sale'
 
 import logger from '../../lib/logger'
 import SaleModel, { ISale } from './model'
+import ProductModel from '../products/model'
 
-const populateDetails = (query: Query<ISale | ISale[]>) => {
+function populateDetails(query: Query<ISale | ISale[]>) {
   return query
-    .populate({
-      path: 'products.details',
-      populate: [
-        {
-          path: 'combo.details',
-          populate: [
-            {
-              path: 'composition.details'
-            }
-          ]
-        },
-        { path: 'composition.details' }
-      ]
-    })
     .populate({
       path: 'customer'
     })
+    .populate({
+      path: 'products.details.composition.details'
+    })
+    .populate({
+      path: 'products.details.combo.details',
+      populate: [{ path: 'composition.details' }]
+    })
+}
+
+function getSaleItemsByProducts(products: SaleItem[]) {
+  const populatedProducts = products.map(async product => {
+    const populatedProduct = await ProductModel.findById(product.id)
+
+    return {
+      details: populatedProduct,
+      quantity: product.quantity
+    }
+  })
+
+  return Promise.all(populatedProducts)
 }
 
 const resolvers = {
@@ -77,19 +85,14 @@ const resolvers = {
       root,
       args: { sale: Sale },
       context: { user: { id: string } }
-    ): Promise<ISale> => {
+    ) => {
       const { user } = context
       const { sale } = args
 
       const normalizedSale = {
         ...sale,
         user: user.id,
-        products: sale.products.map(product => {
-          return {
-            details: product.id,
-            quantity: product.quantity
-          }
-        })
+        products: await getSaleItemsByProducts(sale.products)
       }
 
       try {

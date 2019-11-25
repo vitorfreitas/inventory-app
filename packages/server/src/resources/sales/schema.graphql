@@ -45,6 +45,7 @@ type Sale {
   discount: Int
   note: String
   datetime: Date
+  price: Float!
 }
 
 input SaleInput {
