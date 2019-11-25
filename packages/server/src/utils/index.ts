@@ -1,7 +1,7 @@
-import { Error } from 'mongoose'
+import { Schema } from 'mongoose'
 
-function getValidationErrorsMessages(err: Error.ValidationError): string[] {
-  return Object.keys(err.errors).map(error => err.errors[error].toString())
+function extendSchema(schema: Schema, definition: {}, options: {}) {
+  return new Schema(Object.assign({}, schema.obj, definition), options)
 }
 
-export { getValidationErrorsMessages }
+export { extendSchema }
