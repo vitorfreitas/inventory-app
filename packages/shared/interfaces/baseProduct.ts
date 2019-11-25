@@ -1,8 +1,13 @@
+import { Schema } from 'mongoose'
+
 export default interface BaseProduct {
-  name: string;
-  costPrice: number;
-  additionalPrice: number;
-  quantity: number;
-  minQuantity: number;
-  expirationDate: Date;
+  id: Schema.Types.ObjectId
+  name: string
+  quantity: number
+  costPricePerUnit?: number
+  quantityPerSale?: number
+  minQuantity?: number
+  additionalPrice?: number
+  expirationDate?: Date
+  active?: boolean
 }
