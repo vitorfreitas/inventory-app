@@ -3,4 +3,4 @@ enum Unit {
   Milliliter
 }
 
-export default Unit;
+export default Unit

@@ -9,11 +9,11 @@ import logger from '../../lib/logger'
 const populateDetails = (query: Query<IProduct | IProduct[]>) => {
   return query
     .populate({
-      path: 'combo.details',
-      populate: [{ path: 'composition.details' }]
+      path: 'composition.details'
     })
     .populate({
-      path: 'combo.composition'
+      path: 'combo.details',
+      populate: [{ path: 'composition.details' }]
     })
 }
 
@@ -24,13 +24,13 @@ const resolvers = {
       args: { id: String },
       context: { user: { id: string } }
     ) => {
-      const { id: productId } = args
+      const { id } = args
       const { user } = context
 
       try {
         const product = await populateDetails(
           ProductModel.findOne({
-            id: productId,
+            _id: id,
             user: user.id
           })
         )
@@ -111,7 +111,7 @@ const resolvers = {
       try {
         const updatedProduct = await ProductModel.updateOne(
           {
-            id: product.id
+            _id: product.id
           },
           product
         )
@@ -134,7 +134,7 @@ const resolvers = {
       try {
         await ProductModel.updateOne(
           {
-            id
+            _id: id
           },
           { active: false }
         )

@@ -1,4 +1,5 @@
 type Query {
+  baseProduct(id: ID!): BaseProduct!
   baseProducts: [BaseProduct]!
 }
 
@@ -13,9 +14,10 @@ type BaseProduct {
   name: String!
   unit: Unit
   costPrice: Float!
-  additionalPrice: Float
   quantity: Int
+  quantityPerSale: Int
   minQuantity: Int
+  additionalPrice: Float
   expirationDate: Date
 }
 
@@ -23,8 +25,9 @@ input BaseProductInput {
   name: String!
   unit: Unit
   costPrice: Float!
-  additionalPrice: Float
   quantity: Int
+  quantityPerSale: Int
   minQuantity: Int
+  additionalPrice: Float
   expirationDate: Date
 }

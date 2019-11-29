@@ -1,46 +1,29 @@
-import { Schema } from "mongoose";
+import { Schema } from 'mongoose'
 
-interface SaleCompositionItem {
-  id: Schema.Types.ObjectId;
-  quantity: number;
-}
+// interface SaleCompositionItem {
+//   id: Schema.Types.ObjectId;
+//   quantity: number;
+// }
 
-interface SaleComboItem {
-  id: Schema.Types.ObjectId;
-  quantity: number;
-  composition: [SaleCompositionItem];
-}
+// interface SaleComboItem {
+//   id: Schema.Types.ObjectId;
+//   quantity: number;
+//   composition: [SaleCompositionItem];
+// }
 
 interface SaleItem {
-  id: Schema.Types.ObjectId;
-  quantity: number;
-  combo: [SaleComboItem];
-  composition: [SaleCompositionItem];
+  id: Schema.Types.ObjectId
+  details?: Schema.Types.ObjectId
+  quantity: number
 }
 
-// - Produtos
-//     - Id
-//     - Quantidade
-//     - Combo
-//         - Id
-//         - Quantidade
-//         - Composição
-//           - Id
-//     - Composição
-//         - Id
-//         - Quantidade
-// - Data da venda!
-// - Observação da venda
-// - Cliente
-// - Forma de pagamento
-//     - Id
-//     - Receber em
-// - Desconto aplicado
+export { SaleItem }
 
 export default interface Sale {
-  products: [SaleItem];
-  customer: Schema.Types.ObjectId;
-  date: Date;
-  discount: number;
-  note: string;
+  products: [SaleItem]
+  customer: Schema.Types.ObjectId
+  date: Date
+  discount: number
+  note: string
+  price?: number
 }

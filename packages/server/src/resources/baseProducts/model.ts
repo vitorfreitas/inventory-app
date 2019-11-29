@@ -3,8 +3,9 @@ import { BaseProduct } from '@stock/shared/interfaces'
 import { Unit } from '@stock/shared/enums'
 
 interface IBaseProduct extends BaseProduct, Document {
+  id: Schema.Types.ObjectId
   user: Schema.Types.ObjectId
-  active: Boolean
+  active: boolean
 }
 
 const schema = new Schema(
@@ -14,21 +15,13 @@ const schema = new Schema(
       required: true
     },
     unit: {
-      type: Unit,
-      required: true
+      type: Unit
     },
-    costPrice: {
-      type: Number
-    },
-    additionalPrice: {
-      type: Number
-    },
-    quantity: {
-      type: Number
-    },
-    minQuantity: {
-      type: Number
-    },
+    costPrice: Number,
+    additionalPrice: Number,
+    quantity: Number,
+    quantityPerSale: Number,
+    minQuantity: Number,
     expirationDate: {
       type: Date
     },

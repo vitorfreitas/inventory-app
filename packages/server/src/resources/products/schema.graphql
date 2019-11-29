@@ -33,7 +33,14 @@ type Product {
   id: ID!
   name: String!
   price: Float!
+  costPrice: Float
+  unit: Unit
   quantity: Int
+  quantityPerSale: Int
+  minQuantity: Int
+  additionalPrice: Float
+  expirationDate: Date
+  photo: String
 
   """
   Products that compose this Product
@@ -49,8 +56,14 @@ type Product {
 input ProductInput {
   name: String!
   price: Float!
-  photo: String
+  costPrice: Float
+  unit: Unit
   quantity: Int
+  quantityPerSale: Int
+  minQuantity: Int
+  additionalPrice: Float
+  expirationDate: Date
+  photo: String
 
   """
   Products that compose this Product

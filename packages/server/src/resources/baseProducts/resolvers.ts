@@ -5,6 +5,27 @@ import logger from '../../lib/logger'
 
 const resolvers = {
   Query: {
+    baseProduct: async (
+      root,
+      args: { id: String },
+      context: { user: { id: string } }
+    ) => {
+      const { id } = args
+      const { user } = context
+
+      try {
+        const baseProduct = await BaseProductModel.findOne({
+          _id: id,
+          user: user.id
+        })
+
+        return baseProduct
+      } catch (err) {
+        logger.error(err)
+
+        throw new Error(err)
+      }
+    },
     baseProducts: async (
       root,
       args,
@@ -45,7 +66,7 @@ const resolvers = {
 
       return BaseProductModel.updateOne(
         {
-          id: product.id
+          _id: product.id
         },
         product
       )
@@ -61,7 +82,7 @@ const resolvers = {
       try {
         await BaseProductModel.updateOne(
           {
-            id
+            _id: id
           },
           { active: false }
         )

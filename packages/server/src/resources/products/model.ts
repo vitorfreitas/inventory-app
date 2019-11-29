@@ -1,9 +1,12 @@
 import { model, Schema, Document, Model } from 'mongoose'
 import { Product } from '@stock/shared/interfaces'
+import { extendSchema } from '../../utils'
+
+import { BaseProductSchema } from '../baseProducts/model'
 
 interface IProduct extends Product, Document {
+  id: Schema.Types.ObjectId
   user: Schema.Types.ObjectId
-  active: Boolean
 }
 
 const comboItemSchema = new Schema({
@@ -28,23 +31,16 @@ const compositionItemSchema = new Schema({
   }
 })
 
-const schema = new Schema(
+const schema = extendSchema(
+  BaseProductSchema,
   {
     name: {
       type: String,
       required: true
     },
-    quantity: {
-      type: Number
-    },
     price: {
       type: Number,
       required: true
-    },
-    active: {
-      type: Boolean,
-      default: true,
-      hidden: true
     },
     combo: {
       type: [comboItemSchema],
@@ -53,10 +49,6 @@ const schema = new Schema(
     composition: {
       type: [compositionItemSchema],
       default: []
-    },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
     }
   },
   {
