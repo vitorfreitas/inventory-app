@@ -55,7 +55,7 @@ const Inventory: React.SFC<Props> = ({ navigation }) => {
         <InventoryProducts
           loading={loading}
           products={data?.products}
-          onEdit={product => navigation.navigate('EditProduct', product)}
+          onEdit={product => navigation.navigate('EditProduct', { product })}
         />
       </Content>
     </Container>

@@ -17,19 +17,22 @@ const Container = styled(Ripple).attrs({
   justify-content: center;
 `
 
-const L = styled(MediumText)`
-  font-size: 16px;
-  color: ${V.Color.primary};
+const L = styled(MediumText)<{ color: string }>`
+  ${({ color }) => `
+    font-size: 16px;
+    color: ${color};
+  `}
 `
 
 interface Props {
   onPress?: () => void
   icon?: any
+  color?: string
 }
 
-const Link: React.SFC<Props> = ({ children, onPress, icon }) => (
+const Link: React.SFC<Props> = ({ children, onPress, icon, color }) => (
   <Container onPress={onPress}>
-    <L>{children}</L>
+    <L color={color || V.Color.primary}>{children}</L>
 
     {icon && icon}
   </Container>
