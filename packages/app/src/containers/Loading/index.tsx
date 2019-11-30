@@ -1,28 +1,24 @@
 import React from 'react'
-import LottieView from 'lottie-react-native'
+import { ActivityIndicator } from 'react-native'
+import styled from 'styled-components'
 
 import { BoldText } from 'components/Typography/Text'
+
+const Container = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`
 
 interface Props {
   message: string
 }
 
 const LoadingContainer: React.SFC<Props> = ({ message }) => (
-  <>
-    <LottieView
-      autoPlay
-      loop={true}
-      style={{
-        width: '60%',
-        alignSelf: 'center',
-        paddingTop: 150,
-        marginBottom: 100
-      }}
-      source={require('../../../assets/animations/315-loader-ring.json')}
-    />
-
+  <Container>
     <BoldText textAlign="center">{message}</BoldText>
-  </>
+    <ActivityIndicator size="large" style={{ marginTop: 10 }} />
+  </Container>
 )
 
 export default LoadingContainer
