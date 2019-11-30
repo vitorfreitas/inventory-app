@@ -16,10 +16,10 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 })
 
 const httpLink = new HttpLink({
-  uri: 'http://10.0.0.109:3001/graphql',
+  uri: 'http://10.0.0.104:3000/graphql',
   headers: {
     authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkYzhiY2YwMDk5OWM0M2M1NGE2YjA0YyIsImlhdCI6MTU3MzQzNjY1Nn0.B3HhibI-2EGCHtbjsbj1Sq5jYsODcJFos7nl3yoO4kw'
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZTFjNWM0ZjI3ZTQ2MTY4MWRhYjA1ZSIsImlhdCI6MTU3NTA3NzMxNn0.mHgjQoPRjIC91IolxNm4uYkeQwGirDdjTGdEaOmRIRY'
   }
 })
 
