@@ -5,7 +5,6 @@ import Navbar from 'components/Navbar'
 import SearchInput from 'components/SearchInput'
 import { products } from 'mocks/products.json'
 
-import Product from 'shared/interfaces/product'
 import GridContainer from './GridContainer'
 import ListContainer from './ListContainer'
 import Heading from './Heading'
@@ -13,10 +12,11 @@ import { Content, GutterBottom } from './styled'
 import DescriptionModal from './Description'
 import CartButton from './CartButton'
 import { ICartItem } from './interfaces'
-import Button from 'components/Form/Button'
+import Product from '@stock/shared/interfaces/product'
+import LoadingContainer from 'containers/Loading'
 
 interface Props {
-  data?: object
+  products: Product[]
   navigate: (page: string) => void
   t: (key: string) => string
   cart: ICartItem[]
@@ -25,7 +25,7 @@ interface Props {
 
 const HomeContainer: React.SFC<Props> = ({
   t,
-  data,
+  products,
   cart,
   onAddCartItem,
   navigate
@@ -42,8 +42,6 @@ const HomeContainer: React.SFC<Props> = ({
 
   const navigateToCreateProductPage = () => navigate('CreateProduct')
 
-  const cartButtonMessage = t('pos.cart.button-message')
-
   const productListProps = {
     t,
     products,
@@ -53,9 +51,14 @@ const HomeContainer: React.SFC<Props> = ({
     onChangeVisualizationMode: setVisualizationMode
   }
 
+  if (!products) {
+    return <LoadingContainer message="Buscando seus produtos..." />
+  }
+
   return (
     <>
       <Navbar title={t('navbar.sell')} withProfile withBackButton={false} />
+
       <Toolbar>
         <SearchInput placeholder={t('pos.placeholder')} />
       </Toolbar>

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/native'
-import Ripple from 'react-native-material-ripple'
 
 import ProductOverview from 'components/ProductOverview'
-import { BoldText, NormalText, MediumText } from 'components/Typography/Text'
+import { BoldText } from 'components/Typography/Text'
 import Container from 'components/Layout/Container'
 import Navbar from 'components/Navbar'
 import { Feather } from '@expo/vector-icons'
@@ -12,6 +11,14 @@ import { IBaseProduct } from './interfaces'
 import Ingredient from './Ingredient'
 import Link from 'components/Link'
 import Button from 'components/Button'
+import {
+  AddProductContainer,
+  AddProductItem,
+  AddProductIcon,
+  AddProductText
+} from './styled'
+import { AppProductInput } from 'interfaces'
+import LoadingContainer from 'containers/Loading'
 
 const Form = styled.ScrollView`
   flex: 1;
@@ -24,35 +31,6 @@ const Form = styled.ScrollView`
 const FormTitle = styled(BoldText)`
   margin: 16px 0;
   font-size: 18px;
-`
-
-const AddProductItem = styled(Ripple).attrs({
-  rippleOpacity: 0.1
-})`
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px #bdbdbd dashed;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`
-
-const AddProductIcon = styled.View`
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-`
-
-const AddProductText = styled.Text`
-  color: #9e9e9e;
-  font-size: 14px;
-  margin-top: 4px;
-  margin-left: 17px;
-  font-family: 'Poppins Medium';
-`
-
-const AddProductContainer = styled.View`
-  margin-top: 16px;
 `
 
 const Footer = styled.View`
@@ -68,43 +46,26 @@ const Footer = styled.View`
 
 interface Props {
   t: (path: string) => string
+  loading?: boolean
+  product: AppProductInput
   ingredients: IBaseProduct[]
+  selectedIngredients: IBaseProduct[]
   onChangeIngredient: (ingredients: IBaseProduct[]) => void
   onCreate: () => void
+  onCreateBaseProduct: () => void
+  onCancel: () => void
 }
-
-const ingredientsFromApi: IBaseProduct[] = [
-  {
-    id: '1',
-    name: 'Carne de Hambúrguer',
-    quantity: '1',
-    unit: 'un'
-  },
-  {
-    id: '2',
-    name: 'Tomate',
-    quantity: '1',
-    unit: 'un'
-  },
-  {
-    id: '3',
-    name: 'Gel de cabelo',
-    quantity: '1',
-    unit: 'g'
-  },
-  {
-    id: '4',
-    name: 'Pomada capilar',
-    quantity: '1',
-    unit: 'g'
-  }
-]
 
 const IngredientsContainer: React.SFC<Props> = ({
   t,
+  loading,
+  product,
   ingredients,
+  selectedIngredients,
   onChangeIngredient,
-  onCreate
+  onCreate,
+  onCreateBaseProduct,
+  onCancel
 }) => {
   const [selectedIngredient, setSelectedIngredient] = useState<IBaseProduct>()
   const [addProductIsOpen, setAddProductDialogIsOpen] = useState<boolean>(false)
@@ -112,7 +73,7 @@ const IngredientsContainer: React.SFC<Props> = ({
   const toggleAddProductDialog = () =>
     setAddProductDialogIsOpen(!addProductIsOpen)
 
-  const handleEditIngredient = (ingredient: IBaseProduct) => {
+  const updateIngredientOnProduct = (ingredient: IBaseProduct) => {
     const updatedIngredientsList: IBaseProduct[] = ingredients.map(item => {
       if (item.id !== selectedIngredient.id) return item
 
@@ -124,29 +85,38 @@ const IngredientsContainer: React.SFC<Props> = ({
     setSelectedIngredient(null)
   }
 
-  const handleAddIngredient = (ingredient: IBaseProduct) => {
-    onChangeIngredient([...ingredients, ingredient])
+  const addIngredientToProduct = (ingredient: IBaseProduct) => {
+    onChangeIngredient([...selectedIngredients, ingredient])
     toggleAddProductDialog()
   }
 
-  const handleIngredientPress = (ingredient: IBaseProduct) => {
+  const openEditIngredientDialog = (ingredient: IBaseProduct) => {
     setSelectedIngredient(ingredient)
     toggleAddProductDialog()
+  }
+
+  const closeAddProductAndNavigateToCreateBaseProduct = () => {
+    toggleAddProductDialog()
+    onCreateBaseProduct()
+  }
+
+  if (loading) {
+    return <LoadingContainer message="Buscando seus ingredientes..." />
   }
 
   return (
     <>
       <Container>
         <Navbar title="Ingredientes" />
-        <ProductOverview product={{ name: 'Pizza de mozzarela' }} />
+        <ProductOverview product={product} />
 
         <Form>
           <FormTitle>{t('pos.create.ingredients')}</FormTitle>
 
-          {ingredients.map(i => (
+          {selectedIngredients.map(i => (
             <Ingredient
               key={i.id}
-              onPress={handleIngredientPress}
+              onPress={openEditIngredientDialog}
               ingredient={i}
             />
           ))}
@@ -162,7 +132,7 @@ const IngredientsContainer: React.SFC<Props> = ({
         </Form>
 
         <Footer>
-          <Link onPress={() => {}}>Cancel</Link>
+          <Link onPress={onCancel}>Cancel</Link>
 
           <Button onPress={onCreate} text="Create product" />
         </Footer>
@@ -172,11 +142,12 @@ const IngredientsContainer: React.SFC<Props> = ({
         t={t}
         edit={!!selectedIngredient}
         defaultIngredient={selectedIngredient}
-        ingredients={ingredientsFromApi}
+        ingredients={ingredients}
         open={addProductIsOpen}
+        onCreateBaseProduct={closeAddProductAndNavigateToCreateBaseProduct}
         onClose={toggleAddProductDialog}
-        onFinish={handleAddIngredient}
-        onEdit={handleEditIngredient}
+        onFinish={addIngredientToProduct}
+        onEdit={updateIngredientOnProduct}
       />
     </>
   )

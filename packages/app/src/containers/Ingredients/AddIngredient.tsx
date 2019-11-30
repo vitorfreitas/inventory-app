@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native'
 import SelectInput from 'react-native-select-input-ios'
+import { Feather } from '@expo/vector-icons'
 
 import { BoldText, MediumText, NormalText } from 'components/Typography/Text'
 import Button from 'components/Button'
 import Link from 'components/Link'
 import { IBaseProduct } from './interfaces'
+import {
+  AddProductContainer,
+  AddProductItem,
+  AddProductIcon,
+  AddProductText
+} from './styled'
 
 const Modal = styled.Modal.attrs({
   transparent: true,
-  animationType: 'fade',
+  animationType: 'fade'
 })``
 
 const Background = styled.View`
@@ -56,6 +63,10 @@ const InputContainer = styled.View`
   justify-content: space-between;
 `
 
+const PaddingContent = styled.View`
+  padding: 8px 24px;
+`
+
 const Label = styled(MediumText)``
 
 const SellByLabel = styled(NormalText)`
@@ -82,6 +93,7 @@ interface Props {
   onClose: () => void
   onFinish: (ingredient: IBaseProduct) => void
   onEdit: (ingredient: IBaseProduct) => void
+  onCreateBaseProduct: () => void
 }
 
 const AddIngredient: React.FC<Props> = ({
@@ -91,17 +103,19 @@ const AddIngredient: React.FC<Props> = ({
   onClose,
   onFinish,
   onEdit,
+  onCreateBaseProduct,
   defaultIngredient,
-  edit,
+  edit
 }) => {
   const mappedUnits = {
-    un: t('pos.unit'),
-    g: t('pos.gram'),
+    Unit: t('pos.unit'),
+    Gram: t('pos.gram'),
+    Milliliter: t('pos.milliliter')
   }
 
   const initialIngredient = {
     quantity: '1',
-    ...ingredients[0],
+    ...ingredients[0]
   }
 
   const [ingredient, setIngredient] = useState<IBaseProduct>(initialIngredient)
@@ -116,13 +130,15 @@ const AddIngredient: React.FC<Props> = ({
   }
 
   const handleIngredientChange = (value: string) => {
-    const { id, name, unit } = ingredients.find((ingredient) => ingredient.name === value)
+    const { id, name, unit } = ingredients.find(
+      ingredient => ingredient.name === value
+    )
 
     setIngredient({
       ...ingredient,
       id,
       name,
-      unit,
+      unit
     })
   }
 
@@ -134,7 +150,7 @@ const AddIngredient: React.FC<Props> = ({
 
   const formatToSelectPickerFormat = (ingredient: IBaseProduct) => ({
     label: ingredient.name,
-    value: ingredient.name,
+    value: ingredient.name
   })
 
   useEffect(() => {
@@ -174,6 +190,19 @@ const AddIngredient: React.FC<Props> = ({
               options={ingredients.map(formatToSelectPickerFormat)}
             />
           </InputContainer>
+
+          <PaddingContent>
+            <AddProductContainer>
+              <AddProductItem onPress={onCreateBaseProduct}>
+                <AddProductIcon>
+                  <Feather name="plus" size={18} color="#9e9e9e" />
+                </AddProductIcon>
+                <AddProductText>
+                  {t('pos.create.create-ingredient')}
+                </AddProductText>
+              </AddProductItem>
+            </AddProductContainer>
+          </PaddingContent>
 
           <FooterButton>
             <Link onPress={onClose}>{t('pos.create.cancel')}</Link>

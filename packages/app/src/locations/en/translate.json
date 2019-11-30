@@ -5,6 +5,7 @@
   "pos": {
     "unit": "Unit",
     "gram": "Gram",
+    "milliliter": "Milliliter",
     "placeholder": "What are you looking for?",
     "products": "Products",
     "hold-tip": "Hold to more",
@@ -25,6 +26,7 @@
       "minumum-qty": "Minimum qty on inventory",
       "cancel": "Cancel",
       "finish": "Finish",
+      "create-ingredient": "Create Base Product",
       "ingredients": "Ingredients",
       "ingredient-title": "Ingredient quantity",
       "ingredients-label": "Ingredient"
@@ -33,13 +35,16 @@
       "title": "Your Cart",
       "button-message": "Your cart",
       "empty-cart": "Add items to your cart!",
-      "discount": "APPLY DISCOUNT",
       "finish-button": "Sell",
       "success": "You just finished you purchase! Get back to your store and keep rockin'!",
       "remove-title": "Want to remove this item from your cart?",
       "remove-message": "Don't worry. You can add it again later if you want.",
       "remove-ok": "Yes, remove it please.",
-      "remove-cancel": "Get back"
+      "remove-cancel": "Get back",
+      "discount": {
+        "cta": "APPLY DISCOUNT",
+        "title": "How much discount?"
+      }
     }
   },
   "inventory": {

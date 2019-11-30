@@ -3,13 +3,13 @@ import { BoldText, NormalText } from 'components/Typography/Text'
 
 export const Modal = styled.Modal.attrs({
   transparent: true,
-  animationType: 'fade',
+  animationType: 'fade'
 })``
 
 export const Background = styled.View`
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.35);
 
   align-items: center;
   justify-content: center;

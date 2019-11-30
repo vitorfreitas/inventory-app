@@ -34,7 +34,7 @@ const Input = styled.TextInput<{ isFocused: boolean }>`
 `
 
 interface Props {
-  label: string
+  label?: string
   type?:
     | 'default'
     | 'number-pad'
@@ -55,7 +55,7 @@ interface Props {
   width?: string
   placeholder?: string
   style?: StyleProp<ViewStyle>
-  onChange?: (value) => void
+  onChange: (value) => void
   maskRef?: RefObject<any>
 }
 

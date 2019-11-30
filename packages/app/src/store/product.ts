@@ -1,6 +1,6 @@
 const defaultProduct = {
-  name: '',
-  price: null,
+  name: 'Produto',
+  price: 5,
   rawPrice: null,
   quantity: '1',
   measurementUnit: 'un',

@@ -108,6 +108,8 @@ const resolvers = {
     ): Promise<IProduct> => {
       const { product } = args
 
+      console.log(product)
+
       try {
         const updatedProduct = await ProductModel.updateOne(
           {

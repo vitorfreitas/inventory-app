@@ -1,27 +1,24 @@
 import React from 'react'
-import { gql } from 'apollo-boost'
-import { useQuery } from '@apollo/react-hooks'
 import { createStackNavigator } from 'react-navigation-stack'
 import { useSelector, useDispatch } from 'react-redux'
+import { gql } from 'apollo-boost'
+import { useQuery } from '@apollo/react-hooks'
 
 import { t } from 'locations'
 import PointOfSaleContainer from 'containers/PointOfSale'
 import { IStore } from 'store'
-import Product from 'shared/interfaces/product'
+import Product from '@stock/shared/interfaces/product'
 import CreateProduct from './CreateProduct'
 import Ingredients from './Ingredients'
 import Cart from './Cart'
+import CreateBaseProduct from './CreateBaseProduct'
 
-const FETCH_USERS = gql`
-  {
-    users {
+const FETCH_PRODUCTS = gql`
+  query {
+    products {
       id
       name
-      email
-      age
-      followedBy {
-        name
-      }
+      price
     }
   }
 `
@@ -33,7 +30,7 @@ interface Props {
 }
 
 const PointOfSale: React.SFC<Props> = ({ navigation }) => {
-  const { data } = useQuery(FETCH_USERS)
+  const { data } = useQuery<{ products: Product[] }>(FETCH_PRODUCTS)
   const cart = useSelector((state: IStore) => state.cart)
   const dispatch = useDispatch()
 
@@ -44,8 +41,8 @@ const PointOfSale: React.SFC<Props> = ({ navigation }) => {
   return (
     <PointOfSaleContainer
       t={t}
-      data={data}
       cart={cart}
+      products={data?.products}
       onAddCartItem={addItemsToCart}
       navigate={navigation.navigate}
     />
@@ -58,6 +55,7 @@ const PointOfSaleStackNavigation = createStackNavigator(
   {
     PointOfSale,
     CreateProduct,
+    CreateBaseProduct,
     Ingredients,
     Cart
   },

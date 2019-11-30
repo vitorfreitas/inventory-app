@@ -1,8 +1,9 @@
 import React from 'react'
-import styled from 'styled-components/native'
-import Ripple from 'react-native-material-ripple'
-import Product from 'shared/interfaces/product'
 import { View } from 'react-native'
+import Ripple from 'react-native-material-ripple'
+import styled from 'styled-components/native'
+
+import Product from '@stock/shared/interfaces/product'
 import { Text } from 'styles/styled'
 import { Color } from 'styles/variables'
 
@@ -23,6 +24,14 @@ const Picture = styled.Image`
   height: 50px;
   align-self: center;
   border-radius: 4px;
+`
+
+const PicturePlaceholder = styled.View`
+  background: #2c3e50;
+  width: 60px;
+  height: 50px;
+  align-self: center;
+  border-radius: 4px;s
 `
 
 const DataContainer = styled.View`
@@ -51,13 +60,6 @@ const Heading = styled.View`
   flex-direction: row;
 `
 
-const Tip = styled.Text`
-  font-size: 11px;
-  font-family: 'Poppins';
-  color: #9e9e9e;
-  justify-content: center;
-`
-
 const ProductInfo = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -78,10 +80,14 @@ interface Props {
   onPress: () => void
 }
 
-const ListItem: React.SFC<Props> = ({ data, onPress }) => (
+const ProductCard: React.SFC<Props> = ({ data, onPress }) => (
   <Container onPress={onPress}>
     <Heading>
-      <Picture source={{ uri: data.picture }} />
+      {data.picture ? (
+        <Picture source={{ uri: data.picture }} />
+      ) : (
+        <PicturePlaceholder />
+      )}
 
       <DataContainer>
         <View>
@@ -91,9 +97,9 @@ const ListItem: React.SFC<Props> = ({ data, onPress }) => (
             {data.price}
           </Price>
         </View>
+
         <InfoItem>
           <SmallText>Estoque</SmallText>
-          <Text>45 kg</Text>
         </InfoItem>
       </DataContainer>
     </Heading>
@@ -102,4 +108,4 @@ const ListItem: React.SFC<Props> = ({ data, onPress }) => (
   </Container>
 )
 
-export default ListItem
+export default ProductCard
