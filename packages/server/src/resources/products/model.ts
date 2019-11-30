@@ -1,5 +1,5 @@
 import { model, Schema, Document, Model } from 'mongoose'
-import { Product } from '@stock/shared/interfaces'
+import { Product } from '@inventory/shared/interfaces'
 import { extendSchema } from '../../utils'
 
 import { BaseProductSchema } from '../baseProducts/model'

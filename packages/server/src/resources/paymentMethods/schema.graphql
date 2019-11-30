@@ -1,26 +1,10 @@
 type Query {
-  user: User
+  paymentMethod(id: ID!): PaymentMethod!
+  paymentMethods: [PaymentMethod]!
 }
 
-type Mutation {
-  createUser(user: UserInput!): AuthPayload!
-}
-
-type User {
-  id: ID
-  name: String
-  businessName: String
-  phone: String
-  email: String
-  cpnj: String
-  customers: [Customer]
-  products: [Product]
-}
-
-input UserInput {
-  name: String
-  businessName: String
-  phone: String
-  email: String
-  password: String
+type PaymentMethod {
+  id: ID!
+  name: String!
+  icon: String!
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@stock/server",
+  "name": "@inventory/server",
   "version": "0.0.1",
   "description": "",
   "main": "index.ts",

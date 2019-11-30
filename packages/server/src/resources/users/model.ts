@@ -1,7 +1,7 @@
 import { hashSync, compareSync } from 'bcrypt'
 import { model, Schema, Document, Model } from 'mongoose'
 
-import { User } from '@stock/shared/interfaces'
+import { User } from '@inventory/shared/interfaces'
 
 interface IUser extends User, Document {
   password: string

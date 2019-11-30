@@ -1,6 +1,6 @@
 import { Query } from 'mongoose'
-import { Sale } from '@stock/shared/interfaces'
-import { SaleItem } from '@stock/shared/interfaces/sale'
+import { Sale } from '@inventory/shared/interfaces'
+import { SaleItem } from '@inventory/shared/interfaces/sale'
 
 import logger from '../../lib/logger'
 import SaleModel, { ISale } from './model'

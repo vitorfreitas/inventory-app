@@ -1,7 +1,7 @@
 import { Query } from 'mongoose'
 
 import { IUser } from '../users/model'
-import { Product } from '@stock/shared/interfaces'
+import { Product } from '@inventory/shared/interfaces'
 import ProductModel, { IProduct } from './model'
 
 import logger from '../../lib/logger'

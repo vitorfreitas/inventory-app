@@ -1,6 +1,6 @@
 import { generateToken } from '../auth'
 import { IAuthPayload } from '../auth/model'
-import { User } from '@stock/shared/interfaces'
+import { User } from '@inventory/shared/interfaces'
 
 import UserModel, { IUser } from './model'
 

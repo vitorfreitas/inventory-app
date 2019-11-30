@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "app": "yarn workspace app start",
-    "server": "yarn workspace @stock/server start",
-    "server:dev": "yarn workspace @stock/server start:dev"
+    "server": "yarn workspace @inventory/server start",
+    "server:dev": "yarn workspace @inventory/server start:dev"
   }
 }

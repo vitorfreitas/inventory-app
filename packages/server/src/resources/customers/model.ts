@@ -1,5 +1,5 @@
 import { model, Schema, Document, Model } from 'mongoose'
-import { Customer } from '@stock/shared/interfaces'
+import { Customer } from '@inventory/shared/interfaces'
 
 interface ICustomer extends Customer, Document {
   user: Schema.Types.ObjectId

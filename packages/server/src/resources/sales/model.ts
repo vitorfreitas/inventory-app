@@ -1,6 +1,6 @@
 import { model, Schema, Document, Model } from 'mongoose'
-import { Sale } from '@stock/shared/interfaces'
-import { SaleItem } from '@stock/shared/interfaces/sale'
+import { Sale } from '@inventory/shared/interfaces'
+import { SaleItem } from '@inventory/shared/interfaces/sale'
 
 import { preSaveHooks, postSaveHooks } from './middlewares/model/'
 import ProductModel, { ProductSchema } from '../products/model'

@@ -1,5 +1,5 @@
 import { IUser } from '../users/model'
-import { Customer } from '@stock/shared/interfaces'
+import { Customer } from '@inventory/shared/interfaces'
 import CustomerModel, { ICustomer } from './model'
 
 const resolvers = {

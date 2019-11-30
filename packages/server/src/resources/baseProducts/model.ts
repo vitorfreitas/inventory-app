@@ -1,6 +1,6 @@
 import { model, Schema, Document, Model } from 'mongoose'
-import { BaseProduct } from '@stock/shared/interfaces'
-import { Unit } from '@stock/shared/enums'
+import { BaseProduct } from '@inventory/shared/interfaces'
+import { Unit } from '@inventory/shared/enums'
 
 interface IBaseProduct extends BaseProduct, Document {
   id: Schema.Types.ObjectId

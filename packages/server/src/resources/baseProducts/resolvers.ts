@@ -1,4 +1,4 @@
-import { BaseProduct } from '@stock/shared/interfaces'
+import { BaseProduct } from '@inventory/shared/interfaces'
 import BaseProductModel, { IBaseProduct } from './model'
 
 import logger from '../../lib/logger'
