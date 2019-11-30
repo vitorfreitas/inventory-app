@@ -11,6 +11,8 @@ const CREATE_BASE_PRODUCT = gql`
   mutation CreateBaseProduct($product: BaseProductInput!) {
     createBaseProduct(product: $product) {
       id
+      name
+      unit
     }
   }
 `
@@ -52,7 +54,7 @@ const CreateBaseProduct: React.SFC<Props> = ({ navigation }) => {
     }
 
     createBaseProductMutation({ variables: { product: baseProductNormalized } })
-  }
+    }
 
   if (data) {
     navigation.goBack()
