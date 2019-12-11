@@ -6,7 +6,7 @@ dotenv.config({
 
 interface Environment {
   NODE_ENV: string
-  API_PORT: string
+  PORT: string
   JWT_SECRET: string
   EMAIL_SERVICE_URL?: string
   MONGO_DATABASE_HOST: string
@@ -18,7 +18,7 @@ interface Environment {
 
 const requiredEnvironmentKeys = [
   'NODE_ENV',
-  'API_PORT',
+  'PORT',
   'JWT_SECRET',
   'MONGO_DATABASE_HOST',
   'MONGO_DATABASE_PORT',
@@ -33,7 +33,7 @@ requiredEnvironmentKeys.forEach(key => {
 
 const environment: Environment = {
   NODE_ENV: process.env.NODE_ENV,
-  API_PORT: process.env.API_PORT,
+  PORT: process.env.PORT,
   JWT_SECRET: process.env.JWT_SECRET,
   EMAIL_SERVICE_URL: process.env.EMAIL_SERVICE_URL,
   MONGO_DATABASE_HOST: process.env.MONGO_DATABASE_HOST,
