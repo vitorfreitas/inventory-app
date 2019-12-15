@@ -1,0 +1,13 @@
+type Query {
+  reports(from: Date!, to: Date!): Reports
+}
+
+type SalesReport {
+  title: String!
+  content: String!
+  items: [Sale!]!
+}
+
+type Reports {
+  sales: SalesReport
+}
