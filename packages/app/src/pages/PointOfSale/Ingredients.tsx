@@ -18,10 +18,22 @@ const FETCH_INGREDIENTS = gql`
   }
 `
 
+const FETCH_PRODUCTS = gql`
+  query {
+    products {
+      id
+      name
+      price
+    }
+  }
+`
+
 const CREATE_PRODUCT = gql`
   mutation CreateProduct($product: ProductInput!) {
     createProduct(product: $product) {
       id
+      name
+      price
     }
   }
 `
@@ -39,7 +51,17 @@ const Ingredients: React.SFC<Props> = ({ navigation }) => {
     baseProducts: IBaseProduct[]
   }>(FETCH_INGREDIENTS)
   const [createProductMutation, { data: mutationData, error }] = useMutation(
-    CREATE_PRODUCT
+    CREATE_PRODUCT,
+    {
+      update(cache, { data: { createProduct }}) {
+        const { products } = cache.readQuery({ query: FETCH_PRODUCTS })
+
+        cache.writeQuery({
+          query: FETCH_PRODUCTS,
+          data: { products: products.concat([createProduct]) }
+        })
+      }
+    }
   )
   const product: AppProductInput = useSelector((state: any) => state.product)
   const dispatch = useDispatch()

@@ -91,7 +91,7 @@ const CreateBaseProductContainer: React.SFC<Props> = ({
   
         <TextInput
           maskRef={maskedInputMask}
-          label="Preço de custo"
+          label="Preço de custo por unidade"
           type="number-pad"
           mask="money"
           value={currentBaseProduct?.costPrice}

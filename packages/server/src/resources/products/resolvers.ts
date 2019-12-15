@@ -108,10 +108,8 @@ const resolvers = {
     ): Promise<IProduct> => {
       const { product } = args
 
-      console.log(product)
-
       try {
-        const updatedProduct = await ProductModel.updateOne(
+        const updatedProduct = await ProductModel.findOneAndUpdate(
           {
             _id: product.id
           },
@@ -121,6 +119,8 @@ const resolvers = {
         return updatedProduct
       } catch (err) {
         logger.error(err)
+
+        console.error(err)
 
         throw new Error(err)
       }

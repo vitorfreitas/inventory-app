@@ -7,10 +7,22 @@ import Navbar from 'components/Navbar'
 import CreateBaseProductContainer from 'containers/CreateBaseProduct'
 import { MediumText } from 'components/Typography/Text'
 
+const FETCH_INGREDIENTS = gql`
+  query FetchBaseProducts {
+    baseProducts {
+      id
+      name
+      unit
+    }
+  }
+`
+
 const CREATE_BASE_PRODUCT = gql`
   mutation CreateBaseProduct($product: BaseProductInput!) {
     createBaseProduct(product: $product) {
       id
+      name
+      unit
     }
   }
 `
@@ -30,7 +42,17 @@ const stringToDateFormat = (string: string): Date => {
 
 const CreateBaseProduct: React.SFC<Props> = ({ navigation }) => {
   const [createBaseProductMutation, { data, error }] = useMutation(
-    CREATE_BASE_PRODUCT
+    CREATE_BASE_PRODUCT,
+    {
+      update(cache, { data: { createBaseProduct }}) {
+        const { baseProducts } = cache.readQuery({ query: FETCH_INGREDIENTS })
+
+        cache.writeQuery({
+          query: FETCH_INGREDIENTS,
+          data: { baseProducts: baseProducts.concat([createBaseProduct]) }
+        })
+      }
+    }
   )
   const [baseProduct, updateBaseProduct] = useState()
 
@@ -52,7 +74,7 @@ const CreateBaseProduct: React.SFC<Props> = ({ navigation }) => {
     }
 
     createBaseProductMutation({ variables: { product: baseProductNormalized } })
-  }
+    }
 
   if (data) {
     navigation.goBack()

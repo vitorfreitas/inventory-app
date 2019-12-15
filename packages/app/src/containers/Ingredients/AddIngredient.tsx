@@ -167,7 +167,6 @@ const AddIngredient: React.FC<Props> = ({
             <FormTitle>{t('pos.create.ingredient-title')}</FormTitle>
 
             <QuantityInput
-              autoFocus
               keyboardType="number-pad"
               value={ingredient.quantity}
               onChangeText={handleQuantityInputChange}

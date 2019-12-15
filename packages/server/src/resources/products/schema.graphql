@@ -54,6 +54,7 @@ type Product {
 }
 
 input ProductInput {
+  id: ID
   name: String!
   price: Float!
   costPrice: Float
