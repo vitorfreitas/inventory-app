@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "start": "yarn server",
     "app": "yarn workspace app start",
     "server": "yarn workspace @inventory/server start",
     "server:dev": "yarn workspace @inventory/server start:dev"
