@@ -12,7 +12,7 @@ export default async function caculateSalePrice(sale: ISale) {
     Promise.resolve(0)
   )
 
-  const orderPrice = Math.min(Math.abs(productsPrice - sale.discount), 0)
+  const orderPrice = Math.max(productsPrice - sale.discount, 0)
 
   sale.price = orderPrice
 }
