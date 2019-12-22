@@ -7,22 +7,19 @@ import * as V from 'styles/variables'
 import PointOfSale from '../PointOfSale'
 import TabBar from './TabBar'
 import Inventory from '../Inventory'
-import Metrics from '../Metrics'
 import Reports from '../Reports'
 import TabIcon from './TabIcon'
 
 const tabBarIcons = {
   PointOfSale: 'shopping-cart',
   Inventory: 'shopping-bag',
-  Metrics: 'bar-chart',
-  Reports: 'more-horizontal'
+  Reports: 'bar-chart'
 }
 
 const TabNavigator = createBottomTabNavigator(
   {
     PointOfSale,
     Inventory,
-    Metrics,
     Reports
   },
   {
