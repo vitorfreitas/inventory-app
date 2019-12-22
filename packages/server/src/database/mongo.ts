@@ -4,6 +4,7 @@ import logger from '../lib/logger'
 import config from '../config'
 
 const {
+  NODE_ENV,
   MONGO_DATABASE_HOST,
   MONGO_DATABASE_PASSWORD,
   MONGO_DATABASE_USERNAME,
@@ -12,7 +13,7 @@ const {
 } = config
 
 const databaseConfig = (): string => {
-  const protocol = 'mongodb://'
+  const protocol = 'mongodb+srv://'
 
   return protocol
     .concat(MONGO_DATABASE_USERNAME)
@@ -20,8 +21,6 @@ const databaseConfig = (): string => {
     .concat(MONGO_DATABASE_PASSWORD)
     .concat('@')
     .concat(MONGO_DATABASE_HOST)
-    .concat(':')
-    .concat(MONGO_DATABASE_PORT)
     .concat('/')
     .concat(MONGO_DATABASE_NAME)
 }
