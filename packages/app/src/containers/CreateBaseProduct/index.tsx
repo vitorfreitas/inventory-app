@@ -31,16 +31,16 @@ const Footer = styled.View`
 const ingredients = [
   {
     id: '1',
-    name: 'Grama',
+    name: 'Grama'
   },
   {
     id: '2',
-    name: 'Unidade',
+    name: 'Unidade'
   },
   {
     id: '3',
-    name: 'Litro',
-  },
+    name: 'Mililitro'
+  }
 ]
 
 interface Props {
@@ -58,7 +58,7 @@ const CreateBaseProductContainer: React.SFC<Props> = ({
   currentBaseProduct,
   onChangeInputField,
   onSaveBaseProduct
-}) =>{
+}) => {
   const maskedInputMask = useRef<{ getRawValue: () => number }>()
 
   const formatCostAndSave = () => {
@@ -75,7 +75,7 @@ const CreateBaseProductContainer: React.SFC<Props> = ({
           placeholder="Farinha de Mandioca"
           onChange={value => onChangeInputField('name', value)}
         />
-  
+
         <InputContainer>
           <MediumText>Unidade</MediumText>
           <SelectInput
@@ -88,7 +88,7 @@ const CreateBaseProductContainer: React.SFC<Props> = ({
             options={ingredients.map(formatToSelectPickerFormat)}
           />
         </InputContainer>
-  
+
         <TextInput
           maskRef={maskedInputMask}
           label="Preço de custo por unidade"
@@ -96,10 +96,10 @@ const CreateBaseProductContainer: React.SFC<Props> = ({
           mask="money"
           value={currentBaseProduct?.costPrice}
           placeholder="R$ 0,00"
-          onChange={(value) => onChangeInputField('costPrice', value)}
+          onChange={value => onChangeInputField('costPrice', value)}
         />
-  
-        <TextInput 
+
+        <TextInput
           label="Quantidade em estoque"
           placeholder="10"
           type="number-pad"
@@ -107,8 +107,8 @@ const CreateBaseProductContainer: React.SFC<Props> = ({
           value={currentBaseProduct?.quantity}
           onChange={value => onChangeInputField('quantity', value)}
         />
-  
-        <TextInput 
+
+        <TextInput
           label="Quantidade mínima em estoque"
           placeholder="3"
           mask="only-numbers"
@@ -116,7 +116,7 @@ const CreateBaseProductContainer: React.SFC<Props> = ({
           value={currentBaseProduct?.minQuantity}
           onChange={value => onChangeInputField('minQuantity', value)}
         />
-  
+
         <InputContainer>
           <MediumText>Data de validade</MediumText>
           <DatePicker
@@ -129,34 +129,31 @@ const CreateBaseProductContainer: React.SFC<Props> = ({
             cancelBtnText="Voltar"
             customStyles={{
               dateIcon: {
-                display: 'none',
+                display: 'none'
               },
               dateInput: {
                 borderWidth: 0,
                 borderBottomWidth: 1,
                 borderColor: '#e0e0e0',
                 justifyContent: 'center',
-                alignItems: 'flex-start',
+                alignItems: 'flex-start'
               },
               placeholderText: {
-                textAlign: 'left',
+                textAlign: 'left'
               }
             }}
-            onDateChange={(date) => onChangeInputField('expirationDate', date)}
+            onDateChange={date => onChangeInputField('expirationDate', date)}
           />
         </InputContainer>
       </Container>
-  
+
       <Footer>
         <Link onPress={() => {}}>Voltar</Link>
-  
-        <Button
-          onPress={formatCostAndSave}
-          text="Salvar"
-        />
+
+        <Button onPress={formatCostAndSave} text="Salvar" />
       </Footer>
     </>
   )
-} 
+}
 
 export default CreateBaseProductContainer

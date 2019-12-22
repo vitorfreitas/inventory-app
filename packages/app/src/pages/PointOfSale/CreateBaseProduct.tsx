@@ -44,7 +44,7 @@ const CreateBaseProduct: React.SFC<Props> = ({ navigation }) => {
   const [createBaseProductMutation, { data, error }] = useMutation(
     CREATE_BASE_PRODUCT,
     {
-      update(cache, { data: { createBaseProduct }}) {
+      update(cache, { data: { createBaseProduct } }) {
         const { baseProducts } = cache.readQuery({ query: FETCH_INGREDIENTS })
 
         cache.writeQuery({
@@ -64,17 +64,26 @@ const CreateBaseProduct: React.SFC<Props> = ({ navigation }) => {
   }
 
   const createBaseProduct = (costPrice: number) => {
+    const units = {
+      Mililitro: 'Milliliter',
+      Grama: 'Gram',
+      Unidade: 'Unit',
+      Milliliter: 'Milliliter',
+      Gram: 'Gram',
+      Unit: 'Unit'
+    }
+
     const baseProductNormalized = {
       ...baseProduct,
       costPrice,
-      unit: 'Gram',
+      unit: units[baseProduct.unit],
       quantity: +baseProduct.quantity,
       minQuantity: +baseProduct.minQuantity,
       expirationDate: stringToDateFormat(baseProduct.expirationDate)
     }
 
     createBaseProductMutation({ variables: { product: baseProductNormalized } })
-    }
+  }
 
   if (data) {
     navigation.goBack()
