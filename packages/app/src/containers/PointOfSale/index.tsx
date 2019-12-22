@@ -57,7 +57,7 @@ const HomeContainer: React.SFC<Props> = ({
 
   return (
     <>
-      <Navbar title={t('navbar.sell')} withProfile withBackButton={false} />
+      <Navbar title={t('navbar.sell')} withBackButton={false} />
 
       <Toolbar>
         <SearchInput placeholder={t('pos.placeholder')} />

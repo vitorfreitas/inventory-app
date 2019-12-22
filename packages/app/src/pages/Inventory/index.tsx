@@ -41,7 +41,7 @@ const Inventory: React.SFC<Props> = ({ navigation }) => {
 
   return (
     <Container>
-      <Navbar title={t('inventory.title')} withProfile withBackButton={false} />
+      <Navbar title={t('inventory.title')} withBackButton={false} />
 
       <Toolbar>
         <SearchInput placeholder={t('inventory.searchbar')} />

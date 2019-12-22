@@ -69,7 +69,7 @@ const EditProductContainer: React.SFC<Props> = ({
 
   return (
     <Container>
-      <Navbar title="Editar Produto" withProfile={false} withBackButton />
+      <Navbar title="Editar Produto" withBackButton />
 
       <ScrollView style={{ paddingBottom: 16 }}>
         <ProductOverview product={product} />
