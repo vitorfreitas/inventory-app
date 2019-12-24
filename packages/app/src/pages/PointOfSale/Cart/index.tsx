@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { and, isNil, not, equals } from 'ramda'
+import { useMutation } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
 
 import CartContainer from 'containers/Cart'
 import { t } from 'locations'
 import { IStore } from 'store'
-import Product from '@stock/shared/interfaces/product'
-import { gql } from 'apollo-boost'
-import { useMutation } from '@apollo/react-hooks'
+import Product from '@inventory/shared/interfaces/product'
 
 interface Props {
   navigation: {

@@ -5,7 +5,7 @@ import { gql } from 'apollo-boost'
 import Container from 'components/Layout/Container'
 import Navbar from 'components/Navbar'
 import CreateBaseProductContainer from 'containers/CreateBaseProduct'
-import { MediumText } from 'components/Typography/Text'
+import { IBaseProduct } from 'containers/Ingredients/interfaces'
 
 const FETCH_INGREDIENTS = gql`
   query FetchBaseProducts {
@@ -54,7 +54,9 @@ const CreateBaseProduct: React.SFC<Props> = ({ navigation }) => {
       }
     }
   )
-  const [baseProduct, updateBaseProduct] = useState()
+  const [baseProduct, updateBaseProduct] = useState<IBaseProduct>(
+    {} as IBaseProduct
+  )
 
   const updateBaseProductField = (field, value) => {
     updateBaseProduct({

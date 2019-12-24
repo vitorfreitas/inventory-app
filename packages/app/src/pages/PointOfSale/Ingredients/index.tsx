@@ -53,7 +53,7 @@ const Ingredients: React.SFC<Props> = ({ navigation }) => {
   const [createProductMutation, { data: mutationData, error }] = useMutation(
     CREATE_PRODUCT,
     {
-      update(cache, { data: { createProduct }}) {
+      update(cache, { data: { createProduct } }) {
         const { products } = cache.readQuery({ query: FETCH_PRODUCTS })
 
         cache.writeQuery({
