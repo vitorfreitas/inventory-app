@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "546360908456",
+    "firebase_url": "https://inventory-f4a4c.firebaseio.com",
+    "project_id": "inventory-f4a4c",
+    "storage_bucket": "inventory-f4a4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546360908456:android:8a7198e462494be1a5009d",
+        "android_client_info": {
+          "package_name": "com.inventory.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546360908456-jge2ik9kp6ibbg2noplrep0pv07ciniu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmLjv0ju_kR0v4L42if_COPPn9gj_2rWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546360908456-jge2ik9kp6ibbg2noplrep0pv07ciniu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
