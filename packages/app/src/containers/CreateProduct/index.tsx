@@ -66,10 +66,6 @@ const CreateProductContainer: React.SFC<Props> = ({
     onChangeProduct({ rawPrice: rawPrice * 10 })
   }
 
-  React.useEffect(() => {
-    console.log(product)
-  }, [product])
-
   return (
     <>
       <Container>
