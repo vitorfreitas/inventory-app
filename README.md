@@ -1,9 +1,12 @@
-# Stock
+# Inventory app
 
-App para controle de estoque e ponto de venda.
+An open source inventory manager for your business.
 
-## Scripts disponíveis
+## Features
 
-### `yarn app`
+- Register products with compostion (Pizza has tomatoes, cheese...)
+- Reports and data analysis tab
 
-Inicia a aplicação mobile em React Native
+## Licence
+
+[MIT]()
